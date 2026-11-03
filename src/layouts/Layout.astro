@@ -1,0 +1,120 @@
+---
+import '../styles/global.css';
+import { BRAND_CONFIG } from '../config/brand';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${BRAND_CONFIG.name} · Limpiador Multiusos en Crema 3D | ${BRAND_CONFIG.slogan}`,
+  description = 'Narayana es el limpiador multiusos en crema instantáneo y biodegradable con Fórmula 3D: Desengrasa, Desmancha y Desinfecta en seco ahorrando agua. Creado entre ciencia y conciencia en el Cauca, Colombia.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#071A12" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- OpenGraph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/assets/images/pote_abierto.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Preload critical Hero cutout assets for instant LCP and smooth scrubbing -->
+    <link rel="preload" as="image" href="/assets/images/hero_jar_open_cutout.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/images/hero_lid_cutout.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/images/hero_jar_closed_cutout.png" />
+
+    <!-- Google Fonts: Syne, Outfit & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Syne:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured Data (Product NRN-001) -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: 'Narayana Limpiador Multiusos en Crema 3D',
+        sku: BRAND_CONFIG.internalCode,
+        brand: {
+          '@type': 'Brand',
+          name: BRAND_CONFIG.name,
+          slogan: BRAND_CONFIG.slogan,
+        },
+        description,
+        image: ['/assets/images/pote_abierto.jpeg', '/assets/images/pote_cerrado.jpeg'],
+        offers: {
+          '@type': 'AggregateOffer',
+          priceCurrency: 'COP',
+          lowPrice: '18000',
+          highPrice: '32000',
+          offerCount: '4',
+          availability: 'https://schema.org/InStock',
+        },
+      })}
+    />
+  </head>
+  <body class="bg-canopy-900 text-cream-50 antialiased selection:bg-bio-500 selection:text-canopy-950">
+    <slot />
+
+    <script>
+      import Lenis from 'lenis';
+      import gsap from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const lenis = new Lenis({
+        duration: prefersReducedMotion ? 0 : 1.15,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: !prefersReducedMotion,
+        wheelMultiplier: 0.95,
+        touchMultiplier: 1.5,
+      });
+
+      // Expose globally so Preloader and Navbar can coordinate scroll lock and smooth anchor jumps
+      (window as unknown as { __narayanaLenis?: Lenis }).__narayanaLenis = lenis;
+
+      lenis.on('scroll', ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(0);
+
+      // Smooth anchor navigation for all internal links
+      document.addEventListener('click', (e) => {
+        const target = (e.target as HTMLElement | null)?.closest('a[href^="#"]') as HTMLAnchorElement | null;
+        if (!target) return;
+        const hash = target.getAttribute('href');
+        if (!hash || hash === '#') return;
+        const destination = document.querySelector(hash) as HTMLElement | null;
+        if (destination) {
+          e.preventDefault();
+          lenis.scrollTo(destination, {
+            offset: -72,
+            duration: prefersReducedMotion ? 0 : 1.25,
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

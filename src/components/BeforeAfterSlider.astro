@@ -1,0 +1,774 @@
+---
+import { BRAND_CONFIG, buildWhatsAppUrl } from '../config/brand';
+
+const deckThemes = [
+  {
+    bg: 'bg-white',
+    text: 'text-canopy-950',
+    stickerBg: 'bg-[#5CE63C]',
+    stickerText: '¡RINDE HASTA 3X MÁS!',
+    strokeClass: 'starry-display-stroke-lime',
+    subBadge: 'DOSIS MÍNIMA CONCENTRADA',
+  },
+  {
+    bg: 'bg-[#5CE63C]',
+    text: 'text-canopy-950',
+    stickerBg: 'bg-solar-400',
+    stickerText: 'FÓRMULA 3D ACTIVA',
+    strokeClass: 'starry-display-stroke',
+    subBadge: 'MICROGRÁNULOS BIODEGRADABLES',
+  },
+  {
+    bg: 'bg-celestial-400',
+    text: 'text-canopy-950',
+    stickerBg: 'bg-white',
+    stickerText: '¡0% AGUA · UN SOLO PAÑO!',
+    strokeClass: 'starry-display-stroke',
+    subBadge: '95% AHORRO HÍDRICO REAL',
+  },
+  {
+    bg: 'bg-solar-400',
+    text: 'text-canopy-950',
+    stickerBg: 'bg-[#5CE63C]',
+    stickerText: '✨ ACABADO ESPEJO',
+    strokeClass: 'starry-display-stroke',
+    subBadge: 'SUPERFICIE DESINFECTADA Y BRILLANTE',
+  },
+];
+---
+
+<section
+  id="demostracion"
+  class="relative overflow-hidden bg-canopy-900 py-20 sm:py-28"
+  aria-labelledby="demo-heading"
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <!-- Section Header -->
+    <div class="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <div class="inline-flex flex-wrap items-center gap-2">
+          <span
+            class="starry-sticker -rotate-1 rounded-full bg-[#5CE63C] px-3.5 py-1 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase sm:px-4"
+          >
+            PRUEBA REAL EN SECO · CERO AGUA
+          </span>
+          <span
+            class="starry-sticker rotate-1 rounded-full bg-solar-400 px-3.5 py-1 font-wordmark text-xs font-black text-canopy-950 uppercase"
+          >
+            DESLIZA EL COMPARADOR ↔
+          </span>
+        </div>
+
+        <h2
+          id="demo-heading"
+          class="mt-4 font-display text-2xl leading-[0.98] font-black tracking-tight text-cream-50 uppercase sm:text-4xl lg:text-5xl"
+        >
+          DE 100% BARRO A <span class="starry-display-stroke-lime">100% BLANCO</span> SIN MOJAR EL ZAPATO.
+        </h2>
+      </div>
+      <div class="lg:col-span-5">
+        <p class="text-xs leading-relaxed text-cream-100/85 sm:text-base">
+          Arrastra la barra divisoria de punta a talón: a la derecha ves el calzado <strong class="text-solar-400">totalmente cubierto de barro</strong>; a la izquierda, el mismo zapato <strong class="text-[#5CE63C]">100% restaurado en seco</strong> con crema Narayana y un paño de microfibra.
+        </p>
+      </div>
+    </div>
+
+    <!-- 1. INTERACTIVE 100% DIRTY VS 100% CLEAN SNEAKER COMPARATOR -->
+    <div class="mt-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
+      <!-- Left 8 Cols: True Before / After Stage -->
+      <div class="lg:col-span-8">
+        <div
+          id="sneaker-inspector"
+          class="starry-card-hard group relative aspect-[16/10] w-full overflow-hidden rounded-[2.25rem] bg-canopy-950 select-none"
+        >
+          <!-- BASE LAYER (BEFORE): 100% Muddy Sneaker from toe to heel -->
+          <img
+            src="/assets/images/zapato_sucio_before.png"
+            alt="Antes: Zapatilla completamente cubierta de barro seco de punta a talón"
+            loading="lazy"
+            class="pointer-events-none absolute inset-0 h-full w-full object-cover"
+          />
+
+          <!-- CLIPPED TOP LAYER (AFTER): 100% Spotless White Sneaker from toe to heel -->
+          <div
+            id="sneaker-clip-layer"
+            class="pointer-events-none absolute inset-0 overflow-hidden"
+            style="clip-path: inset(0 48% 0 0);"
+          >
+            <img
+              src="/assets/images/zapato_limpio_after.png"
+              alt="Después: La misma zapatilla 100% blanca e impecable tras limpiarse en seco con Narayana"
+              loading="lazy"
+              class="h-full w-full object-cover"
+            />
+          </div>
+
+          <!-- Top Status Stickers -->
+          <div
+            class="starry-sticker pointer-events-none absolute top-3 left-3 z-20 -rotate-1 rounded-full bg-[#5CE63C] px-3 py-1 font-wordmark text-[11px] font-black tracking-wide text-canopy-950 uppercase sm:top-5 sm:left-5 sm:px-4 sm:py-1.5 sm:text-xs"
+          >
+            ✓ DESPUÉS: 100% BLANCO
+          </div>
+          <div
+            class="starry-sticker pointer-events-none absolute top-3 right-3 z-20 rotate-1 rounded-full bg-solar-400 px-3 py-1 font-wordmark text-[11px] font-black tracking-wide text-canopy-950 uppercase sm:top-5 sm:right-5 sm:px-4 sm:py-1.5 sm:text-xs"
+          >
+            ✗ ANTES: 100% BARRO
+          </div>
+
+          <!-- Interactive Vertical Divider Line + Sparkle Bursts + Tactile Handle -->
+          <div
+            id="sneaker-divider-line"
+            class="pointer-events-none absolute top-0 bottom-0 z-20 w-1 bg-[#5CE63C] shadow-[0_0_24px_rgba(92,230,60,1)]"
+            style="left: 52%;"
+          >
+            <svg
+              class="divider-sparkle -left-5 absolute top-[22%] h-6 w-6 text-solar-400 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] sm:-left-6 sm:h-7 sm:w-7"
+              viewBox="0 0 64 64"
+              fill="currentColor"
+            >
+              <path d="M32 0C34 22 42 30 64 32C42 34 34 42 32 64C30 42 22 34 0 32C22 30 30 22 32 0Z" />
+            </svg>
+            <svg
+              class="divider-sparkle -right-5 absolute bottom-[24%] h-7 w-7 text-[#5CE63C] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] sm:-right-6 sm:h-8 sm:w-8"
+              viewBox="0 0 64 64"
+              fill="currentColor"
+            >
+              <path d="M32 0C34 22 42 30 64 32C42 34 34 42 32 64C30 42 22 34 0 32C22 30 30 22 32 0Z" />
+            </svg>
+
+            <div
+              class="starry-sticker -translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-white text-canopy-950 sm:h-14 sm:w-14"
+            >
+              <svg class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-4 3 4 3m8-6l4 3-4 3" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Accessible Range Input covering the stage -->
+          <input
+            id="sneaker-slider-input"
+            type="range"
+            min="4"
+            max="96"
+            value="52"
+            aria-label="Deslizar para comparar el zapato 100% sucio contra el zapato 100% limpio con Narayana"
+            class="absolute inset-0 z-30 h-full w-full cursor-ew-resize opacity-0"
+          />
+
+          <!-- Bottom Preset Buttons Bar -->
+          <div
+            class="absolute inset-x-3 bottom-3 z-40 flex flex-wrap items-center justify-between gap-1.5 rounded-2xl border-2 border-canopy-950 bg-canopy-900/95 px-3 py-2 text-xs text-cream-100 backdrop-blur-md sm:inset-x-6 sm:bottom-5 sm:px-4 sm:py-2.5"
+          >
+            <span class="font-wordmark text-[11px] font-extrabold tracking-wide text-[#5CE63C] uppercase sm:text-xs">
+              Arrastra ↔ o prueba:
+            </span>
+            <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
+              <button
+                type="button"
+                class="sneaker-preset-btn rounded-full border border-white/20 bg-canopy-950 px-2.5 py-1 font-wordmark text-[10px] font-black text-solar-400 uppercase hover:bg-solar-400 hover:text-canopy-950 sm:px-3 sm:text-[11px]"
+                data-slider-val="8"
+              >
+                100% Barro
+              </button>
+              <button
+                type="button"
+                class="sneaker-preset-btn rounded-full border border-white/20 bg-canopy-950 px-2.5 py-1 font-wordmark text-[10px] font-black text-white uppercase hover:bg-white hover:text-canopy-950 sm:px-3 sm:text-[11px]"
+                data-slider-val="52"
+              >
+                50 / 50
+              </button>
+              <button
+                type="button"
+                class="sneaker-preset-btn rounded-full border border-canopy-950 bg-[#5CE63C] px-2.5 py-1 font-wordmark text-[10px] font-black text-canopy-950 uppercase hover:bg-solar-400 sm:px-3 sm:text-[11px]"
+                data-slider-val="94"
+              >
+                ¡100% Limpio!
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right 4 Cols: Real Action Snapshot Card (zapato_limpiando.jpeg) -->
+      <div class="lg:col-span-4">
+        <div class="starry-card-hard relative rounded-[2.25rem] bg-[#5CE63C] p-6 text-canopy-950">
+          <div
+            class="starry-sticker -top-4 right-5 absolute rotate-3 rounded-full bg-solar-400 px-4 py-1 font-wordmark text-xs font-black text-canopy-950 uppercase"
+          >
+            ACCIÓN EN SECO REAL
+          </div>
+
+          <div class="overflow-hidden rounded-2xl border-3 border-canopy-950 bg-canopy-950">
+            <img
+              src="/assets/images/zapato_limpiando.jpeg"
+              alt="Demostración en vivo aplicando crema Narayana con paño de microfibra verde"
+              loading="lazy"
+              class="h-44 w-full object-cover sm:h-48"
+            />
+          </div>
+
+          <h3 class="mt-4 font-wordmark text-xl leading-tight font-black tracking-tight uppercase sm:text-2xl">
+            CERO MANGUERAS. CERO PLANTILLAS MOJADAS.
+          </h3>
+          <p class="mt-2 text-xs leading-relaxed font-bold text-canopy-950/85 sm:text-sm">
+            Al no usar agua en exceso, tus zapatos no toman mal olor, no se despegan y quedan listos para ponerte en 60 segundos.
+          </p>
+
+          <a
+            href={buildWhatsAppUrl(
+              'Hola equipo Narayana 🌿, vi el comparador del zapato 100% limpio sin agua y quiero pedir mi Narayana.'
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="starry-sticker mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-white px-4 py-3 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase transition-transform hover:-translate-y-0.5 hover:bg-solar-400 sm:px-5 sm:py-3.5 sm:text-sm"
+          >
+            <span>¡LO QUIERO PARA MIS TENIS Y HOGAR!</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. PARTE A: EL RITUAL EN 4 PASOS COMO BARAJA DE CARTAS APILABLES CON GSAP (#modo-de-uso-steps) -->
+  <div
+    id="modo-de-uso-steps"
+    class="relative mt-20 flex min-h-screen w-full flex-col justify-center overflow-hidden bg-canopy-950 py-16"
+  >
+    <!-- Giant Background Outlined Text -->
+    <div
+      class="pointer-events-none absolute top-1/2 left-1/2 z-0 -translate-x-1/2 -translate-y-1/2 font-wordmark text-[6.5rem] leading-none font-black tracking-tighter whitespace-nowrap uppercase opacity-15 select-none sm:text-[13rem]"
+      aria-hidden="true"
+    >
+      <span class="starry-outline-ghost">4 PASOS BIO</span>
+    </div>
+
+    <div class="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-4 sm:px-6">
+      <!-- Deck Header & Step Jump Pills -->
+      <div class="flex flex-col items-center text-center">
+        <span
+          class="starry-sticker -rotate-1 rounded-full bg-solar-400 px-4 py-1.5 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase sm:px-5"
+        >
+          BARAJA INTERACTIVA GSAP · 4 PASOS FLUIDOS
+        </span>
+        <h3
+          class="starry-display-stroke mt-3 text-3xl leading-[0.94] font-black tracking-tight uppercase sm:text-5xl lg:text-6xl"
+        >
+          EL RITUAL EN 4 CARTAS
+        </h3>
+
+        <!-- Step Quick Jump Buttons -->
+        <div class="mt-5 flex flex-wrap items-center justify-center gap-2">
+          {
+            BRAND_CONFIG.usageSteps.map((s, idx) => (
+              <button
+                type="button"
+                class={`deck-jump-btn starry-sticker rounded-full px-3.5 py-1.5 font-wordmark text-xs font-black tracking-wider uppercase transition-all sm:px-4 ${
+                  idx === 0
+                    ? 'bg-[#5CE63C] text-canopy-950 scale-105'
+                    : 'bg-canopy-900 text-cream-100 hover:bg-canopy-800'
+                }`}
+                data-deck-jump={idx}
+                aria-label={`Saltar a la carta del paso 0${s.step}`}
+              >
+                PASO 0{s.step}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- GIANT STACKING CARD DECK ARENA WITH SMOOTH PROGRESSIVE TRANSITIONS -->
+      <div class="relative mt-8 h-[440px] min-h-[440px] w-full max-w-4xl sm:h-[390px] sm:min-h-[390px]">
+        {
+          BRAND_CONFIG.usageSteps.map((step, idx) => {
+            const theme = deckThemes[idx];
+            return (
+              <article
+                class={`usage-deck-card starry-card-hard absolute inset-0 flex flex-col justify-between rounded-[2rem] ${theme.bg} p-5 ${theme.text} sm:rounded-[2.5rem] sm:p-8 lg:p-10 will-change-transform transition-colors duration-300`}
+                style={`z-index: ${10 + idx}; opacity: ${idx === 0 ? '1' : '0'}; transform: translate3d(0, ${idx === 0 ? '0px' : '40px'}, 0) scale(${idx === 0 ? '1' : '0.96'});`}
+                data-deck-card={idx}
+              >
+                <!-- Top Row: Badge + Rotated Sticker -->
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <span class="rounded-full border-2 border-canopy-950 bg-canopy-950 px-3 py-0.5 font-wordmark text-[10px] font-black tracking-wider text-white uppercase sm:px-4 sm:py-1 sm:text-xs">
+                    PASO 0{step.step} DE 04 · {theme.subBadge}
+                  </span>
+                  <span
+                    class={`starry-sticker rotate-2 rounded-full ${theme.stickerBg} px-3 py-1 font-wordmark text-[10px] font-black tracking-wider text-canopy-950 uppercase sm:px-4 sm:py-1.5 sm:text-xs`}
+                  >
+                    {theme.stickerText}
+                  </span>
+                </div>
+
+                <!-- Middle Row: Colossal Step Number + Giant Headline + Description -->
+                <div class="my-auto grid grid-cols-1 items-center gap-3 sm:grid-cols-12 sm:gap-6">
+                  <div class="sm:col-span-4">
+                    <span class={`${theme.strokeClass} block text-4xl leading-none font-black sm:text-7xl lg:text-9xl`}>
+                      0{step.step}
+                    </span>
+                  </div>
+                  <div class="sm:col-span-8">
+                    <h4 class="font-wordmark text-xl leading-[0.98] font-black tracking-tight uppercase sm:text-3xl lg:text-5xl">
+                      {step.title}
+                    </h4>
+                    <p class="mt-2 text-xs leading-relaxed font-bold opacity-90 sm:mt-3 sm:text-sm lg:text-base">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Bottom Row: Metric & Sparkle -->
+                <div class="flex items-center justify-between border-t-2 border-canopy-950/20 pt-3 sm:pt-4">
+                  <span class="font-wordmark text-[11px] font-black tracking-wider uppercase sm:text-sm">
+                    ✦ IMPACTO: {step.metric}
+                  </span>
+                  <span class="font-wordmark text-[10px] font-black tracking-wider uppercase sm:text-xs">
+                    CARTA 0{step.step} / 04
+                  </span>
+                </div>
+              </article>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. PARTE B: SUPERFICIES RECOMENDADAS EN BENTO GRID CREATIVO ESTILO STARRY -->
+  <div class="mx-auto mt-20 max-w-7xl px-4 sm:mt-24 sm:px-6">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <span
+          class="starry-sticker -rotate-1 inline-block rounded-full bg-[#5CE63C] px-3.5 py-1 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase sm:px-4"
+        >
+          MULTISUPERFICIE 3D · HOGAR, CALZADO & COMERCIO
+        </span>
+        <h3 class="mt-3 font-display text-2xl leading-[0.96] font-black text-cream-50 uppercase sm:text-4xl lg:text-5xl">
+          UN SOLO POTE LO LIMPIA <span class="starry-display-stroke-lime">TODO</span>
+        </h3>
+      </div>
+      <span
+        class="starry-sticker rotate-1 rounded-full bg-solar-400 px-3.5 py-1.5 font-wordmark text-xs font-black text-canopy-950 uppercase sm:px-4"
+      >
+        ⚡ REEMPLAZA HASTA 5 QUÍMICOS
+      </span>
+    </div>
+
+    <!-- ASYMMETRIC EXPLOSIVE BENTO GRID -->
+    <div id="surfaces-bento-grid" class="mt-10 grid grid-cols-1 gap-5 md:grid-cols-12">
+      <!-- BENTO CELL 1 (Hero Bento md:col-span-7 md:row-span-2, Lime #5CE63C) -->
+      <article
+        class="bento-surface-card starry-card-hard relative flex flex-col justify-between overflow-hidden rounded-[2.25rem] bg-[#5CE63C] p-6 text-canopy-950 sm:rounded-[2.5rem] sm:p-9 md:col-span-7 md:row-span-2"
+      >
+        <div class="relative z-10 flex flex-wrap items-center justify-between gap-2">
+          <span
+            class="starry-sticker -rotate-2 rounded-full bg-solar-400 px-3.5 py-1 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase sm:px-4"
+          >
+            🔥 #1 MÁS USADO · SNEAKER CARE
+          </span>
+          <span class="rounded-full border-2 border-canopy-950 bg-white px-3 py-0.5 font-wordmark text-xs font-black text-canopy-950 uppercase sm:px-3.5 sm:py-1">
+            0 LITROS DE AGUA
+          </span>
+        </div>
+
+        <div class="relative z-10 my-6 grid grid-cols-1 items-center gap-6 sm:grid-cols-12">
+          <div class="sm:col-span-7">
+            <h4
+              class="starry-display-stroke text-3xl leading-[0.95] font-black tracking-tight uppercase sm:text-5xl"
+            >
+              ZAPATOS, TENIS & SUELAS BLANCAS
+            </h4>
+            <p class="mt-3 text-xs leading-relaxed font-bold text-canopy-950/90 sm:text-base">
+              Devuelve el blanco puro a cuero, suelas de goma y lona manchados con barro o asfalto sin mojar el interior ni despegar tus zapatillas.
+            </p>
+          </div>
+          <div class="sm:col-span-5">
+            <div class="starry-card-hard rotate-3 overflow-hidden rounded-3xl bg-white p-2 transition-transform duration-300 hover:rotate-0">
+              <img
+                src="/assets/images/zapato_limpio_after.png"
+                alt="Zapatilla blanca impecable limpia con Narayana"
+                loading="lazy"
+                class="h-40 w-full rounded-2xl object-cover sm:h-44"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="relative z-10 flex flex-wrap items-center justify-between gap-2 border-t-2 border-canopy-950/20 pt-4">
+          <span class="font-wordmark text-[11px] font-black tracking-wider uppercase sm:text-xs">
+            ✦ HASTA 60 PARES DE TENIS POR POTE DE 350G
+          </span>
+          <a
+            href="#presentaciones"
+            class="rounded-full border-2 border-canopy-950 bg-canopy-950 px-4 py-1.5 font-wordmark text-xs font-black text-[#5CE63C] uppercase hover:bg-white hover:text-canopy-950"
+          >
+            PEDIR PARA CALZADO →
+          </a>
+        </div>
+      </article>
+
+      <!-- BENTO CELL 2 (Panoramic md:col-span-5, Celestial #38BDF8) -->
+      <article
+        class="bento-surface-card starry-card-hard flex flex-col justify-between rounded-[2.25rem] bg-celestial-400 p-5 text-canopy-950 sm:p-7 md:col-span-5"
+      >
+        <div class="flex items-center justify-between gap-2">
+          <span class="rounded-full border-2 border-canopy-950 bg-white px-3 py-0.5 font-wordmark text-xs font-black uppercase sm:px-3.5 sm:py-1">
+            🍳 DESENGRASE EN FRÍO
+          </span>
+          <span class="font-wordmark text-[11px] font-black uppercase sm:text-xs">SIN VAPORES TÓXICOS</span>
+        </div>
+        <div class="my-4">
+          <h4 class="font-wordmark text-xl leading-tight font-black tracking-tight uppercase sm:text-3xl">
+            COCINAS, ESTUFAS & HORNOS
+          </h4>
+          <p class="mt-2 text-xs leading-relaxed font-bold text-canopy-950/85 sm:text-sm">
+            Corta grasa carbonizada en quemadores, campanas extractoras, vidrios de horno y cerámica al primer contacto.
+          </p>
+        </div>
+      </article>
+
+      <!-- BENTO CELL 3 (md:col-span-5, Solar Yellow #FACC15) -->
+      <article
+        class="bento-surface-card starry-card-hard flex flex-col justify-between rounded-[2.25rem] bg-solar-400 p-5 text-canopy-950 sm:p-7 md:col-span-5"
+      >
+        <div class="flex items-center justify-between gap-2">
+          <span class="rounded-full border-2 border-canopy-950 bg-white px-3 py-0.5 font-wordmark text-xs font-black uppercase sm:px-3.5 sm:py-1">
+            ✨ BRILLO ESPEJO
+          </span>
+          <span class="font-wordmark text-[11px] font-black uppercase sm:text-xs">CON SILICATO PROTECTOR</span>
+        </div>
+        <div class="my-4">
+          <h4 class="font-wordmark text-xl leading-tight font-black tracking-tight uppercase sm:text-3xl">
+            MESONES & ACERO INOXIDABLE
+          </h4>
+          <p class="mt-2 text-xs leading-relaxed font-bold text-canopy-950/85 sm:text-sm">
+            Pule lavaplatos, griferías, aluminio y mesones industriales eliminando manchas de agua dura y óxido sin rayar.
+          </p>
+        </div>
+      </article>
+
+      <!-- BENTO CELL 4 (md:col-span-4, Cream #F7F9F4) -->
+      <article
+        class="bento-surface-card starry-card-hard flex flex-col justify-between rounded-[2.25rem] bg-cream-50 p-5 text-canopy-950 sm:p-6 md:col-span-4"
+      >
+        <span class="w-fit rounded-full border-2 border-canopy-950 bg-[#5CE63C] px-3.5 py-1 font-wordmark text-xs font-black uppercase">
+          🚿 OXÍGENO ACTIVO · SIN CLORO
+        </span>
+        <div class="mt-4">
+          <h4 class="font-wordmark text-xl leading-tight font-black uppercase sm:text-2xl">
+            BAÑOS, GRIFERÍA & SANITARIOS
+          </h4>
+          <p class="mt-2 text-xs leading-relaxed font-bold text-canopy-900/85 sm:text-sm">
+            Remueve sarro, residuos de jabón y moho en juntas de ducha, porcelana y vidrio templado.
+          </p>
+        </div>
+      </article>
+
+      <!-- BENTO CELL 5 (md:col-span-4, Dark Canopy #0A2618 with Lime border) -->
+      <article
+        class="bento-surface-card starry-card-lime-glow flex flex-col justify-between rounded-[2.25rem] bg-[#0A2618] p-5 text-cream-50 sm:p-6 md:col-span-4"
+      >
+        <span class="w-fit rounded-full border-2 border-canopy-950 bg-solar-400 px-3.5 py-1 font-wordmark text-xs font-black text-canopy-950 uppercase">
+          🧱 RESTAURACIÓN DE MUROS
+        </span>
+        <div class="mt-4">
+          <h4 class="font-wordmark text-xl leading-tight font-black text-[#5CE63C] uppercase sm:text-2xl">
+            PISOS & PAREDES LAVABLES
+          </h4>
+          <p class="mt-2 text-xs leading-relaxed font-medium text-cream-100/90 sm:text-sm">
+            Borra roces de zapatos, crayones, huellas y manchas en paredes pintadas, guardaescobas y enchapes.
+          </p>
+        </div>
+      </article>
+
+      <!-- BENTO CELL 6 (md:col-span-4, Emerald #10B981) -->
+      <article
+        class="bento-surface-card starry-card-hard flex flex-col justify-between rounded-[2.25rem] bg-[#10B981] p-5 text-canopy-950 sm:p-6 md:col-span-4"
+      >
+        <span class="w-fit rounded-full border-2 border-canopy-950 bg-white px-3.5 py-1 font-wordmark text-xs font-black uppercase">
+          🥘 HOGAR & RESTAURANTES
+        </span>
+        <div class="mt-4">
+          <h4 class="font-wordmark text-xl leading-tight font-black uppercase sm:text-2xl">
+            UTENSILIOS, OLLAS & EQUIPOS
+          </h4>
+          <p class="mt-2 text-xs leading-relaxed font-bold text-canopy-950/90 sm:text-sm">
+            Recupera la base de ollas, sartenes, herramientas y maquinaria comercial con fórmula biodegradable.
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const sliderInput = document.getElementById('sneaker-slider-input') as HTMLInputElement | null;
+  const clipLayer = document.getElementById('sneaker-clip-layer');
+  const dividerLine = document.getElementById('sneaker-divider-line');
+  const inspector = document.getElementById('sneaker-inspector');
+  const presetBtns = document.querySelectorAll<HTMLButtonElement>('.sneaker-preset-btn');
+
+  const setSliderPosition = (val: number) => {
+    const clamped = Math.max(4, Math.min(96, val));
+    const rightInset = 100 - clamped;
+    if (sliderInput) sliderInput.value = String(Math.round(clamped));
+    if (clipLayer) clipLayer.style.clipPath = `inset(0 ${rightInset.toFixed(1)}% 0 0)`;
+    if (dividerLine) dividerLine.style.left = `${clamped.toFixed(1)}%`;
+  };
+
+  let demoTween: gsap.core.Timeline | null = null;
+
+  sliderInput?.addEventListener('input', () => {
+    demoTween?.kill();
+    setSliderPosition(Number(sliderInput.value));
+  });
+
+  presetBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      demoTween?.kill();
+      const targetVal = Number(btn.getAttribute('data-slider-val') || 52);
+      const proxy = { v: Number(sliderInput?.value || 52) };
+      gsap.to(proxy, {
+        v: targetVal,
+        duration: 0.65,
+        ease: 'power3.out',
+        onUpdate: () => setSliderPosition(proxy.v),
+      });
+    });
+  });
+
+  if (inspector) {
+    ScrollTrigger.create({
+      trigger: inspector,
+      start: 'top 75%',
+      once: true,
+      onEnter: () => {
+        const proxy = { v: 18 };
+        setSliderPosition(18);
+        demoTween = gsap.timeline();
+        demoTween
+          .to(proxy, {
+            v: 86,
+            duration: 1.25,
+            ease: 'power2.inOut',
+            onUpdate: () => setSliderPosition(proxy.v),
+          })
+          .to(proxy, {
+            v: 52,
+            duration: 0.85,
+            ease: 'back.out(1.4)',
+            onUpdate: () => setSliderPosition(proxy.v),
+          });
+      },
+    });
+  }
+
+  // PARTE A: GSAP CARD DECK STACKING WITH PROGRESSIVE OPACITY & ZERO COLLISION (#modo-de-uso-steps)
+  const deckStage = document.getElementById('modo-de-uso-steps');
+  const deckCards = document.querySelectorAll<HTMLElement>('.usage-deck-card');
+  const deckJumpBtns = document.querySelectorAll<HTMLButtonElement>('.deck-jump-btn');
+
+  // Smooth Hermite easing for silky card interpolation
+  const smoothStep = (t: number) => t * t * (3 - 2 * t);
+
+  const updateDeckByProgress = (p: number) => {
+    // p goes from 0.0 to 1.0
+    // Active index indicator for jump buttons:
+    const activeIdx = p < 0.28 ? 0 : p < 0.60 ? 1 : p < 0.88 ? 2 : 3;
+
+    deckJumpBtns.forEach((btn, idx) => {
+      const isSelected = idx === activeIdx;
+      btn.classList.toggle('bg-[#5CE63C]', isSelected);
+      btn.classList.toggle('text-canopy-950', isSelected);
+      btn.classList.toggle('scale-105', isSelected);
+      btn.classList.toggle('bg-canopy-900', !isSelected);
+      btn.classList.toggle('text-cream-100', !isSelected);
+    });
+
+    // CARD 0 (Step 1)
+    if (deckCards[0]) {
+      if (p <= 0.04) {
+        deckCards[0].style.opacity = '1';
+        deckCards[0].style.transform = 'translate3d(0, 0px, 0) scale(1) rotate(0deg)';
+        deckCards[0].style.pointerEvents = 'auto';
+      } else if (p < 0.32) {
+        const t = (p - 0.04) / 0.28;
+        const easeT = smoothStep(t);
+        const opacity = (1 - easeT * 0.95).toFixed(3);
+        const y = (-easeT * 22).toFixed(1);
+        const scale = (1 - easeT * 0.05).toFixed(3);
+        const rot = (-easeT * 1.5).toFixed(2);
+        deckCards[0].style.opacity = opacity;
+        deckCards[0].style.transform = `translate3d(0, ${y}px, 0) scale(${scale}) rotate(${rot}deg)`;
+        deckCards[0].style.pointerEvents = Number(opacity) > 0.4 ? 'auto' : 'none';
+      } else {
+        deckCards[0].style.opacity = '0';
+        deckCards[0].style.pointerEvents = 'none';
+        deckCards[0].style.transform = 'translate3d(0, -22px, 0) scale(0.95) rotate(-1.5deg)';
+      }
+    }
+
+    // CARD 1 (Step 2)
+    if (deckCards[1]) {
+      if (p < 0.04) {
+        deckCards[1].style.opacity = '0';
+        deckCards[1].style.pointerEvents = 'none';
+        deckCards[1].style.transform = 'translate3d(0, 42px, 0) scale(0.96) rotate(2deg)';
+      } else if (p < 0.32) {
+        // Enters with progressive opacity attenuation and gentle upward glide
+        const t = (p - 0.04) / 0.28;
+        const easeT = smoothStep(t);
+        const opacity = easeT.toFixed(3);
+        const y = ((1 - easeT) * 42).toFixed(1);
+        const scale = (0.96 + easeT * 0.04).toFixed(3);
+        const rot = ((1 - easeT) * 2 - 0.5).toFixed(2);
+        deckCards[1].style.opacity = opacity;
+        deckCards[1].style.transform = `translate3d(0, ${y}px, 0) scale(${scale}) rotate(${rot}deg)`;
+        deckCards[1].style.pointerEvents = Number(opacity) > 0.5 ? 'auto' : 'none';
+      } else if (p <= 0.40) {
+        deckCards[1].style.opacity = '1';
+        deckCards[1].style.pointerEvents = 'auto';
+        deckCards[1].style.transform = 'translate3d(0, 0px, 0) scale(1) rotate(-0.5deg)';
+      } else if (p < 0.64) {
+        // Smoothly recedes and dims as Card 2 arrives
+        const t = (p - 0.40) / 0.24;
+        const easeT = smoothStep(t);
+        const opacity = (1 - easeT * 0.95).toFixed(3);
+        const y = (-easeT * 22).toFixed(1);
+        const scale = (1 - easeT * 0.05).toFixed(3);
+        const rot = (-0.5 - easeT * 1.5).toFixed(2);
+        deckCards[1].style.opacity = opacity;
+        deckCards[1].style.transform = `translate3d(0, ${y}px, 0) scale(${scale}) rotate(${rot}deg)`;
+        deckCards[1].style.pointerEvents = Number(opacity) > 0.4 ? 'auto' : 'none';
+      } else {
+        deckCards[1].style.opacity = '0';
+        deckCards[1].style.pointerEvents = 'none';
+        deckCards[1].style.transform = 'translate3d(0, -22px, 0) scale(0.95) rotate(-2deg)';
+      }
+    }
+
+    // CARD 2 (Step 3)
+    if (deckCards[2]) {
+      if (p < 0.38) {
+        deckCards[2].style.opacity = '0';
+        deckCards[2].style.pointerEvents = 'none';
+        deckCards[2].style.transform = 'translate3d(0, 42px, 0) scale(0.96) rotate(-2deg)';
+      } else if (p < 0.64) {
+        // Enters with progressive opacity attenuation
+        const t = (p - 0.38) / 0.26;
+        const easeT = smoothStep(t);
+        const opacity = easeT.toFixed(3);
+        const y = ((1 - easeT) * 42).toFixed(1);
+        const scale = (0.96 + easeT * 0.04).toFixed(3);
+        const rot = (-(1 - easeT) * 2 + 0.5).toFixed(2);
+        deckCards[2].style.opacity = opacity;
+        deckCards[2].style.transform = `translate3d(0, ${y}px, 0) scale(${scale}) rotate(${rot}deg)`;
+        deckCards[2].style.pointerEvents = Number(opacity) > 0.5 ? 'auto' : 'none';
+      } else if (p <= 0.72) {
+        deckCards[2].style.opacity = '1';
+        deckCards[2].style.pointerEvents = 'auto';
+        deckCards[2].style.transform = 'translate3d(0, 0px, 0) scale(1) rotate(0.5deg)';
+      } else if (p < 0.94) {
+        // Smoothly recedes and dims as Card 3 arrives
+        const t = (p - 0.72) / 0.22;
+        const easeT = smoothStep(t);
+        const opacity = (1 - easeT * 0.95).toFixed(3);
+        const y = (-easeT * 22).toFixed(1);
+        const scale = (1 - easeT * 0.05).toFixed(3);
+        const rot = (0.5 + easeT * 1.5).toFixed(2);
+        deckCards[2].style.opacity = opacity;
+        deckCards[2].style.transform = `translate3d(0, ${y}px, 0) scale(${scale}) rotate(${rot}deg)`;
+        deckCards[2].style.pointerEvents = Number(opacity) > 0.4 ? 'auto' : 'none';
+      } else {
+        deckCards[2].style.opacity = '0';
+        deckCards[2].style.pointerEvents = 'none';
+        deckCards[2].style.transform = 'translate3d(0, -22px, 0) scale(0.95) rotate(2deg)';
+      }
+    }
+
+    // CARD 3 (Step 4)
+    if (deckCards[3]) {
+      if (p < 0.70) {
+        deckCards[3].style.opacity = '0';
+        deckCards[3].style.pointerEvents = 'none';
+        deckCards[3].style.transform = 'translate3d(0, 42px, 0) scale(0.96) rotate(1.5deg)';
+      } else if (p < 0.94) {
+        // Final card enters with progressive opacity and locks smoothly into place
+        const t = (p - 0.70) / 0.24;
+        const easeT = smoothStep(t);
+        const opacity = easeT.toFixed(3);
+        const y = ((1 - easeT) * 42).toFixed(1);
+        const scale = (0.96 + easeT * 0.04).toFixed(3);
+        const rot = ((1 - easeT) * 1.5 - 0.8).toFixed(2);
+        deckCards[3].style.opacity = opacity;
+        deckCards[3].style.transform = `translate3d(0, ${y}px, 0) scale(${scale}) rotate(${rot}deg)`;
+        deckCards[3].style.pointerEvents = Number(opacity) > 0.5 ? 'auto' : 'none';
+      } else {
+        deckCards[3].style.opacity = '1';
+        deckCards[3].style.pointerEvents = 'auto';
+        deckCards[3].style.transform = 'translate3d(0, 0px, 0) scale(1) rotate(-0.8deg)';
+      }
+    }
+  };
+
+  updateDeckByProgress(0);
+
+  let deckStInstance: ScrollTrigger | null = null;
+  if (deckStage) {
+    deckStInstance = ScrollTrigger.create({
+      trigger: deckStage,
+      start: 'top top',
+      end: '+=230%',
+      pin: true,
+      scrub: 0.5,
+      onUpdate: (self) => {
+        updateDeckByProgress(self.progress);
+      },
+    });
+  }
+
+  // Smooth scroll jump for the 4 step cards
+  const targetStepProgress = [0.02, 0.36, 0.68, 0.96];
+  deckJumpBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const idx = Number(btn.getAttribute('data-deck-jump') || 0);
+      if (deckStInstance) {
+        const start = deckStInstance.start;
+        const end = deckStInstance.end;
+        const targetScroll = start + targetStepProgress[idx] * (end - start);
+        window.scrollTo({
+          top: targetScroll,
+          behavior: 'smooth',
+        });
+      }
+    });
+  });
+
+  // PARTE B: BENTO GRID ENTRANCE ANIMATION
+  const bentoCards = document.querySelectorAll<HTMLElement>('.bento-surface-card');
+  const bentoGrid = document.getElementById('surfaces-bento-grid');
+  if (bentoGrid && bentoCards.length) {
+    gsap.fromTo(
+      bentoCards,
+      { y: 35, opacity: 0, scale: 0.95 },
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: 'back.out(1.4)',
+        scrollTrigger: {
+          trigger: bentoGrid,
+          start: 'top 80%',
+        },
+      }
+    );
+  }
+</script>

@@ -1,0 +1,328 @@
+---
+import { BRAND_CONFIG } from '../config/brand';
+---
+
+<div
+  id="narayana-preloader"
+  class="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden bg-[#071A12] select-none"
+  aria-label="Cargando experiencia Narayana"
+  role="progressbar"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-valuenow="0"
+>
+  <!-- Subtle organic water caustic & rainforest canopy texture inspired by jazakvoda.rs -->
+  <div class="pointer-events-none absolute inset-0 opacity-35">
+    <div
+      class="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(14,165,233,0.18),rgba(34,197,94,0.09)_42%,transparent_75%)]"
+    >
+    </div>
+    <svg class="h-full w-full opacity-25" xmlns="http://www.w3.org/2000/svg">
+      <filter id="water-caustics">
+        <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="3" seed="7" result="noise">
+        </feTurbulence>
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0.05
+                  0 0 0 0 0.45
+                  0 0 0 0 0.35
+                  0 0 0 0.32 0"
+        ></feColorMatrix>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#water-caustics)"></rect>
+    </svg>
+  </div>
+
+  <!-- Ambient floating water rings -->
+  <div
+    class="pointer-events-none absolute h-[460px] w-[460px] rounded-full border border-celestial-400/10 sm:h-[640px] sm:w-[640px]"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute h-[320px] w-[320px] rounded-full border border-bio-400/10 sm:h-[460px] sm:w-[460px]"
+  >
+  </div>
+
+  <div
+    id="preloader-inner"
+    class="relative z-10 flex w-full max-w-5xl flex-col items-center px-6 text-center"
+  >
+    <!-- Dynamic Percentage Counter (78% style from loading_screen.jpeg) -->
+    <div
+      class="mb-3 flex items-baseline justify-center font-wordmark tracking-tight text-celestial-400 drop-shadow-[0_0_24px_rgba(56,189,248,0.35)] sm:mb-5"
+    >
+      <span
+        id="preloader-percent-value"
+        class="text-5xl font-bold tabular-nums sm:text-6xl md:text-7xl"
+      >
+        0
+      </span>
+      <span class="ml-0.5 text-3xl font-semibold text-bio-400 sm:text-4xl">%</span>
+    </div>
+
+    <!-- Monumental SVG Wordmark + Meditating Lotus Figure with Sinusoidal Liquid Fill ClipPath -->
+    <div class="relative w-full max-w-[880px]">
+      <svg
+        viewBox="0 0 920 260"
+        class="h-auto w-full overflow-visible"
+        aria-hidden="true"
+      >
+        <defs>
+          <!-- Mask defining the Meditating Lotus Icon + monumental 'narayana' wordmark -->
+          <mask id="narayana-wordmark-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="920" height="260">
+            <rect width="920" height="260" fill="black" />
+            <!-- Meditating Lotus Emblem centered above wordmark -->
+            <g transform="translate(460, 44)" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Head & crown -->
+              <circle cx="0" cy="-26" r="5" fill="white" />
+              <circle cx="0" cy="-16" r="8" stroke-width="3.5" fill="white" />
+              <!-- Shoulders & meditating torso -->
+              <path d="M-18,6 C-16,-6 -9,-10 0,-10 C9,-10 16,-6 18,6 Z" fill="white" />
+              <!-- Left, right & center lotus petals -->
+              <path d="M0,26 C-24,23 -38,9 -36,-6 C-20,-4 -8,6 0,26 Z" fill="white" />
+              <path d="M0,26 C24,23 38,9 36,-6 C20,-4 8,6 0,26 Z" fill="white" />
+              <path d="M0,26 C-10,12 -10,-2 0,-12 C10,-2 10,12 0,26 Z" fill="white" />
+            </g>
+
+            <!-- Monumental lowercase 'narayana' -->
+            <text
+              x="460"
+              y="206"
+              text-anchor="middle"
+              fill="white"
+              font-family="Outfit, Syne, sans-serif"
+              font-weight="800"
+              font-size="162"
+              letter-spacing="-3"
+            >
+              {BRAND_CONFIG.wordmark}
+            </text>
+          </mask>
+
+          <!-- Liquid Fill Gradient (Celestial Blue -> Bio Leaf Green -> Pure Whipped Cream) -->
+          <linearGradient id="narayana-liquid-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#0EA5E9" />
+            <stop offset="52%" stop-color="#38BDF8" />
+            <stop offset="88%" stop-color="#4ADE80" />
+            <stop offset="100%" stop-color="#F7F9F4" />
+          </linearGradient>
+        </defs>
+
+        <!-- LAYER 1: Empty / Unfilled Base Silhouette of Lotus + 'narayana' -->
+        <g opacity="0.16">
+          <g transform="translate(460, 44)" fill="#A7F3D0">
+            <circle cx="0" cy="-26" r="5" />
+            <circle cx="0" cy="-16" r="8" />
+            <path d="M-18,6 C-16,-6 -9,-10 0,-10 C9,-10 16,-6 18,6 Z" />
+            <path d="M0,26 C-24,23 -38,9 -36,-6 C-20,-4 -8,6 0,26 Z" />
+            <path d="M0,26 C24,23 38,9 36,-6 C20,-4 8,6 0,26 Z" />
+            <path d="M0,26 C-10,12 -10,-2 0,-12 C10,-2 10,12 0,26 Z" />
+          </g>
+          <text
+            x="460"
+            y="206"
+            text-anchor="middle"
+            fill="#E2F2EA"
+            stroke="#38BDF8"
+            stroke-width="1.5"
+            stroke-opacity="0.35"
+            font-family="Outfit, Syne, sans-serif"
+            font-weight="800"
+            font-size="162"
+            letter-spacing="-3"
+          >
+            {BRAND_CONFIG.wordmark}
+          </text>
+        </g>
+
+        <!-- LAYER 2: Rising Liquid Wave Masked Inside the Wordmark & Lotus -->
+        <g mask="url(#narayana-wordmark-mask)">
+          <!-- Back wave (Pure white whipped cream crest, slightly offset in phase like jazakvoda.rs) -->
+          <path
+            id="preloader-wave-crest"
+            fill="#FFFFFF"
+            d="M -200,270 Q 30,255 260,270 T 720,270 T 1180,270 L 1180,320 L -200,320 Z"
+          ></path>
+          <!-- Front wave (Radiant Bio-Celestial & Cream body) -->
+          <path
+            id="preloader-wave-body"
+            fill="url(#narayana-liquid-grad)"
+            d="M -200,276 Q 30,290 260,276 T 720,276 T 1180,276 L 1180,320 L -200,320 Z"
+          ></path>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Bottom Tracked Subtitle (SAJT SE UČITAVA equivalent in Spanish for Narayana) -->
+    <p
+      id="preloader-subtitle"
+      class="mt-4 text-xs font-medium tracking-[0.28em] text-celestial-400/90 uppercase sm:mt-6 sm:text-sm"
+    >
+      EL ASEO ES SALUD Y CONFORT · PREPARANDO EL RITUAL
+    </p>
+
+    <button
+      id="preloader-skip-btn"
+      type="button"
+      class="mt-5 rounded-full border border-bio-400/20 bg-canopy-950/60 px-4 py-1.5 text-[11px] font-semibold tracking-wider text-cream-200/70 uppercase transition-colors hover:border-bio-400/60 hover:text-bio-400"
+    >
+      Saltar intro →
+    </button>
+  </div>
+</div>
+
+<script>
+  import gsap from 'gsap';
+
+  const preloader = document.getElementById('narayana-preloader');
+  const percentEl = document.getElementById('preloader-percent-value');
+  const waveCrest = document.getElementById('preloader-wave-crest');
+  const waveBody = document.getElementById('preloader-wave-body');
+  const innerEl = document.getElementById('preloader-inner');
+  const skipBtn = document.getElementById('preloader-skip-btn');
+
+  if (preloader && percentEl && waveCrest && waveBody && innerEl) {
+    // Pause Lenis while preloader is active
+    const getLenis = () =>
+      (window as unknown as { __narayanaLenis?: { stop: () => void; start: () => void } }).__narayanaLenis;
+    getLenis()?.stop();
+
+    const state = {
+      progress: 0,
+      phase: 0,
+      completed: false,
+    };
+
+    // Build sinusoidal SVG paths dynamically based on progress (0 -> 100) and wave phase
+    const renderWaves = () => {
+      // Y goes from 250 (0% full) up to -15 (100% full, covering text + top lotus)
+      const baseY = 250 - (state.progress / 100) * 265;
+      const amp = state.progress > 97 ? 2 : 11;
+      const p = state.phase;
+
+      const buildWavePath = (yOffset: number, phaseShift: number) => {
+        const points: string[] = [];
+        const startX = -120;
+        const endX = 1040;
+        const step = 50;
+        for (let x = startX; x <= endX; x += step) {
+          const rad = (x / 180) * Math.PI + p + phaseShift;
+          const y = baseY + yOffset + Math.sin(rad) * amp;
+          if (x === startX) {
+            points.push(`M ${x},${y.toFixed(1)}`);
+          } else {
+            points.push(`L ${x},${y.toFixed(1)}`);
+          }
+        }
+        points.push(`L ${endX},310 L ${startX},310 Z`);
+        return points.join(' ');
+      };
+
+      waveCrest.setAttribute('d', buildWavePath(-7, 0.9));
+      waveBody.setAttribute('d', buildWavePath(2, 0));
+    };
+
+    // Animate horizontal wave motion on GSAP ticker
+    const tickWave = () => {
+      if (state.completed) return;
+      state.phase += 0.085;
+      renderWaves();
+    };
+    gsap.ticker.add(tickWave);
+
+    // Update counter & ARIA
+    const updateCounter = () => {
+      const rounded = Math.min(100, Math.round(state.progress));
+      percentEl.textContent = String(rounded);
+      preloader.setAttribute('aria-valuenow', String(rounded));
+    };
+
+    // Start smooth baseline progression to ~84% while real Hero assets finish loading
+    const progressTween = gsap.to(state, {
+      progress: 86,
+      duration: 1.45,
+      ease: 'power2.inOut',
+      onUpdate: updateCounter,
+    });
+
+    const finishPreloader = () => {
+      if (state.completed) return;
+      progressTween.kill();
+
+      gsap.to(state, {
+        progress: 100,
+        duration: 0.55,
+        ease: 'power2.out',
+        onUpdate: updateCounter,
+        onComplete: () => {
+          state.completed = true;
+          gsap.ticker.remove(tickWave);
+
+          const tl = gsap.timeline({
+            onComplete: () => {
+              preloader.style.display = 'none';
+              getLenis()?.start();
+              window.dispatchEvent(new CustomEvent('narayana:ready'));
+            },
+          });
+
+          tl.to(innerEl, {
+            scale: 1.04,
+            opacity: 0,
+            y: -24,
+            duration: 0.5,
+            ease: 'power3.inOut',
+          }).to(
+            preloader,
+            {
+              clipPath: 'inset(0% 0% 100% 0%)',
+              duration: 0.75,
+              ease: 'expo.inOut',
+            },
+            '-=0.3'
+          );
+        },
+      });
+    };
+
+    // Track real Hero images & scrub video readiness with a safe max timeout (2.3s)
+    const preloadAssets = () => {
+      const promises: Promise<void>[] = [];
+
+      const imgUrls = [
+        '/assets/images/hero_jar_open_cutout.png',
+        '/assets/images/hero_lid_cutout.png',
+        '/assets/images/hero_jar_closed_cutout.png',
+      ];
+      imgUrls.forEach((src) => {
+        promises.push(
+          new Promise<void>((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve();
+            img.onerror = () => resolve();
+            img.src = src;
+          })
+        );
+      });
+
+      const heroVideo = document.getElementById('hero-scrub-video') as HTMLVideoElement | null;
+      if (heroVideo && heroVideo.readyState < 2) {
+        promises.push(
+          new Promise<void>((resolve) => {
+            const handler = () => resolve();
+            heroVideo.addEventListener('loadeddata', handler, { once: true });
+            heroVideo.addEventListener('error', handler, { once: true });
+          })
+        );
+      }
+
+      const minDelay = new Promise<void>((resolve) => setTimeout(resolve, 1250));
+      const maxFallback = new Promise<void>((resolve) => setTimeout(resolve, 2300));
+
+      Promise.race([Promise.all([...promises, minDelay]), maxFallback]).then(finishPreloader);
+    };
+
+    skipBtn?.addEventListener('click', finishPreloader);
+    preloadAssets();
+  }
+</script>

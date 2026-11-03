@@ -1,0 +1,458 @@
+---
+import { BRAND_CONFIG, buildWhatsAppUrl } from '../config/brand';
+
+const defaultPres = BRAND_CONFIG.presentations[1]; // 750g by default
+const stickerLabels = ['FORMATO COMPACTO', '🔥 MÁS VENDIDO', '📦 MAYORISTA ×12', '🏢 INSTITUCIONAL ×12'];
+const stageBgWords = ['350G', '750G', 'PACK X12', 'PRO X12'];
+const stageScales = ['0.9', '1.06', '1.02', '1.08'];
+const stageAuras = [
+  'rgba(56,189,248,0.45)',
+  'rgba(92,230,60,0.55)',
+  'rgba(250,204,21,0.55)',
+  'rgba(92,230,60,0.6)',
+];
+---
+
+<section
+  id="presentaciones"
+  class="relative overflow-hidden bg-cream-50 py-24 text-canopy-950 sm:py-32"
+  aria-labelledby="catalog-heading"
+>
+  <!-- Floating 4-Point Yellow & Lime Sparkles -->
+  <svg
+    class="catalog-sparkle pointer-events-none absolute top-16 right-8 hidden h-16 w-16 text-solar-400 md:block"
+    viewBox="0 0 64 64"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="M32 0C34 22 42 30 64 32C42 34 34 42 32 64C30 42 22 34 0 32C22 30 30 22 32 0Z" />
+  </svg>
+  <svg
+    class="catalog-sparkle pointer-events-none absolute bottom-20 left-8 hidden h-14 w-14 text-[#5CE63C] md:block"
+    viewBox="0 0 64 64"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="M32 0C34 22 42 30 64 32C42 34 34 42 32 64C30 42 22 34 0 32C22 30 30 22 32 0Z" />
+  </svg>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
+    <!-- Section Header in Bold Starry Style -->
+    <div class="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
+      <div>
+        <div class="inline-flex flex-wrap items-center gap-2">
+          <span
+            class="starry-sticker -rotate-1 rounded-full bg-[#5CE63C] px-4 py-1 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase"
+          >
+            11. PRESENTACIONES DISPONIBLES · NRN-001
+          </span>
+          <span
+            class="starry-sticker rotate-2 rounded-full bg-solar-400 px-3.5 py-1 font-wordmark text-xs font-black text-canopy-950 uppercase"
+          >
+            ENVÍOS A TODA COLOMBIA
+          </span>
+        </div>
+
+        <h2
+          id="catalog-heading"
+          class="mt-4 leading-[0.95] font-black tracking-tight uppercase"
+        >
+          <span class="block font-display text-xl font-black text-canopy-950 italic sm:text-3xl">
+            ELIGE TU POTENCIA BIO
+          </span>
+          <span class="starry-display-stroke-lime block text-2xl leading-tight sm:text-5xl lg:text-7xl">
+            350G · 750G · PACK X12
+          </span>
+        </h2>
+      </div>
+
+      <p class="max-w-md text-sm font-bold text-canopy-900/85 sm:text-base">
+        Haz clic en cada formato para ver el envase en el escenario interactivo y pedir directo por WhatsApp con precios de fábrica.
+      </p>
+    </div>
+
+    <!-- Interactive Selector Grid -->
+    <div class="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-12">
+      <!-- Left 5 Cols: 4 Tactile Neo-Botanical Selector Cards -->
+      <div class="space-y-4 lg:col-span-5" role="radiogroup" aria-label="Seleccionar presentación de Narayana">
+        {
+          BRAND_CONFIG.presentations.map((pres, index) => (
+            <button
+              type="button"
+              class={`pres-selector-card starry-card-hard group relative flex w-full flex-col rounded-[2rem] p-5 text-left transition-all duration-200 ${
+                index === 1
+                  ? 'bg-[#5CE63C] text-canopy-950 -translate-y-1'
+                  : 'bg-white text-canopy-950 hover:-translate-y-0.5 hover:bg-cream-100'
+              }`}
+              data-pres-id={pres.id}
+              data-pres-name={pres.name}
+              data-pres-subtitle={pres.subtitle}
+              data-pres-weight={pres.weight}
+              data-pres-badge={pres.badge}
+              data-pres-price={pres.priceFormatted}
+              data-pres-note={pres.priceNote}
+              data-pres-yield={pres.yieldEstimate}
+              data-pres-image={pres.image}
+              data-pres-ideal={JSON.stringify(pres.idealFor)}
+              data-pres-wa={pres.whatsappText}
+              data-pres-bigword={stageBgWords[index]}
+              data-pres-scale={stageScales[index]}
+              data-pres-aura={stageAuras[index]}
+              data-pres-units={pres.unitsIncluded}
+            >
+              <!-- Rotated Sticker Pill -->
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span
+                  class={`pres-badge rounded-full border-2 border-canopy-950 px-3 py-0.5 font-wordmark text-[11px] font-black tracking-wider uppercase ${
+                    index === 1 ? 'bg-solar-400 text-canopy-950' : 'bg-canopy-950 text-white'
+                  }`}
+                >
+                  {stickerLabels[index]}
+                </span>
+                <span class="rounded-full border-2 border-canopy-950 bg-white px-3 py-0.5 font-wordmark text-xs font-black text-canopy-950">
+                  {pres.weight}
+                </span>
+              </div>
+
+              <div class="mt-3 flex items-baseline justify-between gap-2">
+                <h3 class="font-wordmark text-xl font-black tracking-tight uppercase sm:text-2xl">
+                  {pres.name}
+                </h3>
+                <span class="font-wordmark text-xl font-black underline decoration-2">
+                  {pres.priceFormatted}
+                </span>
+              </div>
+
+              <p class="mt-1 text-xs font-bold opacity-85">{pres.subtitle}</p>
+            </button>
+          ))
+        }
+      </div>
+
+      <!-- Right 7 Cols: Dynamic GSAP Showcase Stage ("Somos Conciencia en Acción" Style) -->
+      <div class="lg:col-span-7">
+        <div
+          class="starry-card-hard relative flex h-full flex-col justify-between overflow-hidden rounded-[2.5rem] bg-canopy-950 p-6 text-cream-50 sm:p-9"
+        >
+          <!-- Giant Kinetic Background Weight Word ("750G" / "350G" / "PACK X12") -->
+          <div
+            id="catalog-bg-giant-weight"
+            class="starry-display-stroke pointer-events-none absolute -top-4 right-4 z-0 text-[6.5rem] leading-none font-black tracking-tighter uppercase opacity-25 select-none sm:text-[10rem]"
+            aria-hidden="true"
+          >
+            750G
+          </div>
+
+          <!-- Dynamic Glow Aura Behind Pedestal -->
+          <div
+            id="catalog-stage-aura"
+            class="pointer-events-none absolute top-24 left-24 z-0 h-72 w-72 rounded-full blur-3xl transition-colors duration-500"
+            style="background: radial-gradient(circle, rgba(92,230,60,0.55) 0%, transparent 70%);"
+          >
+          </div>
+
+          <div class="relative z-10 grid grid-cols-1 items-center gap-6 sm:grid-cols-12">
+            <!-- Animated Product Pedestal -->
+            <div class="relative flex flex-col items-center justify-center sm:col-span-5">
+              <div
+                id="catalog-stage-pedestal"
+                class="starry-card-hard relative aspect-square w-full max-w-[260px] overflow-hidden rounded-[2rem] bg-canopy-900"
+                style="transform: scale(1.06);"
+              >
+                <img
+                  id="catalog-active-img"
+                  src={defaultPres.image}
+                  alt={defaultPres.name}
+                  loading="lazy"
+                  class="h-full w-full object-cover"
+                />
+                <!-- Top Weight Sticker -->
+                <div
+                  class="starry-sticker absolute top-3 left-3 -rotate-3 rounded-full bg-solar-400 px-3.5 py-1 font-wordmark text-xs font-black text-canopy-950 uppercase"
+                >
+                  <span id="catalog-active-weight">{defaultPres.weight}</span>
+                </div>
+
+                <!-- Wholesale x12 Stack Badge (Visible on B2B options) -->
+                <div
+                  id="catalog-b2b-stack-badge"
+                  class="starry-sticker absolute right-3 bottom-3 hidden rotate-3 rounded-full bg-[#5CE63C] px-3.5 py-1 font-wordmark text-xs font-black text-canopy-950 uppercase"
+                >
+                  📦 CAJA × 12 UNDS
+                </div>
+              </div>
+            </div>
+
+            <!-- Live Product Headline & Price Box -->
+            <div class="sm:col-span-7">
+              <span
+                id="catalog-active-badge"
+                class="starry-sticker inline-block -rotate-1 rounded-full bg-[#5CE63C] px-4 py-1 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase"
+              >
+                {defaultPres.badge}
+              </span>
+
+              <h3
+                id="catalog-active-title"
+                class="starry-display-stroke mt-3 text-2xl leading-[0.98] font-black tracking-tight uppercase sm:text-4xl"
+              >
+                {defaultPres.name}
+              </h3>
+
+              <p id="catalog-active-subtitle" class="mt-2 text-xs font-medium text-cream-100/90 sm:text-sm">
+                {defaultPres.subtitle}
+              </p>
+
+              <!-- Bold Price Callout Box -->
+              <div class="starry-sticker mt-4 rounded-2xl bg-white p-4 text-canopy-950">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="font-wordmark text-xs font-black tracking-wider uppercase">
+                    VALOR REFERENCIAL:
+                  </span>
+                  <span
+                    id="catalog-active-price"
+                    class="font-wordmark text-2xl font-black text-canopy-950 sm:text-3xl"
+                  >
+                    {defaultPres.priceFormatted}
+                  </span>
+                </div>
+                <p id="catalog-active-note" class="mt-1 text-[11px] font-bold text-canopy-800">
+                  {defaultPres.priceNote}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Benefits Bullet List & Yield -->
+          <div class="relative z-10 mt-6 border-t-2 border-white/15 pt-5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="font-wordmark text-xs font-black tracking-wider text-solar-400 uppercase">
+                ✦ ESPECIFICACIONES DE ESTE FORMATO:
+              </span>
+              <span
+                id="catalog-active-yield"
+                class="rounded-full border-2 border-canopy-950 bg-[#5CE63C] px-3.5 py-1 font-wordmark text-xs font-black text-canopy-950 uppercase"
+              >
+                {defaultPres.yieldEstimate}
+              </span>
+            </div>
+
+            <ul id="catalog-active-list" class="mt-3 space-y-2 text-xs font-medium text-cream-50 sm:text-sm">
+              {
+                defaultPres.idealFor.map((item) => (
+                  <li class="flex items-center gap-2.5">
+                    <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-canopy-950 bg-[#5CE63C] font-wordmark text-xs font-black text-canopy-950">
+                      ✓
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <!-- Quantity Picker + Tactile Starry WhatsApp CTA -->
+          <div class="relative z-10 mt-7 flex flex-col gap-4 border-t-2 border-white/15 pt-6 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex items-center gap-3">
+              <span class="font-wordmark text-xs font-black tracking-wider text-white uppercase">
+                CANTIDAD:
+              </span>
+              <div class="starry-sticker inline-flex items-center rounded-full bg-white p-1 text-canopy-950">
+                <button
+                  id="qty-minus-btn"
+                  type="button"
+                  class="flex h-9 w-9 items-center justify-center rounded-full font-wordmark text-base font-black text-canopy-950 hover:bg-solar-400"
+                  aria-label="Disminuir cantidad"
+                >
+                  −
+                </button>
+                <span
+                  id="qty-display-val"
+                  class="w-10 text-center font-wordmark text-base font-black text-canopy-950"
+                >
+                  1
+                </span>
+                <button
+                  id="qty-plus-btn"
+                  type="button"
+                  class="flex h-9 w-9 items-center justify-center rounded-full font-wordmark text-base font-black text-canopy-950 hover:bg-[#5CE63C]"
+                  aria-label="Aumentar cantidad"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <a
+              id="catalog-whatsapp-cta"
+              href={buildWhatsAppUrl(defaultPres.whatsappText)}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="starry-sticker inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-[#5CE63C] px-5 py-3.5 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase transition-all hover:-translate-y-0.5 hover:bg-solar-400 sm:px-7 sm:py-4 sm:text-base"
+            >
+              <span>PEDIR AHORA POR WHATSAPP</span>
+              <svg class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { BRAND_CONFIG } from '../config/brand';
+
+  const cards = document.querySelectorAll<HTMLButtonElement>('.pres-selector-card');
+  const pedestal = document.getElementById('catalog-stage-pedestal');
+  const stageAura = document.getElementById('catalog-stage-aura');
+  const bgGiantWeight = document.getElementById('catalog-bg-giant-weight');
+  const b2bStackBadge = document.getElementById('catalog-b2b-stack-badge');
+  const activeImg = document.getElementById('catalog-active-img') as HTMLImageElement | null;
+  const activeWeight = document.getElementById('catalog-active-weight');
+  const activeBadge = document.getElementById('catalog-active-badge');
+  const activeTitle = document.getElementById('catalog-active-title');
+  const activeSubtitle = document.getElementById('catalog-active-subtitle');
+  const activePrice = document.getElementById('catalog-active-price');
+  const activeNote = document.getElementById('catalog-active-note');
+  const activeYield = document.getElementById('catalog-active-yield');
+  const activeList = document.getElementById('catalog-active-list');
+  const whatsappCta = document.getElementById('catalog-whatsapp-cta') as HTMLAnchorElement | null;
+  const qtyMinus = document.getElementById('qty-minus-btn');
+  const qtyPlus = document.getElementById('qty-plus-btn');
+  const qtyDisplay = document.getElementById('qty-display-val');
+  const sparkles = document.querySelectorAll('.catalog-sparkle');
+
+  sparkles.forEach((sp, i) => {
+    gsap.to(sp, {
+      scale: 1.2,
+      rotation: i % 2 === 0 ? 15 : -15,
+      duration: 1.5 + i * 0.3,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+    });
+  });
+
+  let currentQty = 1;
+  let currentPresName = 'Narayana Rendimiento 750 g';
+  let currentBaseWa = BRAND_CONFIG.presentations[1].whatsappText;
+
+  const updateWhatsAppHref = () => {
+    if (!whatsappCta) return;
+    const msg = `${currentBaseWa} (Cantidad solicitada: *${currentQty} — ${currentPresName}*)`;
+    whatsappCta.href = `https://wa.me/${BRAND_CONFIG.contact.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+  };
+
+  cards.forEach((card) => {
+    card.addEventListener('click', () => {
+      cards.forEach((c) => {
+        const isTarget = c === card;
+        c.classList.toggle('bg-[#5CE63C]', isTarget);
+        c.classList.toggle('-translate-y-1', isTarget);
+        c.classList.toggle('bg-white', !isTarget);
+
+        const badge = c.querySelector('.pres-badge');
+        if (badge) {
+          badge.classList.toggle('bg-solar-400', isTarget);
+          badge.classList.toggle('text-canopy-950', isTarget);
+          badge.classList.toggle('bg-canopy-950', !isTarget);
+          badge.classList.toggle('text-white', !isTarget);
+        }
+      });
+
+      const name = card.getAttribute('data-pres-name') || '';
+      const subtitle = card.getAttribute('data-pres-subtitle') || '';
+      const weight = card.getAttribute('data-pres-weight') || '';
+      const badgeText = card.getAttribute('data-pres-badge') || '';
+      const price = card.getAttribute('data-pres-price') || '';
+      const note = card.getAttribute('data-pres-note') || '';
+      const yieldEst = card.getAttribute('data-pres-yield') || '';
+      const image = card.getAttribute('data-pres-image') || '';
+      const idealJson = card.getAttribute('data-pres-ideal') || '[]';
+      const wa = card.getAttribute('data-pres-wa') || '';
+      const bigWord = card.getAttribute('data-pres-bigword') || '750G';
+      const targetScale = Number(card.getAttribute('data-pres-scale') || 1);
+      const auraColor = card.getAttribute('data-pres-aura') || 'rgba(92,230,60,0.55)';
+      const units = Number(card.getAttribute('data-pres-units') || 1);
+
+      currentPresName = name;
+      currentBaseWa = wa;
+
+      if (activeImg) {
+        activeImg.src = image;
+        activeImg.alt = name;
+      }
+      if (activeWeight) activeWeight.textContent = weight;
+      if (activeBadge) activeBadge.textContent = badgeText;
+      if (activeTitle) activeTitle.textContent = name;
+      if (activeSubtitle) activeSubtitle.textContent = subtitle;
+      if (activePrice) activePrice.textContent = price;
+      if (activeNote) activeNote.textContent = note;
+      if (activeYield) activeYield.textContent = yieldEst;
+      if (b2bStackBadge) {
+        b2bStackBadge.classList.toggle('hidden', units < 12);
+      }
+      if (stageAura) {
+        stageAura.style.background = `radial-gradient(circle, ${auraColor} 0%, transparent 70%)`;
+      }
+
+      // GSAP Elastic Jump on the Product Pedestal & Kinetic Background Word
+      if (pedestal) {
+        gsap.fromTo(
+          pedestal,
+          { scale: 0.72, rotation: -10 },
+          { scale: targetScale, rotation: 0, duration: 0.75, ease: 'elastic.out(1, 0.5)', overwrite: true }
+        );
+      }
+
+      if (bgGiantWeight) {
+        bgGiantWeight.textContent = bigWord;
+        gsap.fromTo(
+          bgGiantWeight,
+          { y: -40, opacity: 0, scale: 0.85 },
+          { y: 0, opacity: 0.25, scale: 1, duration: 0.5, ease: 'back.out(1.7)', overwrite: true }
+        );
+      }
+
+      if (activeTitle) {
+        gsap.fromTo(
+          activeTitle,
+          { x: 24, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.35, ease: 'power2.out', overwrite: true }
+        );
+      }
+
+      if (activeList) {
+        try {
+          const items: string[] = JSON.parse(idealJson);
+          activeList.innerHTML = items
+            .map(
+              (item) =>
+                `<li class="flex items-center gap-2.5"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-canopy-950 bg-[#5CE63C] font-wordmark text-xs font-black text-canopy-950">✓</span><span>${item}</span></li>`
+            )
+            .join('');
+        } catch {
+          // keep existing
+        }
+      }
+
+      updateWhatsAppHref();
+    });
+  });
+
+  qtyMinus?.addEventListener('click', () => {
+    currentQty = Math.max(1, currentQty - 1);
+    if (qtyDisplay) qtyDisplay.textContent = String(currentQty);
+    updateWhatsAppHref();
+  });
+
+  qtyPlus?.addEventListener('click', () => {
+    currentQty = Math.min(50, currentQty + 1);
+    if (qtyDisplay) qtyDisplay.textContent = String(currentQty);
+    updateWhatsAppHref();
+  });
+</script>

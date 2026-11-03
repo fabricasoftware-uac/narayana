@@ -1,0 +1,203 @@
+---
+import { BRAND_CONFIG, buildWhatsAppUrl } from '../config/brand';
+---
+
+<section
+  id="comunidad-narayana"
+  class="relative overflow-hidden bg-[#5CE63C] py-20 text-canopy-950 sm:py-28"
+  aria-label="Comunidad Narayana: Somos Conciencia en Acción"
+>
+  <!-- Animated 4-Point Yellow Sparkle Cascade on the Right (Direct homage to image refernca.png / Starry) -->
+  <div
+    class="pointer-events-none absolute top-0 right-2 bottom-0 flex w-28 flex-col justify-around opacity-95 sm:right-8 sm:w-44"
+    aria-hidden="true"
+  >
+    <svg class="starry-sparkle ml-auto h-14 w-14 text-solar-400 sm:h-20 sm:w-20" viewBox="0 0 64 64" fill="currentColor">
+      <path d="M32 0C34 22 42 30 64 32C42 34 34 42 32 64C30 42 22 34 0 32C22 30 30 22 32 0Z" />
+    </svg>
+    <svg class="starry-sparkle mr-auto h-10 w-10 text-solar-400 sm:h-14 sm:w-14" viewBox="0 0 64 64" fill="currentColor">
+      <path d="M32 0C34 22 42 30 64 32C42 34 34 42 32 64C30 42 22 34 0 32C22 30 30 22 32 0Z" />
+    </svg>
+    <svg class="starry-sparkle ml-6 h-16 w-16 text-solar-400 sm:h-24 sm:w-24" viewBox="0 0 64 64" fill="currentColor">
+      <path d="M32 0C34 22 42 30 64 32C42 34 34 42 32 64C30 42 22 34 0 32C22 30 30 22 32 0Z" />
+    </svg>
+    <svg class="starry-sparkle ml-auto h-12 w-12 text-solar-400 sm:h-16 sm:w-16" viewBox="0 0 64 64" fill="currentColor">
+      <path d="M32 0C34 22 42 30 64 32C42 34 34 42 32 64C30 42 22 34 0 32C22 30 30 22 32 0Z" />
+    </svg>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+      <!-- Left 5 Cols: Floating Tilted Narayana Product Card with Dew Droplets & Sparkles -->
+      <div class="flex justify-center lg:col-span-5">
+        <div id="starry-floating-jar" class="relative w-64 sm:w-80 md:w-96">
+          <!-- Back yellow/white aura burst -->
+          <div
+            class="absolute -inset-4 rounded-[3rem] bg-[radial-gradient(circle,rgba(250,204,21,0.55)_0%,rgba(255,255,255,0.35)_45%,transparent_72%)] blur-xl"
+          >
+          </div>
+
+          <!-- Tilted Jar Showcase Container -->
+          <div
+            class="relative -rotate-6 overflow-hidden rounded-[2.5rem] border-4 border-canopy-950 bg-canopy-950 shadow-[10px_14px_0px_#071A12] transition-transform duration-500 hover:rotate-0"
+          >
+            <img
+              src="/assets/images/crema_primer_plano.png"
+              alt="Envase de Narayana con gotas de rocío y frescura botánica"
+              loading="lazy"
+              class="h-80 w-full object-cover sm:h-96"
+            />
+            <div class="bg-canopy-950 px-5 py-3 text-center">
+              <p class="font-wordmark text-sm font-black tracking-wider text-bio-400 uppercase">
+                Fórmula 3D · 350 g & 750 g
+              </p>
+            </div>
+          </div>
+
+          <!-- Floating Water Droplets & 4-Point Sparkle Badges -->
+          <div
+            class="starry-sparkle absolute -top-5 -left-4 flex h-14 w-14 items-center justify-center rounded-full border-3 border-canopy-950 bg-solar-400 text-canopy-950 shadow-[0_5px_0_#071A12]"
+          >
+            <svg class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 1L14.5 9.5L23 12L14.5 14.5L12 23L9.5 14.5L1 12L9.5 9.5L12 1Z" />
+            </svg>
+          </div>
+
+          <div
+            class="absolute -right-4 -bottom-4 rounded-full border-3 border-canopy-950 bg-white px-4 py-2 font-wordmark text-xs font-black tracking-wide text-canopy-950 uppercase shadow-[0_5px_0_#071A12]"
+          >
+            💧 Sin Gastar Agua
+          </div>
+        </div>
+      </div>
+
+      <!-- Right 7 Cols: Monumental Starry-Style Expressive Typography & Pill Social CTAs -->
+      <div class="flex flex-col items-center text-center lg:col-span-7">
+        <p
+          class="font-display text-xl font-black tracking-wider text-canopy-950 uppercase italic sm:text-3xl lg:text-4xl"
+        >
+          SOMOS CONCIENCIA
+        </p>
+
+        <!-- Monumental White-Fill + Heavy Black Stroke Headline -->
+        <h2
+          class="starry-display-stroke mt-1 text-4xl leading-[0.92] font-black tracking-tight uppercase sm:text-7xl xl:text-[6.5rem]"
+        >
+          EN ACCIÓN
+        </h2>
+
+        <p class="mt-4 max-w-xl text-xs font-bold text-canopy-950/90 sm:text-base">
+          Únete a los hogares, sneaker lovers y negocios que ya limpian en seco con Narayana. Mira nuestras pruebas reales en video o haz tu pedido directo.
+        </p>
+
+        <!-- Primary Pill CTA (Direct homage to 'FIND US ON TIKTOK' pill in image refernca.png) -->
+        <div class="mt-7 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <a
+            href={buildWhatsAppUrl(
+              'Hola equipo Narayana 🌿, vengo de la web y quiero hacer un pedido o recibir asesoría.'
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-full border-3 border-canopy-950 bg-white px-5 py-3 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase shadow-[0_6px_0_#071A12] transition-all hover:-translate-y-0.5 hover:bg-solar-400 active:translate-y-0.5 sm:gap-3 sm:px-10 sm:py-4 sm:text-base"
+          >
+            <span>PEDIR AHORA POR WHATSAPP</span>
+          </a>
+
+          <a
+            href={BRAND_CONFIG.socials.tiktok}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-full border-3 border-canopy-950 bg-canopy-950 px-5 py-3 font-wordmark text-xs font-black tracking-wider text-white uppercase shadow-[0_6px_0_rgba(7,26,18,0.35)] transition-all hover:-translate-y-0.5 hover:bg-canopy-800 sm:px-7 sm:py-4 sm:text-base"
+          >
+            <span>ENCUÉNTRANOS EN TIKTOK</span>
+          </a>
+        </div>
+
+        <!-- Circular Social Icon Pills (TikTok, Instagram, YouTube, Facebook, WhatsApp) -->
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <!-- TikTok -->
+          <a
+            href={BRAND_CONFIG.socials.tiktok}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="TikTok de Narayana"
+            class="flex h-14 w-14 items-center justify-center rounded-full border-3 border-canopy-950 bg-white text-canopy-950 shadow-[0_4px_0_#071A12] transition-transform hover:-translate-y-1 hover:bg-solar-400"
+          >
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+            </svg>
+          </a>
+
+          <!-- Instagram -->
+          <a
+            href={BRAND_CONFIG.socials.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram de Narayana"
+            class="flex h-14 w-14 items-center justify-center rounded-full border-3 border-canopy-950 bg-white text-canopy-950 shadow-[0_4px_0_#071A12] transition-transform hover:-translate-y-1 hover:bg-solar-400"
+          >
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+          </a>
+
+          <!-- YouTube -->
+          <a
+            href={BRAND_CONFIG.socials.youtube}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="YouTube de Narayana"
+            class="flex h-14 w-14 items-center justify-center rounded-full border-3 border-canopy-950 bg-white text-canopy-950 shadow-[0_4px_0_#071A12] transition-transform hover:-translate-y-1 hover:bg-solar-400"
+          >
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z" />
+            </svg>
+          </a>
+
+          <!-- Facebook -->
+          <a
+            href={BRAND_CONFIG.socials.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook de Narayana"
+            class="flex h-14 w-14 items-center justify-center rounded-full border-3 border-canopy-950 bg-white text-canopy-950 shadow-[0_4px_0_#071A12] transition-transform hover:-translate-y-1 hover:bg-solar-400"
+          >
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+
+  const floatingJar = document.getElementById('starry-floating-jar');
+  const sparkles = document.querySelectorAll('.starry-sparkle');
+
+  if (floatingJar) {
+    gsap.to(floatingJar, {
+      y: -14,
+      duration: 2.2,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+    });
+  }
+
+  sparkles.forEach((el, idx) => {
+    gsap.to(el, {
+      scale: 1.18,
+      rotation: idx % 2 === 0 ? 12 : -12,
+      duration: 1.4 + idx * 0.25,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+    });
+  });
+</script>

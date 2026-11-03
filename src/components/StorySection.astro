@@ -1,0 +1,403 @@
+---
+const storyChapters = [
+  {
+    time: 0,
+    timeLabel: '00:00',
+    badge: '🌿 CAPÍTULO 01',
+    title: 'ORIGEN EN EL CAUCA',
+    bg: 'bg-[#5CE63C]',
+    description:
+      'De una idea en casa en Popayán a crear una crema ecológica que limpia de verdad sin contaminar el agua.',
+  },
+  {
+    time: 22,
+    timeLabel: '00:22',
+    badge: '🔬 CAPÍTULO 02',
+    title: 'LABORATORIO UNIAUTÓNOMA',
+    bg: 'bg-celestial-400',
+    description:
+      'Perfeccionamiento químico junto a científicos universitarios para lograr la Fórmula 3D con pH alcalino exacto.',
+  },
+  {
+    time: 46,
+    timeLabel: '00:46',
+    badge: '🏆 CAPÍTULO 03',
+    title: 'GANADORES EMPRENDELAB $5M',
+    bg: 'bg-solar-400',
+    description:
+      'Reconocidos con $5.000.000 de Capital Semilla por su innovación biodegradable y empaque con fibra de piña.',
+  },
+];
+---
+
+<section
+  id="historia"
+  class="relative overflow-hidden bg-canopy-950 py-24 sm:py-32"
+  aria-labelledby="story-heading"
+>
+  <!-- Vibrant Radial Aura & Floating Sparkles -->
+  <div
+    class="pointer-events-none absolute top-1/3 left-1/2 h-[580px] w-full max-w-6xl -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(92,230,60,0.22)_0%,rgba(56,189,248,0.12)_48%,transparent_72%)] blur-3xl"
+  >
+  </div>
+
+  <svg
+    class="story-sparkle pointer-events-none absolute top-20 right-10 hidden h-16 w-16 text-solar-400 md:block"
+    viewBox="0 0 64 64"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="M32 0C34 22 42 30 64 32C42 34 34 42 32 64C30 42 22 34 0 32C22 30 30 22 32 0Z" />
+  </svg>
+  <svg
+    class="story-sparkle pointer-events-none absolute bottom-24 left-10 hidden h-14 w-14 text-[#5CE63C] md:block"
+    viewBox="0 0 64 64"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="M32 0C34 22 42 30 64 32C42 34 34 42 32 64C30 42 22 34 0 32C22 30 30 22 32 0Z" />
+  </svg>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
+    <!-- Top Centered Expressive Header ("SOMOS CONCIENCIA EN ACCIÓN" Style) -->
+    <div class="flex flex-col items-center text-center">
+      <div class="inline-flex flex-wrap items-center justify-center gap-2.5">
+        <span
+          class="starry-sticker -rotate-2 rounded-full bg-[#5CE63C] px-4 py-1.5 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase"
+        >
+          🌿 ORIGEN 100% COLOMBIANO
+        </span>
+        <span
+          class="starry-sticker rotate-2 rounded-full bg-solar-400 px-4 py-1.5 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase"
+        >
+          🏆 GANADOR CAPITAL SEMILLA $5M
+        </span>
+      </div>
+
+      <h2
+        id="story-heading"
+        class="mt-5 max-w-5xl leading-[0.94] font-black tracking-tight uppercase"
+      >
+        <span class="starry-display-stroke block text-3xl sm:text-6xl xl:text-7xl">
+          NACIDA EN LA NATURALEZA
+        </span>
+        <span class="starry-display-stroke-lime mt-1 block text-2xl sm:text-5xl xl:text-6xl">
+          PERFECCIONADA EN LABORATORIO
+        </span>
+      </h2>
+    </div>
+
+    <!-- DYNAMIC GSAP COLLAGE SHOWCASE (3 Videos in Tilted Neo-Brutalist Frames) -->
+    <div id="story-collage-grid" class="mt-14 grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
+      <!-- Left 7 Cols: Main Interactive Video Frame (historia_narayana.mp4) with Tilted Stickers -->
+      <div class="story-collage-item lg:col-span-7">
+        <div
+          class="starry-card-hard relative -rotate-1 overflow-hidden rounded-[2.5rem] bg-[#5CE63C] p-3 text-canopy-950 transition-transform duration-300 hover:rotate-0 sm:p-4"
+        >
+          <!-- Top Sticker -->
+          <div
+            class="starry-sticker absolute top-6 left-6 z-30 -rotate-2 rounded-full bg-solar-400 px-4 py-1 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase"
+          >
+            🎬 HISTORIA EN 60 SEGUNDOS
+          </div>
+
+          <div class="relative aspect-video w-full overflow-hidden rounded-[1.85rem] border-3 border-canopy-950 bg-canopy-950">
+            <video
+              id="story-doc-video"
+              src="/assets/videos/historia_narayana.mp4"
+              poster="/assets/images/meditacion_selva.png"
+              preload="metadata"
+              playsinline
+              class="h-full w-full object-cover"
+            ></video>
+
+            <!-- Big Center Play / Sound Overlay Button -->
+            <button
+              id="story-big-play-btn"
+              type="button"
+              class="group absolute inset-0 z-20 flex flex-col items-center justify-center bg-canopy-950/35 transition-opacity duration-300"
+              aria-label="Reproducir video de Narayana con sonido"
+            >
+              <span
+                class="starry-sticker flex h-20 w-20 items-center justify-center rounded-full bg-solar-400 text-canopy-950 transition-transform duration-300 group-hover:scale-110"
+              >
+                <svg class="ml-1 h-9 w-9" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </span>
+              <span
+                class="starry-sticker mt-4 rounded-full bg-white px-5 py-1.5 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase"
+              >
+                🔊 ACTIVAR VIDEO CON SONIDO
+              </span>
+            </button>
+          </div>
+
+          <!-- Custom Neo-Brutalist Controls Bar -->
+          <div
+            class="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-2xl border-2 border-canopy-950 bg-white px-4 py-3"
+          >
+            <div class="flex items-center gap-2.5">
+              <button
+                id="story-toggle-play"
+                type="button"
+                class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-canopy-950 bg-[#5CE63C] text-canopy-950 transition-transform hover:scale-105"
+                aria-label="Reproducir o pausar video"
+              >
+                <svg id="story-icon-play" class="ml-0.5 h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+                <svg id="story-icon-pause" class="hidden h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                </svg>
+              </button>
+
+              <button
+                id="story-toggle-mute"
+                type="button"
+                class="rounded-full border-2 border-canopy-950 bg-solar-400 px-3.5 py-1 font-wordmark text-xs font-black text-canopy-950 uppercase transition-colors hover:bg-[#5CE63C]"
+              >
+                🔊 Sonido Activo
+              </button>
+
+              <span id="story-time-display" class="font-wordmark text-xs font-black tabular-nums text-canopy-950">
+                00:00 / 01:11
+              </span>
+            </div>
+
+            <div class="flex min-w-[140px] flex-1 items-center">
+              <input
+                id="story-seek-bar"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                aria-label="Línea de tiempo del video"
+                class="h-2.5 w-full cursor-pointer appearance-none rounded-full border border-canopy-950 bg-canopy-950 accent-[#5CE63C]"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right 5 Cols: 2 Tilted Video Polaroids (persona_meditando.mp4 + hands_holding_cream.mp4) -->
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
+        <!-- Collage Card A: Conexión Natural -->
+        <div
+          class="story-collage-item starry-card-hard watermark-crop-frame relative rotate-2 overflow-hidden rounded-[2.25rem] bg-celestial-400 p-3 text-canopy-950 transition-transform duration-300 hover:rotate-0"
+        >
+          <span
+            class="starry-sticker absolute top-5 right-5 z-20 -rotate-3 rounded-full bg-white px-3.5 py-1 font-wordmark text-[11px] font-black text-canopy-950 uppercase"
+          >
+            🌿 CONEXIÓN NATURAL
+          </span>
+          <div class="relative h-44 w-full overflow-hidden rounded-2xl border-2 border-canopy-950 bg-canopy-950">
+            <video
+              src="/assets/videos/persona_meditando.mp4"
+              poster="/assets/images/sendero_maloka_2.png"
+              autoplay
+              loop
+              muted
+              playsinline
+              class="watermark-crop-media absolute inset-0 h-full w-full"
+            ></video>
+          </div>
+          <div class="mt-2.5 px-2 pb-1">
+            <h3 class="font-wordmark text-lg font-black tracking-tight uppercase">
+              CERO QUÍMICOS TÓXICOS EN TU HOGAR
+            </h3>
+            <p class="text-xs font-bold text-canopy-950/85">
+              Creado por Gustavo Bermeo pensando en el bienestar de las familias y el cuidado del agua.
+            </p>
+          </div>
+        </div>
+
+        <!-- Collage Card B: Aval de Laboratorio -->
+        <div
+          class="story-collage-item starry-card-hard watermark-crop-frame relative -rotate-2 overflow-hidden rounded-[2.25rem] bg-solar-400 p-3 text-canopy-950 transition-transform duration-300 hover:rotate-0"
+        >
+          <span
+            class="starry-sticker absolute top-5 left-5 z-20 rotate-3 rounded-full bg-[#5CE63C] px-3.5 py-1 font-wordmark text-[11px] font-black text-canopy-950 uppercase"
+          >
+            🔬 AVAL DE LABORATORIO
+          </span>
+          <div class="relative h-44 w-full overflow-hidden rounded-2xl border-2 border-canopy-950 bg-canopy-950">
+            <video
+              src="/assets/videos/hands_holding_cream.mp4"
+              poster="/assets/images/manos_ofrenda.png"
+              autoplay
+              loop
+              muted
+              playsinline
+              class="watermark-crop-media absolute inset-0 h-full w-full"
+            ></video>
+          </div>
+          <div class="mt-2.5 px-2 pb-1">
+            <h3 class="font-wordmark text-lg font-black tracking-tight uppercase">
+              FÓRMULA PERFECCIONADA EN LA UNIAUTÓNOMA
+            </h3>
+            <p class="text-xs font-bold text-canopy-950/85">
+              Estabilizada por químicos expertos en el Cauca y premiada con $5.000.000 en EmprendeLab.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Interactive Chapter Sticker Cards (Jump to 00:00 / 00:22 / 00:46) -->
+    <div class="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+      {
+        storyChapters.map((chap, idx) => (
+          <button
+            type="button"
+            class={`story-chapter-btn starry-card-hard group flex flex-col justify-between rounded-3xl p-5 text-left text-canopy-950 transition-all hover:-translate-y-1 ${chap.bg} ${
+              idx === 0 ? 'scale-[1.02]' : 'opacity-95 hover:opacity-100'
+            }`}
+            data-seek-time={chap.time}
+          >
+            <div class="flex items-center justify-between gap-2">
+              <span class="rounded-full border-2 border-canopy-950 bg-white px-3 py-0.5 font-wordmark text-[11px] font-black uppercase">
+                {chap.badge}
+              </span>
+              <span class="rounded-full border-2 border-canopy-950 bg-canopy-950 px-3 py-0.5 font-wordmark text-xs font-black text-[#5CE63C]">
+                ▶ {chap.timeLabel}
+              </span>
+            </div>
+            <h4 class="mt-3 font-wordmark text-xl font-black tracking-tight uppercase">
+              {chap.title}
+            </h4>
+            <p class="mt-1 text-xs leading-relaxed font-bold text-canopy-950/85">
+              {chap.description}
+            </p>
+          </button>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const docVideo = document.getElementById('story-doc-video') as HTMLVideoElement | null;
+  const bigPlayBtn = document.getElementById('story-big-play-btn');
+  const togglePlayBtn = document.getElementById('story-toggle-play');
+  const toggleMuteBtn = document.getElementById('story-toggle-mute');
+  const iconPlay = document.getElementById('story-icon-play');
+  const iconPause = document.getElementById('story-icon-pause');
+  const timeDisplay = document.getElementById('story-time-display');
+  const seekBar = document.getElementById('story-seek-bar') as HTMLInputElement | null;
+  const chapterBtns = document.querySelectorAll<HTMLButtonElement>('.story-chapter-btn');
+  const collageItems = document.querySelectorAll<HTMLElement>('.story-collage-item');
+  const sparkles = document.querySelectorAll<HTMLElement>('.story-sparkle');
+
+  sparkles.forEach((sp, i) => {
+    gsap.to(sp, {
+      scale: 1.22,
+      rotation: i % 2 === 0 ? 18 : -18,
+      duration: 1.5 + i * 0.3,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+    });
+  });
+
+  const collageGrid = document.getElementById('story-collage-grid');
+  if (collageGrid && collageItems.length) {
+    gsap.fromTo(
+      collageItems,
+      { y: 50, opacity: 0, scale: 0.92 },
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: 'back.out(1.5)',
+        scrollTrigger: {
+          trigger: collageGrid,
+          start: 'top 78%',
+        },
+      }
+    );
+  }
+
+  const formatTime = (sec: number) => {
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  };
+
+  if (docVideo) {
+    const updatePlayUI = () => {
+      const isPlaying = !docVideo.paused && !docVideo.ended;
+      bigPlayBtn?.classList.toggle('opacity-0', isPlaying);
+      bigPlayBtn?.classList.toggle('pointer-events-none', isPlaying);
+      iconPlay?.classList.toggle('hidden', isPlaying);
+      iconPause?.classList.toggle('hidden', !isPlaying);
+    };
+
+    const startPlaybackWithSound = () => {
+      docVideo.muted = false;
+      if (toggleMuteBtn) toggleMuteBtn.textContent = '🔊 Sonido Activo';
+      docVideo.play();
+      updatePlayUI();
+    };
+
+    bigPlayBtn?.addEventListener('click', startPlaybackWithSound);
+
+    togglePlayBtn?.addEventListener('click', () => {
+      if (docVideo.paused) {
+        docVideo.play();
+      } else {
+        docVideo.pause();
+      }
+      updatePlayUI();
+    });
+
+    toggleMuteBtn?.addEventListener('click', () => {
+      docVideo.muted = !docVideo.muted;
+      toggleMuteBtn.textContent = docVideo.muted ? '🔇 Silenciado' : '🔊 Sonido Activo';
+    });
+
+    docVideo.addEventListener('timeupdate', () => {
+      const dur = docVideo.duration || 71.5;
+      const cur = docVideo.currentTime || 0;
+      if (timeDisplay) {
+        timeDisplay.textContent = `${formatTime(cur)} / ${formatTime(dur)}`;
+      }
+      if (seekBar) {
+        seekBar.value = String((cur / dur) * 100);
+      }
+
+      chapterBtns.forEach((btn, idx) => {
+        const chapterTime = Number(btn.getAttribute('data-seek-time') || 0);
+        const nextBtn = chapterBtns[idx + 1];
+        const nextTime = nextBtn ? Number(nextBtn.getAttribute('data-seek-time') || 999) : 999;
+        const active = cur >= chapterTime && cur < nextTime;
+        btn.classList.toggle('scale-[1.03]', active);
+        btn.classList.toggle('-translate-y-1', active);
+      });
+    });
+
+    docVideo.addEventListener('ended', updatePlayUI);
+    docVideo.addEventListener('pause', updatePlayUI);
+    docVideo.addEventListener('play', updatePlayUI);
+
+    seekBar?.addEventListener('input', () => {
+      const dur = docVideo.duration || 71.5;
+      docVideo.currentTime = (Number(seekBar.value) / 100) * dur;
+    });
+
+    chapterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetSec = Number(btn.getAttribute('data-seek-time') || 0);
+        docVideo.currentTime = targetSec;
+        startPlaybackWithSound();
+      });
+    });
+  }
+</script>

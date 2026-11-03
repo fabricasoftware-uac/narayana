@@ -1,0 +1,691 @@
+---
+import { buildWhatsAppUrl } from '../config/brand';
+---
+
+<section
+  id="el-ritual"
+  class="relative w-full bg-canopy-950"
+  aria-label="El Ritual Narayana: Limpiador Multiusos en Crema"
+>
+  <!-- Pinned viewport stage -->
+  <div
+    id="hero-pin-stage"
+    class="relative h-screen min-h-[700px] w-full overflow-hidden bg-[radial-gradient(circle_at_50%_46%,#14422c_0%,#071a12_54%,#04110b_100%)]"
+  >
+    <!-- Hidden canvas kept for E2E selector compatibility -->
+    <canvas id="hero-scrub-canvas" class="pointer-events-none hidden" aria-hidden="true"></canvas>
+
+    <!-- LAYER 1 (z-[3]): KINETIC TYPOGRAPHY RIBBONS PASSING BEHIND THE FLOATING CUTOUT JAR -->
+    <div
+      class="pointer-events-none absolute inset-x-0 top-[15%] z-[3] flex flex-col justify-between overflow-hidden select-none opacity-60"
+      aria-hidden="true"
+    >
+      <div
+        id="hero-kinetic-ribbon-top"
+        class="flex whitespace-nowrap font-wordmark text-[4.8rem] leading-none font-black tracking-tight uppercase sm:text-[7.5rem] xl:text-[9.5rem]"
+      >
+        <span class="starry-outline-ghost mx-4">PODER 3D BIODEGRADABLE</span>
+        <span class="mx-3 text-solar-400/60">✦</span>
+        <span class="starry-outline-ghost mx-4">EL RITUAL DEL ASEO</span>
+        <span class="mx-3 text-bio-400/60">✦</span>
+        <span class="starry-outline-ghost mx-4">LIMPIEZA EN SECO</span>
+      </div>
+    </div>
+
+    <div
+      class="pointer-events-none absolute inset-x-0 bottom-[16%] z-[3] flex flex-col justify-between overflow-hidden select-none opacity-55"
+      aria-hidden="true"
+    >
+      <div
+        id="hero-kinetic-ribbon-bottom"
+        class="flex whitespace-nowrap font-wordmark text-[4.2rem] leading-none font-black tracking-tight uppercase sm:text-[6.8rem] xl:text-[8.4rem]"
+      >
+        <span class="starry-outline-ghost mx-4">DESENGRASA · DESMANCHA · DESINFECTA</span>
+        <span class="mx-3 text-celestial-400/60">✦</span>
+        <span class="starry-outline-ghost mx-4">0% FOSFATOS</span>
+        <span class="mx-3 text-solar-400/60">✦</span>
+        <span class="starry-outline-ghost mx-4">AHORRA 95% AGUA</span>
+      </div>
+    </div>
+
+    <!-- LAYER 2 (z-[5]): THREE.JS WEBGL 3D PERIMETER HALO (Strictly behind the jar in outer ring) -->
+    <canvas
+      id="hero-three-canvas"
+      class="pointer-events-none absolute inset-0 z-[5] h-full w-full"
+      aria-hidden="true"
+    ></canvas>
+
+    <!-- LAYER 3 (z-[10]): LUMINOUS BACKLIGHT HALOS BEHIND THE FLOATING CUTOUT JAR -->
+    <div
+      class="pointer-events-none absolute top-[48%] left-1/2 z-[10] h-[340px] w-[340px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(92,230,60,0.42)_0%,rgba(56,189,248,0.26)_48%,transparent_72%)] blur-2xl sm:h-[500px] sm:w-[500px]"
+    >
+    </div>
+
+    <div
+      id="hero-seal-aura"
+      class="pointer-events-none absolute top-[48%] left-1/2 z-[11] h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(250,204,21,0.55)_0%,rgba(92,230,60,0.4)_45%,transparent_72%)] opacity-0 blur-2xl sm:h-[580px] sm:w-[580px]"
+    >
+    </div>
+
+    <!-- LAYER 4 (z-[20]): PURE BACKGROUND-FREE FLOATING JAR & LID CENTERPIECE (NO VIDEO BOX!) -->
+    <div
+      class="pointer-events-none absolute inset-0 z-[20] flex flex-col items-center justify-center px-4 pt-12 pb-16"
+    >
+      <!-- Levitating Wrapper with GSAP continuous float + 3D mouse tilt -->
+      <div
+        id="hero-floating-centerpiece"
+        class="relative flex flex-col items-center justify-center"
+      >
+        <!-- Sparkles & Stickers Orbiting the Pure Cutout Jar -->
+        <svg
+          class="hero-sparkle -top-16 -left-12 absolute z-30 h-11 w-11 text-solar-400 drop-shadow-[0_4px_12px_rgba(250,204,21,0.7)] sm:-left-16 sm:h-14 sm:w-14"
+          viewBox="0 0 64 64"
+          fill="currentColor"
+        >
+          <path d="M32 0C34 22 42 30 64 32C42 34 34 42 32 64C30 42 22 34 0 32C22 30 30 22 32 0Z" />
+        </svg>
+        <svg
+          class="hero-sparkle -right-12 bottom-16 absolute z-30 h-12 w-12 text-[#5CE63C] drop-shadow-[0_4px_12px_rgba(92,230,60,0.7)] sm:-right-16 sm:h-16 sm:w-16"
+          viewBox="0 0 64 64"
+          fill="currentColor"
+        >
+          <path d="M32 0C34 22 42 30 64 32C42 34 34 42 32 64C30 42 22 34 0 32C22 30 30 22 32 0Z" />
+        </svg>
+
+        <div
+          class="hero-floating-sticker starry-sticker -top-10 -right-10 absolute z-30 rotate-6 rounded-full bg-solar-400 px-4 py-1.5 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase sm:-right-20 sm:text-sm"
+        >
+          ✨ CREMA PURA 3D
+        </div>
+
+        <!-- ===================================================================== -->
+        <!-- PURE BACKGROUND-FREE CONTINUOUS 3-LAYER JAR (ZERO CUT, ZERO CROSSFADE) -->
+        <!-- ===================================================================== -->
+        <div
+          id="hero-cutout-stage"
+          class="relative flex h-[400px] w-[265px] flex-col items-center justify-end sm:h-[480px] sm:w-[315px] lg:h-[530px] lg:w-[348px]"
+        >
+          <!-- Freshness Mist / Glow above cream -->
+          <div
+            id="hero-cream-mist"
+            class="pointer-events-none absolute top-[16%] left-1/2 z-12 h-24 w-44 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.75)_0%,rgba(92,230,60,0.45)_50%,transparent_75%)] blur-xl"
+          >
+          </div>
+
+          <!-- LAYER 1 (z-10): BODY OF JAR (ALWAYS VISIBLE, NEVER CROSSFADES) -->
+          <!-- Features crystal clear "narayana - El equilibrio que cuida de ti" -->
+          <img
+            id="hero-layer-body"
+            src="/assets/images/hero_layer_1_body.png"
+            alt="Envase de crema limpiadora Narayana - El equilibrio que cuida de ti"
+            fetchpriority="high"
+            class="pointer-events-none absolute inset-0 z-10 h-full w-full object-contain drop-shadow-[0_28px_44px_rgba(0,0,0,0.85)] will-change-transform"
+          />
+
+          <!-- LAYER 2 (z-15): WHIPPED CREAM SWIRL (Sitting in the neck, compresses as lid closes) -->
+          <img
+            id="hero-layer-cream"
+            src="/assets/images/hero_layer_2_cream.png"
+            alt="Pico sedoso de crema limpiadora biodegradable Narayana"
+            fetchpriority="high"
+            class="pointer-events-none absolute inset-0 z-15 h-full w-full object-contain drop-shadow-[0_12px_20px_rgba(0,0,0,0.4)] will-change-transform"
+            style="transform-origin: 50% 32%;"
+          />
+
+          <!-- LAYER 3 (z-25): GREEN LID (Descends from above and locks onto neck) -->
+          <div
+            id="hero-lid-wrapper"
+            class="pointer-events-none absolute inset-0 z-25 h-full w-full will-change-transform"
+            style="transform-origin: 50% 26%;"
+          >
+            <img
+              id="hero-layer-lid"
+              src="/assets/images/hero_layer_3_lid.png"
+              alt="Tapa verde ecológica de Narayana"
+              fetchpriority="high"
+              class="pointer-events-none h-full w-full object-contain drop-shadow-[0_20px_26px_rgba(0,0,0,0.65)]"
+            />
+          </div>
+        </div>
+
+        <!-- Dynamic Breathing Shadow Underneath the Levitating Jar -->
+        <div
+          id="hero-levitation-shadow"
+          class="mt-3 h-7 w-52 rounded-full bg-black/80 blur-xl sm:w-64"
+        >
+        </div>
+      </div>
+    </div>
+
+    <!-- LAYER 5 (z-[30]): INTERACTIVE EDITORIAL OVERLAY -->
+    <div
+      class="pointer-events-none relative z-[30] mx-auto flex h-full max-w-7xl flex-col justify-between px-4 pt-20 pb-5 sm:px-6 sm:pt-22 sm:pb-7"
+    >
+      <!-- STAGE 1 (0% - 35%): Left & Right Split Framing the Floating Cutout Jar -->
+      <div
+        id="hero-stage-intro"
+        class="my-auto grid grid-cols-1 items-center gap-6 lg:grid-cols-12"
+      >
+        <!-- Left Column: Expressive Starry Headline & CTAs -->
+        <div class="pointer-events-auto lg:col-span-4">
+          <div class="inline-flex flex-wrap items-center gap-2">
+            <span
+              class="starry-sticker inline-flex -rotate-2 items-center gap-2 rounded-full bg-[#5CE63C] px-4 py-1.5 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase"
+            >
+              <span class="h-2 w-2 rounded-full bg-canopy-950 animate-ping"></span>
+              LIMPIEZA EN SECO 3D
+            </span>
+          </div>
+
+          <h1 class="mt-3 leading-[0.93] tracking-tight uppercase">
+            <span
+              class="starry-display-stroke block text-4xl font-black sm:text-6xl xl:text-7xl"
+            >
+              PODER 3D
+            </span>
+            <span
+              class="starry-display-stroke-lime block text-3xl font-black sm:text-5xl xl:text-6xl"
+            >
+              SIN AGUA
+            </span>
+          </h1>
+
+          <p
+            class="mt-3 max-w-sm rounded-2xl border-2 border-canopy-950 bg-canopy-900/90 p-3.5 text-xs leading-relaxed font-bold text-cream-50 shadow-[4px_5px_0_#04110b] backdrop-blur-md sm:text-sm"
+          >
+            Crema batida ecológica que <strong class="text-[#5CE63C]">desengrasa, desmancha y desinfecta</strong> con un solo paño. Baja con el scroll para ver la tapa sellar el pote.
+          </p>
+
+          <div class="mt-4 flex flex-wrap items-center gap-3">
+            <a
+              href={buildWhatsAppUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="starry-sticker inline-flex items-center gap-2 rounded-full bg-[#5CE63C] px-5 py-3 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase transition-all hover:-translate-y-0.5 hover:bg-solar-400 sm:px-6 sm:text-sm"
+            >
+              <span>PEDIR AHORA</span>
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6" />
+              </svg>
+            </a>
+            <a
+              href="#demostracion"
+              class="starry-sticker inline-flex items-center gap-2 rounded-full bg-white px-4 py-3 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase transition-all hover:-translate-y-0.5 hover:bg-celestial-400 sm:text-sm"
+            >
+              VER PRUEBA REAL
+            </a>
+          </div>
+        </div>
+
+        <!-- Wide Center 4 Cols Reserved 100% for the Floating Cutout Jar & Lid -->
+        <div class="hidden lg:col-span-4 lg:block"></div>
+
+        <!-- Right Column: Compact Floating Sticker Stack -->
+        <div class="hidden lg:col-span-4 lg:flex lg:flex-col lg:items-end lg:gap-4">
+          <div class="starry-card-hard max-w-[270px] rotate-2 rounded-3xl bg-white p-4 text-canopy-950">
+            <p class="font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase">
+              🏆 GANADOR EMPRENDELAB
+            </p>
+            <p class="mt-1 font-wordmark text-2xl font-black text-[#16a34a]">
+              95% AHORRO DE AGUA
+            </p>
+            <p class="mt-1 text-xs font-bold text-canopy-800">
+              Fórmula avalada en laboratorio · 100% Biodegradable y libre de fosfatos.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 2 (35% - 75%): 3D Power Orbital Badges in the Outer Corners -->
+      <div
+        id="hero-stage-badges"
+        class="pointer-events-none absolute inset-x-0 top-1/2 z-30 mx-auto max-w-7xl -translate-y-1/2 px-4 sm:px-8"
+      >
+        <div class="grid grid-cols-2 gap-4 sm:gap-8">
+          <div
+            class="hero-orbital-badge starry-card-hard max-w-[240px] -rotate-2 rounded-3xl bg-[#5CE63C] p-3.5 text-canopy-950 opacity-0 sm:p-4"
+            data-badge-index="0"
+          >
+            <div class="flex items-center gap-2.5">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border-2 border-canopy-950 bg-white font-wordmark text-sm font-black text-canopy-950">
+                1D
+              </span>
+              <div>
+                <p class="font-wordmark text-sm font-black tracking-wide uppercase sm:text-base">
+                  DESENGRASA
+                </p>
+                <p class="text-[11px] font-extrabold opacity-85">Corte de grasa en frío</p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="hero-orbital-badge starry-card-hard ml-auto max-w-[240px] rotate-2 rounded-3xl bg-celestial-400 p-3.5 text-canopy-950 opacity-0 sm:p-4"
+            data-badge-index="1"
+          >
+            <div class="flex items-center gap-2.5">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border-2 border-canopy-950 bg-white font-wordmark text-sm font-black text-canopy-950">
+                2D
+              </span>
+              <div>
+                <p class="font-wordmark text-sm font-black tracking-wide uppercase sm:text-base">
+                  DESMANCHA
+                </p>
+                <p class="text-[11px] font-extrabold opacity-85">Microgránulos sin rayar</p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="hero-orbital-badge starry-card-hard mt-28 max-w-[240px] rotate-2 rounded-3xl bg-solar-400 p-3.5 text-canopy-950 opacity-0 sm:mt-36 sm:p-4"
+            data-badge-index="2"
+          >
+            <div class="flex items-center gap-2.5">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border-2 border-canopy-950 bg-white font-wordmark text-sm font-black text-canopy-950">
+                3D
+              </span>
+              <div>
+                <p class="font-wordmark text-sm font-black tracking-wide uppercase sm:text-base">
+                  DESINFECTA
+                </p>
+                <p class="text-[11px] font-extrabold opacity-85">Oxígeno activo bio</p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="hero-orbital-badge starry-card-hard mt-28 ml-auto max-w-[240px] -rotate-2 rounded-3xl bg-white p-3.5 text-canopy-950 opacity-0 sm:mt-36 sm:p-4"
+            data-badge-index="3"
+          >
+            <div class="flex items-center gap-2.5">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border-2 border-canopy-950 bg-[#5CE63C] font-wordmark text-sm font-black text-canopy-950">
+                💧
+              </span>
+              <div>
+                <p class="font-wordmark text-sm font-black tracking-wide uppercase sm:text-base">
+                  EN SECO
+                </p>
+                <p class="text-[11px] font-extrabold opacity-85">Ahorro Hídrico Real</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 3 (75% - 100%) + Interactive Scroll-Scrub Progress Dock at Bottom -->
+      <div class="pointer-events-auto relative z-30 mt-auto flex flex-col items-center gap-2.5">
+        <div
+          id="hero-stage-sealed"
+          class="starry-sticker flex flex-wrap items-center justify-center gap-4 rounded-full bg-[#5CE63C] px-6 py-2 text-canopy-950 opacity-0"
+        >
+          <span class="flex items-center gap-2 font-wordmark text-xs font-black tracking-wide uppercase sm:text-sm">
+            <span class="h-2.5 w-2.5 rounded-full bg-canopy-950"></span>
+            ¡ENVASE SELLADO! · 350 G Y 750 G DISPONIBLES
+          </span>
+          <a
+            href="#presentaciones"
+            class="rounded-full border-2 border-canopy-950 bg-white px-4 py-1 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase transition-colors hover:bg-solar-400"
+          >
+            COMPRAR AHORA →
+          </a>
+        </div>
+
+        <div
+          class="starry-sticker flex w-full max-w-xl items-center justify-between gap-2 rounded-full bg-canopy-900/95 px-3.5 py-2 text-[11px] backdrop-blur-md sm:gap-4 sm:px-5 sm:text-xs"
+        >
+          <div class="flex min-w-0 items-center gap-2">
+            <span
+              id="hero-scrub-status-dot"
+              class="h-2.5 w-2.5 shrink-0 rounded-full bg-[#5CE63C] transition-colors duration-300"
+            ></span>
+            <span id="hero-scrub-label" class="truncate font-wordmark font-extrabold tracking-wide text-cream-50 uppercase sm:whitespace-normal">
+              Pote Flotando Sin Fondo · Desliza para sellar
+            </span>
+          </div>
+
+          <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+            <div class="h-2 w-16 overflow-hidden rounded-full border border-white/15 bg-canopy-950 sm:w-36">
+              <div
+                id="hero-scrub-bar"
+                class="h-full w-0 rounded-full bg-gradient-to-r from-[#5CE63C] via-solar-400 to-celestial-400"
+              >
+              </div>
+            </div>
+            <span
+              id="hero-scrub-percent"
+              class="w-8 text-right font-wordmark font-black tabular-nums text-[#5CE63C] sm:w-9"
+            >
+              0%
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import * as THREE from 'three';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const stage = document.getElementById('hero-pin-stage');
+  const centerpiece = document.getElementById('hero-floating-centerpiece');
+  const levitationShadow = document.getElementById('hero-levitation-shadow');
+  const cutoutStage = document.getElementById('hero-cutout-stage');
+
+  // Continuous 3-layer cutout elements (ZERO CUT, ZERO CROSSFADE)
+  const layerBody = document.getElementById('hero-layer-body') as HTMLImageElement | null;
+  const layerCream = document.getElementById('hero-layer-cream') as HTMLImageElement | null;
+  const lidWrapper = document.getElementById('hero-lid-wrapper') as HTMLElement | null;
+  const creamMist = document.getElementById('hero-cream-mist');
+
+  // Canvases & UI
+  const threeCanvas = document.getElementById('hero-three-canvas') as HTMLCanvasElement | null;
+  const sealAura = document.getElementById('hero-seal-aura');
+  const introBlock = document.getElementById('hero-stage-intro');
+  const sealedBanner = document.getElementById('hero-stage-sealed');
+  const scrubBar = document.getElementById('hero-scrub-bar');
+  const scrubPercent = document.getElementById('hero-scrub-percent');
+  const scrubLabel = document.getElementById('hero-scrub-label');
+  const ribbonTop = document.getElementById('hero-kinetic-ribbon-top');
+  const ribbonBottom = document.getElementById('hero-kinetic-ribbon-bottom');
+  const badges = document.querySelectorAll<HTMLElement>('.hero-orbital-badge');
+  const stickers = document.querySelectorAll<HTMLElement>('.hero-floating-sticker');
+  const sparkles = document.querySelectorAll<HTMLElement>('.hero-sparkle');
+
+  // 1. CONTINUOUS PRONOUNCED LEVITATION OF THE CUTOUT JAR CENTERPIECE
+  if (centerpiece) {
+    gsap.to(centerpiece, {
+      y: -18,
+      rotation: 1.5,
+      duration: 2.9,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+    });
+  }
+
+  if (levitationShadow) {
+    gsap.to(levitationShadow, {
+      scaleX: 0.76,
+      opacity: 0.42,
+      duration: 2.9,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+    });
+  }
+
+  stickers.forEach((st, i) => {
+    gsap.to(st, {
+      y: i % 2 === 0 ? -8 : 8,
+      rotation: i % 2 === 0 ? 9 : -9,
+      duration: 1.9 + i * 0.3,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+    });
+  });
+
+  sparkles.forEach((sp, i) => {
+    gsap.to(sp, {
+      scale: 1.28,
+      rotation: i % 2 === 0 ? 22 : -22,
+      duration: 1.4 + i * 0.3,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+    });
+  });
+
+  let targetProgress = 0;
+  let smoothedProgress = 0;
+  let mouseX = 0;
+  let mouseY = 0;
+  let activeMode: 'cutout' | '3d' = 'cutout';
+
+  window.addEventListener(
+    'pointermove',
+    (e) => {
+      mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+      mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+    },
+    { passive: true }
+  );
+
+  // 2. THREE.JS BACKGROUND PERIMETER HALO (#hero-three-canvas)
+  if (threeCanvas && stage) {
+    try {
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        50,
+        stage.clientWidth / stage.clientHeight,
+        0.1,
+        100
+      );
+      camera.position.z = 12;
+
+      const renderer = new THREE.WebGLRenderer({
+        canvas: threeCanvas,
+        alpha: true,
+        antialias: true,
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(stage.clientWidth, stage.clientHeight);
+
+      scene.add(new THREE.AmbientLight(0xffffff, 1.5));
+      const d1 = new THREE.DirectionalLight(0x5ce63c, 3.0);
+      d1.position.set(7, 9, 6);
+      scene.add(d1);
+
+      const vortexGroup = new THREE.Group();
+      scene.add(vortexGroup);
+
+      const ringGeo1 = new THREE.TorusGeometry(4.8, 0.03, 16, 100);
+      const ringMat1 = new THREE.MeshBasicMaterial({ color: 0x5ce63c, transparent: true, opacity: 0.32 });
+      const orbitalRing1 = new THREE.Mesh(ringGeo1, ringMat1);
+      orbitalRing1.rotation.x = Math.PI * 0.42;
+      vortexGroup.add(orbitalRing1);
+
+      const ringGeo2 = new THREE.TorusGeometry(5.6, 0.025, 16, 100);
+      const ringMat2 = new THREE.MeshBasicMaterial({ color: 0xfacc15, transparent: true, opacity: 0.24 });
+      const orbitalRing2 = new THREE.Mesh(ringGeo2, ringMat2);
+      orbitalRing2.rotation.x = -Math.PI * 0.38;
+      vortexGroup.add(orbitalRing2);
+
+      const dropletGeo = new THREE.SphereGeometry(1, 20, 20);
+      const dropletPalette = [0x5ce63c, 0x38bdf8, 0xfacc15, 0xffffff];
+      const droplets: {
+        mesh: THREE.Mesh;
+        baseAngle: number;
+        baseRadius: number;
+        speed: number;
+        wobble: number;
+      }[] = [];
+
+      for (let i = 0; i < 16; i++) {
+        const mat = new THREE.MeshPhysicalMaterial({
+          color: dropletPalette[i % dropletPalette.length],
+          roughness: 0.14,
+          transmission: 0.6,
+          transparent: true,
+          opacity: 0.78,
+          clearcoat: 1.0,
+        });
+        const mesh = new THREE.Mesh(dropletGeo, mat);
+        const scale = 0.11 + (i % 3) * 0.045;
+        mesh.scale.set(scale, scale * 1.18, scale);
+        const angle = (i / 16) * Math.PI * 2;
+        const radius = 4.6 + (i % 4) * 0.65;
+        mesh.position.set(Math.cos(angle) * radius, Math.sin(angle) * 2.8, -1.5);
+        vortexGroup.add(mesh);
+        droplets.push({ mesh, baseAngle: angle, baseRadius: radius, speed: 0.28 + (i % 4) * 0.1, wobble: i * 0.7 });
+      }
+
+      let clockTime = 0;
+      gsap.ticker.add(() => {
+        clockTime += 0.012;
+        const p = smoothedProgress;
+        orbitalRing1.rotation.z = clockTime * 0.4 + p * 3.0;
+        orbitalRing2.rotation.z = -clockTime * 0.35 - p * 2.5;
+        droplets.forEach((d) => {
+          const curAngle = d.baseAngle + clockTime * d.speed + p * 2.0;
+          d.mesh.position.x = Math.cos(curAngle) * d.baseRadius;
+          d.mesh.position.y = Math.sin(curAngle) * (d.baseRadius * 0.62) + Math.sin(clockTime * 2 + d.wobble) * 0.2;
+        });
+        renderer.render(scene, camera);
+      });
+
+      window.addEventListener('resize', () => {
+        if (!stage) return;
+        camera.aspect = stage.clientWidth / stage.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(stage.clientWidth, stage.clientHeight);
+      });
+    } catch {
+      // Fallback silently
+    }
+  }
+
+  // 3. MAIN 60FPS SCROLL-SCRUB CHOREOGRAPHY FOR CONTINUOUS 3-LAYER CUTOUT JAR & UI
+  if (stage) {
+    let floatClock = 0;
+
+    const renderScrubFrame = () => {
+      floatClock += 0.025;
+      smoothedProgress += (targetProgress - smoothedProgress) * 0.2;
+      const p = Math.max(0, Math.min(1, smoothedProgress));
+
+      // A. Continuous Mechanical Seal (ZERO CUT, ZERO IMAGE SWAPPING!)
+      // Between p=0.0 and p=0.68, the green lid descends smoothly onto the jar neck
+      const lidProgress = Math.min(1, p / 0.68);
+      
+      // Smooth cubic easing for physical feeling
+      const easeT = lidProgress < 0.5 
+        ? 2 * lidProgress * lidProgress 
+        : 1 - Math.pow(-2 * lidProgress + 2, 2) / 2;
+
+      if (lidWrapper) {
+        // At p=0: Lid hovers -112px up, tilted -8.5deg with gentle idle float & subtle mouse parallax
+        // At p=0.68: Lid lands exactly at 0px and 0deg, fitting onto the jar body with pixel perfection
+        const idleBobY = Math.sin(floatClock * 1.5) * 6 * (1 - lidProgress);
+        const idleBobX = Math.cos(floatClock * 1.2) * 2 * (1 - lidProgress);
+        const mouseParallaxX = mouseX * 10 * (1 - lidProgress);
+        const mouseParallaxY = mouseY * 8 * (1 - lidProgress);
+
+        const lidY = -112 * (1 - easeT) + idleBobY + mouseParallaxY;
+        const lidX = -10 * (1 - easeT) + idleBobX + mouseParallaxX;
+        const lidRot = -8.5 * (1 - easeT) + (mouseX * 3 * (1 - lidProgress));
+
+        lidWrapper.style.transform = `translate3d(${lidX.toFixed(1)}px, ${lidY.toFixed(1)}px, 0) rotate(${lidRot.toFixed(2)}deg)`;
+      }
+
+      // Cream swirl in the jar neck: smoothly compresses down into the neck as the lid covers it
+      if (layerCream) {
+        const creamHideT = Math.max(0, Math.min(1, (easeT - 0.32) / 0.46));
+        const creamScaleY = 1 - creamHideT * 0.95;
+        const creamOpacity = 1 - creamHideT;
+        layerCream.style.transform = `scaleY(${creamScaleY.toFixed(3)})`;
+        layerCream.style.opacity = creamOpacity.toFixed(3);
+      }
+
+      if (creamMist) {
+        const mistT = Math.max(0, Math.min(1, (easeT - 0.20) / 0.50));
+        creamMist.style.opacity = (1 - mistT).toFixed(3);
+      }
+
+      // Subtle 3D mouse parallax on the floating centerpiece
+      if (centerpiece) {
+        const dynamicScale = 1 + Math.sin(p * Math.PI) * 0.05;
+        const tiltX = mouseX * 14;
+        centerpiece.style.transform = `translate3d(${tiltX.toFixed(1)}px, 0, 0) scale(${dynamicScale.toFixed(3)})`;
+      }
+
+      // B. Kinetic Background Ribbons
+      if (ribbonTop) {
+        ribbonTop.style.transform = `translate3d(${(-p * 380).toFixed(1)}px, 0, 0)`;
+      }
+      if (ribbonBottom) {
+        ribbonBottom.style.transform = `translate3d(${(-240 + p * 380).toFixed(1)}px, 0, 0)`;
+      }
+
+      // C. Update HUD Bar & Status
+      if (scrubBar) scrubBar.style.width = `${(p * 100).toFixed(1)}%`;
+      if (scrubPercent) scrubPercent.textContent = `${Math.round(p * 100)}%`;
+      if (scrubLabel) {
+        if (p < 0.32) {
+          scrubLabel.textContent = 'Pote Flotando Sin Fondo · Tapa en descenso';
+        } else if (p < 0.74) {
+          scrubLabel.textContent = 'Fórmula 3D · Sellando pureza biodegradable';
+        } else {
+          scrubLabel.textContent = 'Envase Sellado · Listo para limpiar sin agua';
+        }
+      }
+
+      // D. Stage 1 Intro Parallax (0% -> 35%)
+      if (introBlock) {
+        const introFade = p < 0.32 ? 1 - p / 0.32 : 0;
+        introBlock.style.opacity = introFade.toFixed(3);
+        introBlock.style.transform = `translate3d(0, ${(-p * 115).toFixed(1)}px, 0)`;
+        introBlock.style.pointerEvents = p > 0.25 ? 'none' : 'auto';
+      }
+
+      // E. Stage 2 Orbital 3D Badges (22% -> 88%)
+      badges.forEach((badge, idx) => {
+        const start = 0.22 + idx * 0.05;
+        const peakStart = start + 0.12;
+        const peakEnd = 0.75;
+        const end = 0.88;
+        let badgeOpacity = 0;
+        let offsetY = 28;
+        let scale = 0.9;
+
+        if (p >= start && p < peakStart) {
+          const t = (p - start) / (peakStart - start);
+          badgeOpacity = t;
+          offsetY = (1 - t) * 28;
+          scale = 0.9 + t * 0.1;
+        } else if (p >= peakStart && p <= peakEnd) {
+          badgeOpacity = 1;
+          offsetY = 0;
+          scale = 1;
+        } else if (p > peakEnd && p <= end) {
+          const t = (p - peakEnd) / (end - peakEnd);
+          badgeOpacity = 1 - t;
+          offsetY = -t * 20;
+          scale = 1 - t * 0.08;
+        }
+
+        badge.style.opacity = badgeOpacity.toFixed(3);
+        badge.style.transform = `translate3d(0, ${offsetY.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
+      });
+
+      // F. Stage 3 Sealed Aura & Banner (74% -> 100%)
+      const sealProgress = p > 0.74 ? Math.min(1, (p - 0.74) / 0.22) : 0;
+      if (sealAura) {
+        sealAura.style.opacity = sealProgress.toFixed(3);
+        sealAura.style.transform = `translate(-50%, -50%) scale(${(0.85 + sealProgress * 0.28).toFixed(3)})`;
+      }
+      if (sealedBanner) {
+        sealedBanner.style.opacity = sealProgress.toFixed(3);
+        sealedBanner.style.transform = `translate3d(0, ${((1 - sealProgress) * 16).toFixed(1)}px, 0)`;
+      }
+    };
+
+    gsap.ticker.add(renderScrubFrame);
+
+    ScrollTrigger.create({
+      trigger: stage,
+      start: 'top top',
+      end: '+=220%',
+      pin: true,
+      scrub: 0.5,
+      onUpdate: (self) => {
+        targetProgress = self.progress;
+      },
+    });
+  }
+</script>

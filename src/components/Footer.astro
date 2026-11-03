@@ -1,0 +1,194 @@
+---
+import { BRAND_CONFIG, buildWhatsAppUrl } from '../config/brand';
+
+const footerLinks = [
+  { label: 'El Ritual 3D', href: '#el-ritual' },
+  { label: 'Poder 3D', href: '#formula-3d' },
+  { label: '7 Activos Bio', href: '#textura-composicion' },
+  { label: 'Prueba en Seco', href: '#demostracion' },
+  { label: 'Origen & Lab', href: '#historia' },
+  { label: 'Comprar 350g / 750g', href: '#presentaciones' },
+];
+---
+
+<footer class="relative overflow-hidden bg-canopy-950 text-cream-50">
+  <!-- 1. TOP KINETIC MARQUEE RIBBON (Bold Solar Yellow & Black Stroke Style) -->
+  <div class="overflow-hidden border-y-4 border-canopy-950 bg-solar-400 py-3.5 text-canopy-950 select-none">
+    <div id="footer-marquee-track" class="flex whitespace-nowrap font-wordmark text-sm font-black tracking-wider uppercase sm:text-base">
+      <span class="mx-6">⚡ LIMPIEZA EN SECO</span>
+      <span>✦</span>
+      <span class="mx-6">🌿 100% BIODEGRADABLE</span>
+      <span>✦</span>
+      <span class="mx-6">💧 AHORRA HASTA 95% DE AGUA</span>
+      <span>✦</span>
+      <span class="mx-6">✨ PODER 3D: DESENGRASA · DESMANCHA · DESINFECTA</span>
+      <span>✦</span>
+      <span class="mx-6">⚡ LIMPIEZA EN SECO</span>
+      <span>✦</span>
+      <span class="mx-6">🌿 100% BIODEGRADABLE</span>
+      <span>✦</span>
+      <span class="mx-6">💧 AHORRA HASTA 95% DE AGUA</span>
+    </div>
+  </div>
+
+  <!-- 2. NEO-BOTANICAL BENTO FOOTER CARDS -->
+  <div class="relative z-10 mx-auto max-w-7xl px-4 pt-16 pb-10 sm:px-6">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
+      <!-- Left 5 Cols: Brand Sticker Card -->
+      <div class="starry-card-hard relative flex flex-col justify-between rounded-[2.25rem] bg-[#5CE63C] p-7 text-canopy-950 lg:col-span-5">
+        <div
+          class="starry-sticker -top-3.5 right-6 absolute rotate-3 rounded-full bg-white px-4 py-1 font-wordmark text-xs font-black uppercase"
+        >
+          POPAYÁN, CAUCA · COLOMBIA
+        </div>
+
+        <div>
+          <div class="flex items-center gap-3">
+            <img src="/favicon.svg" alt="Isotipo Narayana" class="h-12 w-12 rounded-2xl border-2 border-canopy-950" />
+            <div>
+              <p class="font-wordmark text-2xl leading-none font-black tracking-tight uppercase">
+                {BRAND_CONFIG.name}
+              </p>
+              <p class="font-wordmark text-xs font-extrabold uppercase opacity-85">
+                {BRAND_CONFIG.slogan}
+              </p>
+            </div>
+          </div>
+
+          <p class="mt-4 text-sm leading-relaxed font-bold text-canopy-950/90">
+            El limpiador multiusos en crema que une la fuerza de la naturaleza con el respaldo científico de la Uniautónoma del Cauca y EmprendeLab.
+          </p>
+        </div>
+
+        <div class="mt-6 flex flex-wrap items-center gap-2">
+          <span class="rounded-full border-2 border-canopy-950 bg-solar-400 px-3 py-1 font-wordmark text-[11px] font-black uppercase">
+            0% FOSFATOS
+          </span>
+          <span class="rounded-full border-2 border-canopy-950 bg-white px-3 py-1 font-wordmark text-[11px] font-black uppercase">
+            ENVASE PP RECICLABLE
+          </span>
+          <span class="rounded-full border-2 border-canopy-950 bg-celestial-400 px-3 py-1 font-wordmark text-[11px] font-black uppercase">
+            FIBRA DE PIÑA
+          </span>
+        </div>
+      </div>
+
+      <!-- Center 3 Cols: Quick Navigation Card -->
+      <div class="starry-card-hard flex flex-col justify-between rounded-[2.25rem] bg-white p-7 text-canopy-950 lg:col-span-3">
+        <div>
+          <span class="rounded-full border-2 border-canopy-950 bg-solar-400 px-3.5 py-1 font-wordmark text-xs font-black uppercase">
+            EXPLORAR
+          </span>
+          <ul class="mt-5 space-y-2.5">
+            {
+              footerLinks.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="inline-flex items-center gap-2 font-wordmark text-sm font-black uppercase transition-transform hover:translate-x-1 hover:text-[#16a34a]"
+                  >
+                    <span>→</span>
+                    <span>{link.label}</span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right 4 Cols: Direct Order & Wholesale B2B Card -->
+      <div class="starry-card-hard flex flex-col justify-between rounded-[2.25rem] bg-celestial-400 p-7 text-canopy-950 lg:col-span-4">
+        <div>
+          <span class="rounded-full border-2 border-canopy-950 bg-white px-3.5 py-1 font-wordmark text-xs font-black uppercase">
+            🚀 PEDIDOS & MAYORISTAS
+          </span>
+          <h3 class="mt-4 font-wordmark text-2xl leading-tight font-black tracking-tight uppercase">
+            ¿LISTO PARA LIMPIAR EN SECO O DISTRIBUIR EN TU CIUDAD?
+          </h3>
+          <p class="mt-2 text-xs leading-relaxed font-bold text-canopy-950/85 sm:text-sm">
+            Despachamos potes individuales de 350 g y 750 g, o Cajas Mayoristas de 12 unidades con margen especial para aliados.
+          </p>
+        </div>
+
+        <div class="mt-6 flex flex-col gap-2.5">
+          <a
+            href={buildWhatsAppUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="starry-sticker flex items-center justify-center gap-2 rounded-full bg-solar-400 px-4 py-3 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase transition-transform hover:-translate-y-0.5 hover:bg-white sm:px-5 sm:py-3.5 sm:text-sm"
+          >
+            <span>PEDIR 350G / 750G POR WHATSAPP</span>
+          </a>
+          <a
+            href={buildWhatsAppUrl(BRAND_CONFIG.contact.distributorWhatsappMessage)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="starry-sticker flex items-center justify-center gap-2 rounded-full bg-canopy-950 px-4 py-3 font-wordmark text-xs font-black tracking-wider text-[#5CE63C] uppercase transition-transform hover:-translate-y-0.5 hover:bg-white hover:text-canopy-950 sm:px-5 sm:text-sm"
+          >
+            <span>COTIZAR CAJA MAYORISTA × 12</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. MONUMENTAL EDGE-TO-EDGE 'NARAYANA' DISPLAY WORDMARK WITH SPARKLES -->
+    <div class="relative mt-14 flex flex-col items-center justify-center overflow-hidden pt-4 text-center select-none">
+      <svg
+        class="footer-sparkle absolute top-2 left-[12%] hidden h-12 w-12 text-solar-400 sm:block"
+        viewBox="0 0 64 64"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M32 0C34 22 42 30 64 32C42 34 34 42 32 64C30 42 22 34 0 32C22 30 30 22 32 0Z" />
+      </svg>
+      <svg
+        class="footer-sparkle absolute top-4 right-[14%] hidden h-14 w-14 text-[#5CE63C] sm:block"
+        viewBox="0 0 64 64"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M32 0C34 22 42 30 64 32C42 34 34 42 32 64C30 42 22 34 0 32C22 30 30 22 32 0Z" />
+      </svg>
+
+      <p
+        class="starry-display-stroke-lime text-[13.5vw] leading-[0.88] font-black tracking-tighter uppercase sm:text-[14.5vw] lg:text-[11.5rem]"
+      >
+        NARAYANA
+      </p>
+
+      <div class="mt-6 flex w-full flex-wrap items-center justify-between gap-4 border-t border-white/15 pt-5 text-xs font-bold text-cream-200/75">
+        <p>© {new Date().getFullYear()} {BRAND_CONFIG.name} · Todos los derechos reservados.</p>
+        <p class="text-[#5CE63C]">EL ASEO ES SALUD Y CONFORT · HECHO EN COLOMBIA 🌿</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  import gsap from 'gsap';
+
+  const marquee = document.getElementById('footer-marquee-track');
+  const sparkles = document.querySelectorAll('.footer-sparkle');
+
+  if (marquee) {
+    gsap.to(marquee, {
+      xPercent: -35,
+      duration: 16,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+    });
+  }
+
+  sparkles.forEach((sp, i) => {
+    gsap.to(sp, {
+      scale: 1.25,
+      rotation: i % 2 === 0 ? 20 : -20,
+      duration: 1.4 + i * 0.3,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+    });
+  });
+</script>
