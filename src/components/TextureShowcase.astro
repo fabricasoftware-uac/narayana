@@ -24,10 +24,13 @@ const categoryLabels: Record<string, string> = {
   class="relative w-full bg-cream-50 text-canopy-950"
   aria-labelledby="texture-heading"
 >
-  <!-- Pinned Texture & 7-Ingredient Stage -->
+  <!-- Natural scroll buffer runway between Formula 3D and Texture Pin -->
+  <div class="h-16 sm:h-24 w-full pointer-events-none" aria-hidden="true"></div>
+
+  <!-- Pinned Viewport Stage for 7 Bio Actives Scrub -->
   <div
     id="texture-pin-stage"
-    class="relative flex min-h-screen w-full flex-col justify-between overflow-hidden bg-[radial-gradient(circle_at_32%_52%,#d9f99d_0%,#f7f9f4_55%,#eef3e8_100%)] py-16 sm:py-20"
+    class="relative min-h-screen w-full flex flex-col justify-center overflow-hidden bg-[radial-gradient(circle_at_32%_52%,#d9f99d_0%,#f7f9f4_55%,#eef3e8_100%)] py-8 sm:py-12"
   >
     <!-- Giant Background Outlined Wordmark -->
     <div
@@ -63,7 +66,7 @@ const categoryLabels: Record<string, string> = {
           </h2>
         </div>
 
-        <!-- Live Scroll Step Counter (01 / 07 -> 07 / 07) -->
+        <!-- Live Step Counter (01 / 07 -> 07 / 07) -->
         <div class="starry-sticker flex items-center gap-3 rounded-full bg-canopy-950 px-5 py-2 text-cream-50">
           <span class="font-wordmark text-xs font-bold tracking-wider text-cream-200 uppercase">
             Activo Bio:
@@ -77,9 +80,35 @@ const categoryLabels: Record<string, string> = {
         </div>
       </div>
 
+      <!-- Mobile Quick Nav Controls (< 1024px) -->
+      <div class="mt-4 flex w-full items-center justify-between gap-3 lg:hidden">
+        <button
+          id="mobile-texture-prev-btn"
+          type="button"
+          class="starry-sticker flex items-center gap-1.5 rounded-full bg-canopy-950 px-3.5 py-1.5 font-wordmark text-[11px] font-black text-cream-100 uppercase transition-all hover:bg-canopy-900"
+          aria-label="Activo anterior"
+        >
+          <span>← Anterior</span>
+        </button>
+        <span
+          id="mobile-texture-indicator"
+          class="font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase"
+        >
+          Activo 01 de 07 · Carbonato
+        </span>
+        <button
+          id="mobile-texture-next-btn"
+          type="button"
+          class="starry-sticker flex items-center gap-1.5 rounded-full bg-[#5CE63C] px-3.5 py-1.5 font-wordmark text-[11px] font-black text-canopy-950 uppercase transition-all hover:bg-solar-400"
+          aria-label="Siguiente activo"
+        >
+          <span>Siguiente →</span>
+        </button>
+      </div>
+
       <!-- CENTER ARENA: Real Macro Texture Explorer (Left) + Giant Dynamic Spotlight Card (Right) -->
       <div class="my-6 grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
-        <!-- Left 6 Cols: Real Macro Photo Bento Box with Interactive Micro-Magnifier Lens & Botanical Hotspots -->
+        <!-- Left 6 Cols: Real Macro Photo Bento Box with Interactive Micro-Magnifier Lens & Harmonious Hotspots -->
         <div class="relative flex flex-col items-center justify-center lg:col-span-6">
           <div
             id="texture-bento-container"
@@ -101,45 +130,54 @@ const categoryLabels: Record<string, string> = {
                 id="texture-macro-img"
                 src="/assets/images/crema_primer_plano.png"
                 alt="Fotografía macro de la textura suave de la crema limpiadora Narayana"
-                class="h-full w-full object-cover transition-transform duration-700 ease-out will-change-transform"
-                style="transform-origin: 28% 36%; transform: scale(1.12);"
+                class="pointer-events-none h-full w-full object-cover select-none"
               />
 
               <!-- Subtle vignette overlay -->
               <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-canopy-950/75 via-transparent to-canopy-950/20"></div>
 
-              <!-- Interactive Floating Micro-Magnifier Lens Reticle -->
+              <!-- Millimeter-Precision Micro-Magnifier Lens Reticle (Centers directly over the active pin) -->
               <div
                 id="texture-macro-lens"
-                class="pointer-events-none absolute z-20 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#5CE63C] bg-white/10 shadow-[0_0_24px_rgba(92,230,60,0.65)] backdrop-blur-[2px] transition-all duration-500 ease-out sm:h-24 sm:w-24"
-                style="left: 28%; top: 36%;"
+                class="pointer-events-none absolute z-20 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#5CE63C] bg-white/10 shadow-[0_0_24px_rgba(92,230,60,0.65)] backdrop-blur-[2px] sm:h-24 sm:w-24"
+                style="left: 24%; top: 30%;"
               >
-                <div class="h-3.5 w-3.5 rounded-full border-2 border-canopy-950 bg-solar-400 animate-ping"></div>
+                <div class="h-3 w-3 rounded-full border-2 border-canopy-950 bg-solar-400 animate-ping"></div>
                 <div class="absolute inset-0 rounded-full border border-white/40"></div>
                 <!-- Crosshair reticle lines -->
                 <div class="absolute h-full w-[1.5px] bg-[#5CE63C]/50"></div>
                 <div class="absolute h-[1.5px] w-full bg-[#5CE63C]/50"></div>
-                <span class="starry-sticker absolute -top-3 rounded-full bg-canopy-950 px-2.5 py-0.5 font-wordmark text-[9px] font-black text-[#5CE63C] uppercase">
+
+                <!-- Top Reticle Badge -->
+                <span class="starry-sticker absolute -top-3 rounded-full bg-canopy-950 px-2 py-0.5 font-wordmark text-[9px] font-black text-[#5CE63C] uppercase">
                   LUPA BIO
                 </span>
+
+                <!-- Dynamic Name Badge attached directly to the Lens Reticle -->
+                <div
+                  id="texture-lens-tooltip"
+                  class="starry-sticker absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-[#5CE63C] bg-canopy-950 px-3 py-0.5 font-wordmark text-[10px] font-black text-[#5CE63C] uppercase shadow-[0_3px_0_#04110b]"
+                >
+                  <span id="texture-lens-name">01 · Carbonato de sodio</span>
+                </div>
               </div>
 
-              <!-- 7 Botanical Hotspot Pins Overlaying the Macro Cream Surface -->
+              <!-- 7 Clean Botanical Hotspot Pins (Spaced harmoniously without overlapping labels) -->
               <div class="absolute inset-0 z-20">
                 {
                   BRAND_CONFIG.composition.map((item, idx) => (
                     <button
                       type="button"
-                      class={`comp-hotspot absolute flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-canopy-950 font-wordmark text-xs font-black transition-all ${
+                      class={`comp-hotspot group absolute flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-canopy-950 font-wordmark text-xs font-black transition-all ${
                         idx === 0
-                          ? 'scale-125 bg-[#5CE63C] text-canopy-950 shadow-[0_3px_0_#04110b]'
-                          : 'bg-white/95 text-canopy-950 hover:bg-solar-400 hover:scale-110'
+                          ? 'scale-125 bg-[#5CE63C] text-canopy-950 shadow-[0_3px_0_#04110b] z-30'
+                          : 'bg-white/95 text-canopy-950 hover:bg-solar-400 hover:scale-110 z-10'
                       }`}
                       style={`left: ${item.coordX}%; top: ${item.coordY}%;`}
                       data-comp-index={idx}
                       aria-label={`Inspeccionar componente 0${idx + 1}: ${item.name}`}
                     >
-                      {idx + 1}
+                      <span>0{idx + 1}</span>
                     </button>
                   ))
                 }
@@ -155,7 +193,7 @@ const categoryLabels: Record<string, string> = {
 
             <!-- Bottom-Right Real Macro Spec Medallion -->
             <div
-              class="starry-sticker pointer-events-none absolute right-4 bottom-4 z-20 flex items-center gap-2 rounded-2xl bg-canopy-900/95 p-2 text-cream-50"
+              class="starry-sticker pointer-events-none absolute right-4 bottom-4 z-20 hidden sm:flex items-center gap-2 rounded-2xl bg-canopy-900/95 p-2 text-cream-50"
             >
               <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#5CE63C] font-wordmark text-xs font-black text-canopy-950">
                 ✦
@@ -170,11 +208,11 @@ const categoryLabels: Record<string, string> = {
           </div>
         </div>
 
-        <!-- Right 6 Cols: Single Monumental Active Ingredient Spotlight Card that morphs on scroll/click -->
+        <!-- Right 6 Cols: Dynamic Spotlight Card (Animates with GSAP on mobile and desktop) -->
         <div class="lg:col-span-6">
           <div
             id="comp-spotlight-card"
-            class="starry-card-hard relative overflow-hidden rounded-[2.5rem] bg-[#5CE63C] p-6 text-canopy-950 transition-colors duration-300 sm:p-9"
+            class="starry-card-hard relative flex flex-col justify-between overflow-hidden rounded-[2.5rem] bg-[#5CE63C] p-6 text-canopy-950 transition-colors duration-300 sm:p-8 lg:p-9 will-change-transform"
           >
             <!-- Top Function & Category Badges -->
             <div class="flex flex-wrap items-center justify-between gap-3">
@@ -233,18 +271,19 @@ const categoryLabels: Record<string, string> = {
         </div>
       </div>
 
-      <!-- Bottom Horizontal Pill Selector Dock -->
+      <!-- Bottom Horizontal Pill Selector Dock: Scrollable on Mobile, Grid on Desktop -->
       <div
+        id="comp-dock-container"
         class="starry-card-hard rounded-3xl bg-canopy-950 p-3 sm:p-4"
         role="listbox"
         aria-label="Componentes de la fórmula Narayana"
       >
-        <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7">
+        <div class="flex overflow-x-auto gap-2 pb-1 lg:grid lg:grid-cols-7 lg:gap-2 lg:overflow-visible no-scrollbar">
           {
             BRAND_CONFIG.composition.map((comp, idx) => (
               <button
                 type="button"
-                class={`comp-list-item flex items-center gap-2 rounded-2xl border-2 px-3 py-2.5 text-left transition-all ${
+                class={`comp-list-item shrink-0 flex items-center gap-2 rounded-2xl border-2 px-3 py-2.5 text-left transition-all ${
                   idx === 0
                     ? 'border-canopy-950 bg-[#5CE63C] text-canopy-950 scale-[1.03] shadow-[0_4px_0_#04110b]'
                     : 'border-white/15 bg-canopy-900 text-cream-100 hover:border-[#5CE63C]'
@@ -265,8 +304,8 @@ const categoryLabels: Record<string, string> = {
                 >
                   0{idx + 1}
                 </span>
-                <span class="truncate font-wordmark text-xs font-black uppercase">
-                  {comp.name.split(' ')[0]}
+                <span class="whitespace-nowrap lg:truncate font-wordmark text-xs font-black uppercase">
+                  {comp.name}
                 </span>
               </button>
             ))
@@ -295,9 +334,12 @@ const categoryLabels: Record<string, string> = {
   const scrollCounter = document.getElementById('comp-scroll-counter');
   const progressBar = document.getElementById('comp-progress-bar');
   const bgGiant = document.getElementById('texture-bg-giant');
-  const macroImg = document.getElementById('texture-macro-img');
   const macroLens = document.getElementById('texture-macro-lens');
+  const macroLensName = document.getElementById('texture-lens-name');
   const macroAura = document.getElementById('cream-3d-aura');
+  const mobileIndicator = document.getElementById('mobile-texture-indicator');
+  const mobilePrevBtn = document.getElementById('mobile-texture-prev-btn');
+  const mobileNextBtn = document.getElementById('mobile-texture-next-btn');
 
   const categoryLabels: Record<string, string> = {
     mineral: 'ORIGEN MINERAL · ECO PURIFICADO',
@@ -310,7 +352,7 @@ const categoryLabels: Record<string, string> = {
 
   let currentCompIndex = -1;
 
-  const selectComponent = (index: number) => {
+  const selectComponent = (index: number, shouldScrollPill = true) => {
     if (index === currentCompIndex) return;
     currentCompIndex = index;
 
@@ -334,25 +376,21 @@ const categoryLabels: Record<string, string> = {
     if (progressBar) {
       progressBar.style.width = `${(((index + 1) / listItems.length) * 100).toFixed(1)}%`;
     }
+    if (mobileIndicator) {
+      mobileIndicator.textContent = `Activo 0${index + 1} de 0${listItems.length} · ${name.split(' ')[0]}`;
+    }
+    if (macroLensName) {
+      macroLensName.textContent = `0${index + 1} · ${name}`;
+    }
 
-    // Smooth Gliding of the Micro-Magnifier Lens Reticle & Macro Zoom to the active coordinate
+    // Millimeter-precision gliding of the Micro-Magnifier Lens Reticle directly onto the hotspot center
     if (macroLens) {
       gsap.to(macroLens, {
         left: `${coordX}%`,
         top: `${coordY}%`,
-        scale: 1.15,
-        duration: 0.55,
+        scale: 1,
+        duration: 0.42,
         ease: 'power3.out',
-        overwrite: 'auto',
-      });
-    }
-
-    if (macroImg) {
-      gsap.to(macroImg, {
-        transformOrigin: `${coordX}% ${coordY}%`,
-        scale: 1.18,
-        duration: 0.65,
-        ease: 'power2.out',
         overwrite: 'auto',
       });
     }
@@ -361,23 +399,36 @@ const categoryLabels: Record<string, string> = {
       macroAura.style.background = `radial-gradient(circle at ${coordX}% ${coordY}%, ${cardBgColors[index] || '#5CE63C'}66 0%, transparent 68%)`;
     }
 
+    // Energetic GSAP Animation on the Spotlight Card for Mobile & Desktop
     if (spotlightCard) {
       spotlightCard.style.backgroundColor = cardBgColors[index] || '#5CE63C';
       gsap.fromTo(
         spotlightCard,
-        { scale: 0.94, rotation: index % 2 === 0 ? -2 : 2, y: 14 },
-        { scale: 1, rotation: 0, y: 0, duration: 0.42, ease: 'back.out(1.6)', overwrite: true }
+        { scale: 0.93, rotation: index % 2 === 0 ? -2 : 2, y: 14 },
+        { scale: 1, rotation: 0, y: 0, duration: 0.45, ease: 'back.out(1.5)', overwrite: true }
       );
     }
 
+    if (activeName) {
+      gsap.fromTo(
+        activeName,
+        { x: 14, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.32, ease: 'power2.out', overwrite: true }
+      );
+    }
+
+    // Update hotspot pins
     hotspots.forEach((pin, idx) => {
       const isSelected = idx === index;
       pin.classList.toggle('scale-125', isSelected);
       pin.classList.toggle('bg-[#5CE63C]', isSelected);
       pin.classList.toggle('shadow-[0_3px_0_#04110b]', isSelected);
+      pin.classList.toggle('z-30', isSelected);
       pin.classList.toggle('bg-white/95', !isSelected);
+      pin.classList.toggle('z-10', !isSelected);
     });
 
+    // Update bottom list items
     listItems.forEach((item, idx) => {
       const isSelected = idx === index;
       item.classList.toggle('border-canopy-950', isSelected);
@@ -395,36 +446,77 @@ const categoryLabels: Record<string, string> = {
         badge.classList.toggle('bg-white', !isSelected);
       }
     });
+
+    // Auto-scroll the selected pill into view in the horizontal dock on mobile
+    if (shouldScrollPill && targetItem) {
+      targetItem.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
   };
 
-  selectComponent(0);
+  selectComponent(0, false);
 
+  const total = listItems.length;
+
+  let textureTrigger: ScrollTrigger | null = null;
   if (stage) {
-    ScrollTrigger.create({
+    textureTrigger = ScrollTrigger.create({
       trigger: stage,
       start: 'top top',
-      end: '+=240%',
+      end: '+=220%',
       pin: true,
-      scrub: 0.5,
+      pinSpacing: true,
+      anticipatePin: 1,
+      refreshPriority: 2,
+      preventOverlaps: true,
       onUpdate: (self) => {
-        const total = listItems.length;
-        const idx = Math.min(total - 1, Math.floor(self.progress * total));
-        selectComponent(idx);
+        const stepProgress = Math.max(0, Math.min(0.999, self.progress));
+        const targetIndex = Math.min(total - 1, Math.floor(stepProgress * total));
+        selectComponent(targetIndex, false);
       },
     });
   }
 
+  const jumpToComponent = (idx: number) => {
+    const clamped = Math.max(0, Math.min(total - 1, idx));
+    selectComponent(clamped, true);
+    if (textureTrigger) {
+      const targetP = (clamped + 0.5) / total;
+      const targetScroll = textureTrigger.start + targetP * (textureTrigger.end - textureTrigger.start);
+      const lenis = (window as unknown as { __narayanaLenis?: { scrollTo: (target: number, opts?: Record<string, unknown>) => void } }).__narayanaLenis;
+      if (lenis) {
+        lenis.scrollTo(targetScroll, { duration: 0.8 });
+      } else {
+        window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+      }
+    }
+  };
+
+  const onPrev = () => {
+    const nextIdx = (currentCompIndex - 1 + total) % total;
+    jumpToComponent(nextIdx);
+  };
+
+  const onNext = () => {
+    const nextIdx = (currentCompIndex + 1) % total;
+    jumpToComponent(nextIdx);
+  };
+
+  mobilePrevBtn?.addEventListener('click', onPrev);
+  mobileNextBtn?.addEventListener('click', onNext);
+
+  // Hotspots direct click
   hotspots.forEach((pin) => {
     pin.addEventListener('click', () => {
       const idx = Number(pin.getAttribute('data-comp-index') || 0);
-      selectComponent(idx);
+      jumpToComponent(idx);
     });
   });
 
+  // Dock items direct click
   listItems.forEach((item) => {
     item.addEventListener('click', () => {
       const idx = Number(item.getAttribute('data-comp-index') || 0);
-      selectComponent(idx);
+      jumpToComponent(idx);
     });
   });
 </script>

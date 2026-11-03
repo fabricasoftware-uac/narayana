@@ -680,8 +680,12 @@ import { buildWhatsAppUrl } from '../config/brand';
     ScrollTrigger.create({
       trigger: stage,
       start: 'top top',
-      end: '+=220%',
+      end: '+=200%',
       pin: true,
+      pinSpacing: true,
+      anticipatePin: 1,
+      refreshPriority: 4,
+      preventOverlaps: true,
       scrub: 0.5,
       onUpdate: (self) => {
         targetProgress = self.progress;

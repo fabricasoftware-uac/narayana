@@ -37,6 +37,9 @@ const deckThemes = [
 ];
 ---
 
+<!-- ========================================================================= -->
+<!-- BLOQUE 1: COMPARADOR DE CALZADO ANTES / DESPUÉS (#demostracion)            -->
+<!-- ========================================================================= -->
 <section
   id="demostracion"
   class="relative overflow-hidden bg-canopy-900 py-20 sm:py-28"
@@ -73,7 +76,7 @@ const deckThemes = [
       </div>
     </div>
 
-    <!-- 1. INTERACTIVE 100% DIRTY VS 100% CLEAN SNEAKER COMPARATOR -->
+    <!-- Interactive 100% Dirty vs 100% Clean Sneaker Comparator -->
     <div class="mt-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
       <!-- Left 8 Cols: True Before / After Stage -->
       <div class="lg:col-span-8">
@@ -155,37 +158,40 @@ const deckThemes = [
             aria-label="Deslizar para comparar el zapato 100% sucio contra el zapato 100% limpio con Narayana"
             class="absolute inset-0 z-30 h-full w-full cursor-ew-resize opacity-0"
           />
+        </div>
 
-          <!-- Bottom Preset Buttons Bar -->
-          <div
-            class="absolute inset-x-3 bottom-3 z-40 flex flex-wrap items-center justify-between gap-1.5 rounded-2xl border-2 border-canopy-950 bg-canopy-900/95 px-3 py-2 text-xs text-cream-100 backdrop-blur-md sm:inset-x-6 sm:bottom-5 sm:px-4 sm:py-2.5"
-          >
+        <!-- External Preset Buttons Dock / Control Bar placed BELOW the shoe inspector -->
+        <div
+          class="starry-card-hard mt-4 flex flex-wrap items-center justify-between gap-2.5 rounded-2xl bg-canopy-950 px-4 py-3 text-xs text-cream-100 sm:px-5 sm:py-3.5"
+        >
+          <div class="flex items-center gap-2">
+            <span class="inline-block h-2 w-2 animate-pulse rounded-full bg-[#5CE63C]"></span>
             <span class="font-wordmark text-[11px] font-extrabold tracking-wide text-[#5CE63C] uppercase sm:text-xs">
               Arrastra ↔ o prueba:
             </span>
-            <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
-              <button
-                type="button"
-                class="sneaker-preset-btn rounded-full border border-white/20 bg-canopy-950 px-2.5 py-1 font-wordmark text-[10px] font-black text-solar-400 uppercase hover:bg-solar-400 hover:text-canopy-950 sm:px-3 sm:text-[11px]"
-                data-slider-val="8"
-              >
-                100% Barro
-              </button>
-              <button
-                type="button"
-                class="sneaker-preset-btn rounded-full border border-white/20 bg-canopy-950 px-2.5 py-1 font-wordmark text-[10px] font-black text-white uppercase hover:bg-white hover:text-canopy-950 sm:px-3 sm:text-[11px]"
-                data-slider-val="52"
-              >
-                50 / 50
-              </button>
-              <button
-                type="button"
-                class="sneaker-preset-btn rounded-full border border-canopy-950 bg-[#5CE63C] px-2.5 py-1 font-wordmark text-[10px] font-black text-canopy-950 uppercase hover:bg-solar-400 sm:px-3 sm:text-[11px]"
-                data-slider-val="94"
-              >
-                ¡100% Limpio!
-              </button>
-            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
+            <button
+              type="button"
+              class="sneaker-preset-btn rounded-full border border-white/20 bg-canopy-900 px-3 py-1 font-wordmark text-[10px] font-black text-solar-400 uppercase transition-all hover:bg-solar-400 hover:text-canopy-950 sm:px-3.5 sm:text-[11px]"
+              data-slider-val="8"
+            >
+              100% Barro
+            </button>
+            <button
+              type="button"
+              class="sneaker-preset-btn rounded-full border border-white/20 bg-canopy-900 px-3 py-1 font-wordmark text-[10px] font-black text-white uppercase transition-all hover:bg-white hover:text-canopy-950 sm:px-3.5 sm:text-[11px]"
+              data-slider-val="52"
+            >
+              50 / 50
+            </button>
+            <button
+              type="button"
+              class="sneaker-preset-btn rounded-full border border-canopy-950 bg-[#5CE63C] px-3.5 py-1 font-wordmark text-[10px] font-black text-canopy-950 uppercase transition-all hover:bg-solar-400 sm:px-4 sm:text-[11px]"
+              data-slider-val="94"
+            >
+              ¡100% Limpio!
+            </button>
           </div>
         </div>
       </div>
@@ -229,11 +235,23 @@ const deckThemes = [
       </div>
     </div>
   </div>
+</section>
 
-  <!-- 2. PARTE A: EL RITUAL EN 4 PASOS COMO BARAJA DE CARTAS APILABLES CON GSAP (#modo-de-uso-steps) -->
+<!-- ========================================================================= -->
+<!-- BLOQUE 2: STANDALONE EL RITUAL EN 4 CARTAS (#modo-de-uso-steps)            -->
+<!-- ========================================================================= -->
+<section
+  id="modo-de-uso-steps"
+  class="relative w-full bg-canopy-950 overflow-hidden"
+  aria-labelledby="ritual-heading"
+>
+  <!-- Natural scroll buffer runway between Demonstracion and Card Deck Pin -->
+  <div class="h-16 sm:h-24 w-full pointer-events-none" aria-hidden="true"></div>
+
+  <!-- Pinned Viewport Stage for 4-Card Deck Scrub -->
   <div
-    id="modo-de-uso-steps"
-    class="relative mt-20 flex min-h-screen w-full flex-col justify-center overflow-hidden bg-canopy-950 py-16"
+    id="deck-pin-stage"
+    class="relative min-h-screen w-full flex flex-col justify-center overflow-hidden py-8 sm:py-12"
   >
     <!-- Giant Background Outlined Text -->
     <div
@@ -244,99 +262,134 @@ const deckThemes = [
     </div>
 
     <div class="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-4 sm:px-6">
-      <!-- Deck Header & Step Jump Pills -->
-      <div class="flex flex-col items-center text-center">
-        <span
-          class="starry-sticker -rotate-1 rounded-full bg-solar-400 px-4 py-1.5 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase sm:px-5"
-        >
-          BARAJA INTERACTIVA GSAP · 4 PASOS FLUIDOS
-        </span>
-        <h3
-          class="starry-display-stroke mt-3 text-3xl leading-[0.94] font-black tracking-tight uppercase sm:text-5xl lg:text-6xl"
-        >
-          EL RITUAL EN 4 CARTAS
-        </h3>
+    <!-- Deck Header & Step Jump Pills -->
+    <div class="flex flex-col items-center text-center">
+      <span
+        class="starry-sticker -rotate-1 rounded-full bg-solar-400 px-4 py-1.5 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase sm:px-5"
+      >
+        BARAJA INTERACTIVA GSAP · 4 PASOS FLUIDOS
+      </span>
+      <h2
+        id="ritual-heading"
+        class="starry-display-stroke mt-3 text-3xl leading-[0.94] font-black tracking-tight uppercase sm:text-5xl lg:text-6xl"
+      >
+        EL RITUAL EN 4 CARTAS
+      </h2>
 
-        <!-- Step Quick Jump Buttons -->
-        <div class="mt-5 flex flex-wrap items-center justify-center gap-2">
-          {
-            BRAND_CONFIG.usageSteps.map((s, idx) => (
-              <button
-                type="button"
-                class={`deck-jump-btn starry-sticker rounded-full px-3.5 py-1.5 font-wordmark text-xs font-black tracking-wider uppercase transition-all sm:px-4 ${
-                  idx === 0
-                    ? 'bg-[#5CE63C] text-canopy-950 scale-105'
-                    : 'bg-canopy-900 text-cream-100 hover:bg-canopy-800'
-                }`}
-                data-deck-jump={idx}
-                aria-label={`Saltar a la carta del paso 0${s.step}`}
-              >
-                PASO 0{s.step}
-              </button>
-            ))
-          }
-        </div>
-      </div>
-
-      <!-- GIANT STACKING CARD DECK ARENA WITH SMOOTH PROGRESSIVE TRANSITIONS -->
-      <div class="relative mt-8 h-[440px] min-h-[440px] w-full max-w-4xl sm:h-[390px] sm:min-h-[390px]">
+      <!-- Step Quick Jump Buttons -->
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-1.5 sm:mt-5 sm:gap-2">
         {
-          BRAND_CONFIG.usageSteps.map((step, idx) => {
-            const theme = deckThemes[idx];
-            return (
-              <article
-                class={`usage-deck-card starry-card-hard absolute inset-0 flex flex-col justify-between rounded-[2rem] ${theme.bg} p-5 ${theme.text} sm:rounded-[2.5rem] sm:p-8 lg:p-10 will-change-transform transition-colors duration-300`}
-                style={`z-index: ${10 + idx}; opacity: ${idx === 0 ? '1' : '0'}; transform: translate3d(0, ${idx === 0 ? '0px' : '40px'}, 0) scale(${idx === 0 ? '1' : '0.96'});`}
-                data-deck-card={idx}
-              >
-                <!-- Top Row: Badge + Rotated Sticker -->
-                <div class="flex flex-wrap items-center justify-between gap-2">
-                  <span class="rounded-full border-2 border-canopy-950 bg-canopy-950 px-3 py-0.5 font-wordmark text-[10px] font-black tracking-wider text-white uppercase sm:px-4 sm:py-1 sm:text-xs">
-                    PASO 0{step.step} DE 04 · {theme.subBadge}
-                  </span>
-                  <span
-                    class={`starry-sticker rotate-2 rounded-full ${theme.stickerBg} px-3 py-1 font-wordmark text-[10px] font-black tracking-wider text-canopy-950 uppercase sm:px-4 sm:py-1.5 sm:text-xs`}
-                  >
-                    {theme.stickerText}
-                  </span>
-                </div>
-
-                <!-- Middle Row: Colossal Step Number + Giant Headline + Description -->
-                <div class="my-auto grid grid-cols-1 items-center gap-3 sm:grid-cols-12 sm:gap-6">
-                  <div class="sm:col-span-4">
-                    <span class={`${theme.strokeClass} block text-4xl leading-none font-black sm:text-7xl lg:text-9xl`}>
-                      0{step.step}
-                    </span>
-                  </div>
-                  <div class="sm:col-span-8">
-                    <h4 class="font-wordmark text-xl leading-[0.98] font-black tracking-tight uppercase sm:text-3xl lg:text-5xl">
-                      {step.title}
-                    </h4>
-                    <p class="mt-2 text-xs leading-relaxed font-bold opacity-90 sm:mt-3 sm:text-sm lg:text-base">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-
-                <!-- Bottom Row: Metric & Sparkle -->
-                <div class="flex items-center justify-between border-t-2 border-canopy-950/20 pt-3 sm:pt-4">
-                  <span class="font-wordmark text-[11px] font-black tracking-wider uppercase sm:text-sm">
-                    ✦ IMPACTO: {step.metric}
-                  </span>
-                  <span class="font-wordmark text-[10px] font-black tracking-wider uppercase sm:text-xs">
-                    CARTA 0{step.step} / 04
-                  </span>
-                </div>
-              </article>
-            );
-          })
+          BRAND_CONFIG.usageSteps.map((s, idx) => (
+            <button
+              type="button"
+              class={`deck-jump-btn starry-sticker rounded-full px-3 py-1 font-wordmark text-[11px] font-black tracking-wider uppercase transition-all sm:px-4 sm:py-1.5 sm:text-xs ${
+                idx === 0
+                  ? 'bg-[#5CE63C] text-canopy-950 scale-105'
+                  : 'bg-canopy-900 text-cream-100 hover:bg-canopy-800'
+              }`}
+              data-deck-jump={idx}
+              aria-label={`Saltar a la carta del paso 0${s.step}`}
+            >
+              PASO 0{s.step}
+            </button>
+          ))
         }
       </div>
+
+      <!-- Deck Step Navigation Bar (Pills + Prev / Next Controls) -->
+      <div class="mt-3.5 flex w-full max-w-sm items-center justify-between gap-3">
+        <button
+          id="mobile-deck-prev-btn"
+          type="button"
+          class="starry-sticker flex items-center gap-1.5 rounded-full bg-canopy-900 px-3.5 py-1.5 font-wordmark text-[11px] font-black text-cream-100 uppercase transition-all hover:bg-canopy-800"
+          aria-label="Paso anterior"
+        >
+          <span>← Anterior</span>
+        </button>
+        <span
+          id="mobile-deck-indicator"
+          class="font-wordmark text-xs font-black tracking-wider text-[#5CE63C] uppercase"
+        >
+          Paso 01 de 04
+        </span>
+        <button
+          id="mobile-deck-next-btn"
+          type="button"
+          class="starry-sticker flex items-center gap-1.5 rounded-full bg-[#5CE63C] px-3.5 py-1.5 font-wordmark text-[11px] font-black text-canopy-950 uppercase transition-all hover:bg-solar-400"
+          aria-label="Siguiente paso"
+        >
+          <span>Siguiente →</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- GIANT STACKING CARD DECK ARENA WITH GSAP TRANSITIONS -->
+    <div class="relative mt-6 h-[440px] min-h-[440px] w-full max-w-4xl sm:mt-8 sm:h-[390px] sm:min-h-[390px]">
+      {
+        BRAND_CONFIG.usageSteps.map((step, idx) => {
+          const theme = deckThemes[idx];
+          return (
+            <article
+              class={`usage-deck-card starry-card-hard absolute inset-0 flex flex-col justify-between rounded-[2rem] ${theme.bg} p-5 ${theme.text} sm:rounded-[2.5rem] sm:p-8 lg:p-10 will-change-transform`}
+              style={`z-index: ${10 + idx}; opacity: ${idx === 0 ? '1' : '0'}; transform: translate3d(0, ${idx === 0 ? '0px' : '40px'}, 0) scale(${idx === 0 ? '1' : '0.96'});`}
+              data-deck-card={idx}
+            >
+              <!-- Top Row: Badge + Rotated Sticker -->
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="rounded-full border-2 border-canopy-950 bg-canopy-950 px-2.5 py-0.5 font-wordmark text-[9px] font-black tracking-wider text-white uppercase sm:px-4 sm:py-1 sm:text-xs">
+                  PASO 0{step.step} DE 04 · {theme.subBadge}
+                </span>
+                <span
+                  class={`starry-sticker rotate-2 rounded-full ${theme.stickerBg} px-2.5 py-0.5 font-wordmark text-[9px] font-black tracking-wider text-canopy-950 uppercase sm:px-4 sm:py-1.5 sm:text-xs`}
+                >
+                  {theme.stickerText}
+                </span>
+              </div>
+
+              <!-- Middle Row: Colossal Step Number + Giant Headline + Description -->
+              <div class="my-auto grid grid-cols-1 items-center gap-2 sm:grid-cols-12 sm:gap-6">
+                <div class="sm:col-span-4">
+                  <span class={`${theme.strokeClass} block text-4xl leading-none font-black sm:text-7xl lg:text-9xl`}>
+                    0{step.step}
+                  </span>
+                </div>
+                <div class="sm:col-span-8">
+                  <h3 class="font-wordmark text-lg leading-[0.98] font-black tracking-tight uppercase sm:text-3xl lg:text-5xl">
+                    {step.title}
+                  </h3>
+                  <p class="mt-1.5 text-xs leading-relaxed font-bold opacity-90 sm:mt-3 sm:text-sm lg:text-base">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Bottom Row: Metric & Sparkle -->
+              <div class="flex items-center justify-between border-t-2 border-canopy-950/20 pt-2.5 sm:pt-4">
+                <span class="font-wordmark text-[10px] font-black tracking-wider uppercase sm:text-sm">
+                  ✦ IMPACTO: {step.metric}
+                </span>
+                <span class="font-wordmark text-[9px] font-black tracking-wider uppercase sm:text-xs">
+                  CARTA 0{step.step} / 04
+                </span>
+              </div>
+            </article>
+          );
+        })
+      }
     </div>
   </div>
+  </div>
+</section>
 
-  <!-- 3. PARTE B: SUPERFICIES RECOMENDADAS EN BENTO GRID CREATIVO ESTILO STARRY -->
-  <div class="mx-auto mt-20 max-w-7xl px-4 sm:mt-24 sm:px-6">
+<!-- ========================================================================= -->
+<!-- BLOQUE 3: SUPERFICIES RECOMENDADAS BENTO GRID (#superficies-bento)         -->
+<!-- ========================================================================= -->
+<section
+  id="superficies-bento"
+  class="relative overflow-hidden bg-canopy-900 py-20 sm:py-28"
+  aria-labelledby="surfaces-heading"
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
     <div class="flex flex-wrap items-end justify-between gap-4">
       <div>
         <span
@@ -344,9 +397,12 @@ const deckThemes = [
         >
           MULTISUPERFICIE 3D · HOGAR, CALZADO & COMERCIO
         </span>
-        <h3 class="mt-3 font-display text-2xl leading-[0.96] font-black text-cream-50 uppercase sm:text-4xl lg:text-5xl">
+        <h2
+          id="surfaces-heading"
+          class="mt-3 font-display text-2xl leading-[0.96] font-black text-cream-50 uppercase sm:text-4xl lg:text-5xl"
+        >
           UN SOLO POTE LO LIMPIA <span class="starry-display-stroke-lime">TODO</span>
-        </h3>
+        </h2>
       </div>
       <span
         class="starry-sticker rotate-1 rounded-full bg-solar-400 px-3.5 py-1.5 font-wordmark text-xs font-black text-canopy-950 uppercase sm:px-4"
@@ -374,11 +430,11 @@ const deckThemes = [
 
         <div class="relative z-10 my-6 grid grid-cols-1 items-center gap-6 sm:grid-cols-12">
           <div class="sm:col-span-7">
-            <h4
+            <h3
               class="starry-display-stroke text-3xl leading-[0.95] font-black tracking-tight uppercase sm:text-5xl"
             >
               ZAPATOS, TENIS & SUELAS BLANCAS
-            </h4>
+            </h3>
             <p class="mt-3 text-xs leading-relaxed font-bold text-canopy-950/90 sm:text-base">
               Devuelve el blanco puro a cuero, suelas de goma y lona manchados con barro o asfalto sin mojar el interior ni despegar tus zapatillas.
             </p>
@@ -419,9 +475,9 @@ const deckThemes = [
           <span class="font-wordmark text-[11px] font-black uppercase sm:text-xs">SIN VAPORES TÓXICOS</span>
         </div>
         <div class="my-4">
-          <h4 class="font-wordmark text-xl leading-tight font-black tracking-tight uppercase sm:text-3xl">
+          <h3 class="font-wordmark text-xl leading-tight font-black tracking-tight uppercase sm:text-3xl">
             COCINAS, ESTUFAS & HORNOS
-          </h4>
+          </h3>
           <p class="mt-2 text-xs leading-relaxed font-bold text-canopy-950/85 sm:text-sm">
             Corta grasa carbonizada en quemadores, campanas extractoras, vidrios de horno y cerámica al primer contacto.
           </p>
@@ -439,9 +495,9 @@ const deckThemes = [
           <span class="font-wordmark text-[11px] font-black uppercase sm:text-xs">CON SILICATO PROTECTOR</span>
         </div>
         <div class="my-4">
-          <h4 class="font-wordmark text-xl leading-tight font-black tracking-tight uppercase sm:text-3xl">
+          <h3 class="font-wordmark text-xl leading-tight font-black tracking-tight uppercase sm:text-3xl">
             MESONES & ACERO INOXIDABLE
-          </h4>
+          </h3>
           <p class="mt-2 text-xs leading-relaxed font-bold text-canopy-950/85 sm:text-sm">
             Pule lavaplatos, griferías, aluminio y mesones industriales eliminando manchas de agua dura y óxido sin rayar.
           </p>
@@ -456,9 +512,9 @@ const deckThemes = [
           🚿 OXÍGENO ACTIVO · SIN CLORO
         </span>
         <div class="mt-4">
-          <h4 class="font-wordmark text-xl leading-tight font-black uppercase sm:text-2xl">
+          <h3 class="font-wordmark text-xl leading-tight font-black uppercase sm:text-2xl">
             BAÑOS, GRIFERÍA & SANITARIOS
-          </h4>
+          </h3>
           <p class="mt-2 text-xs leading-relaxed font-bold text-canopy-900/85 sm:text-sm">
             Remueve sarro, residuos de jabón y moho en juntas de ducha, porcelana y vidrio templado.
           </p>
@@ -473,9 +529,9 @@ const deckThemes = [
           🧱 RESTAURACIÓN DE MUROS
         </span>
         <div class="mt-4">
-          <h4 class="font-wordmark text-xl leading-tight font-black text-[#5CE63C] uppercase sm:text-2xl">
+          <h3 class="font-wordmark text-xl leading-tight font-black text-[#5CE63C] uppercase sm:text-2xl">
             PISOS & PAREDES LAVABLES
-          </h4>
+          </h3>
           <p class="mt-2 text-xs leading-relaxed font-medium text-cream-100/90 sm:text-sm">
             Borra roces de zapatos, crayones, huellas y manchas en paredes pintadas, guardaescobas y enchapes.
           </p>
@@ -490,9 +546,9 @@ const deckThemes = [
           🥘 HOGAR & RESTAURANTES
         </span>
         <div class="mt-4">
-          <h4 class="font-wordmark text-xl leading-tight font-black uppercase sm:text-2xl">
+          <h3 class="font-wordmark text-xl leading-tight font-black uppercase sm:text-2xl">
             UTENSILIOS, OLLAS & EQUIPOS
-          </h4>
+          </h3>
           <p class="mt-2 text-xs leading-relaxed font-bold text-canopy-950/90 sm:text-sm">
             Recupera la base de ollas, sartenes, herramientas y maquinaria comercial con fórmula biodegradable.
           </p>
@@ -508,6 +564,7 @@ const deckThemes = [
 
   gsap.registerPlugin(ScrollTrigger);
 
+  // 1. SNEAKER COMPARATOR BEFORE/AFTER LOGIC (#demostracion)
   const sliderInput = document.getElementById('sneaker-slider-input') as HTMLInputElement | null;
   const clipLayer = document.getElementById('sneaker-clip-layer');
   const dividerLine = document.getElementById('sneaker-divider-line');
@@ -569,188 +626,144 @@ const deckThemes = [
     });
   }
 
-  // PARTE A: GSAP CARD DECK STACKING WITH PROGRESSIVE OPACITY & ZERO COLLISION (#modo-de-uso-steps)
-  const deckStage = document.getElementById('modo-de-uso-steps');
+  // 2. GSAP SCROLL-DRIVEN CARD DECK STACKING (#modo-de-uso-steps)
+  const deckStage = document.getElementById('deck-pin-stage');
   const deckCards = document.querySelectorAll<HTMLElement>('.usage-deck-card');
   const deckJumpBtns = document.querySelectorAll<HTMLButtonElement>('.deck-jump-btn');
+  const mobileDeckIndicator = document.getElementById('mobile-deck-indicator');
+  const mobileDeckPrevBtn = document.getElementById('mobile-deck-prev-btn');
+  const mobileDeckNextBtn = document.getElementById('mobile-deck-next-btn');
 
-  // Smooth Hermite easing for silky card interpolation
-  const smoothStep = (t: number) => t * t * (3 - 2 * t);
+  const stepSubBadges = [
+    'DOSIS MÍNIMA CONCENTRADA',
+    'MICROGRÁNULOS BIODEGRADABLES',
+    '95% AHORRO HÍDRICO REAL',
+    'SUPERFICIE BRILLANTE Y DESINFECTADA',
+  ];
+
+  let currentActiveStep = -1;
+  let targetDeckProgress = 0;
+  let smoothedDeckProgress = 0;
 
   const updateDeckByProgress = (p: number) => {
-    // p goes from 0.0 to 1.0
-    // Active index indicator for jump buttons:
-    const activeIdx = p < 0.28 ? 0 : p < 0.60 ? 1 : p < 0.88 ? 2 : 3;
+    // 4 cards (0, 1, 2, 3)
+    const activeIdx = Math.min(3, Math.floor(p * 3.99));
 
-    deckJumpBtns.forEach((btn, idx) => {
-      const isSelected = idx === activeIdx;
-      btn.classList.toggle('bg-[#5CE63C]', isSelected);
-      btn.classList.toggle('text-canopy-950', isSelected);
-      btn.classList.toggle('scale-105', isSelected);
-      btn.classList.toggle('bg-canopy-900', !isSelected);
-      btn.classList.toggle('text-cream-100', !isSelected);
+    if (activeIdx !== currentActiveStep) {
+      currentActiveStep = activeIdx;
+
+      // Update jump pills
+      deckJumpBtns.forEach((btn, i) => {
+        const isSelected = i === currentActiveStep;
+        btn.classList.toggle('bg-[#5CE63C]', isSelected);
+        btn.classList.toggle('text-canopy-950', isSelected);
+        btn.classList.toggle('scale-105', isSelected);
+        btn.classList.toggle('bg-canopy-900', !isSelected);
+        btn.classList.toggle('text-cream-100', !isSelected);
+      });
+
+      if (mobileDeckIndicator) {
+        mobileDeckIndicator.textContent = `Paso 0${currentActiveStep + 1} de 04 · ${stepSubBadges[currentActiveStep].split(' ')[0]}`;
+      }
+    }
+
+    // Choreograph each card's stacking
+    deckCards.forEach((card, idx) => {
+      if (idx === 0) {
+        // Base card 0: always on the bottom stack
+        const stackDepth = Math.min(3, p * 3.5);
+        const yOffset = -stackDepth * 8;
+        const scale = Math.max(0.92, 1 - stackDepth * 0.025);
+        card.style.opacity = '1';
+        card.style.transform = `translate3d(0, ${yOffset.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
+        card.style.zIndex = '10';
+        card.style.pointerEvents = activeIdx === 0 ? 'auto' : 'none';
+      } else {
+        // Cards 1, 2, 3 enter during interval: [(idx - 0.92)/3, idx/3]
+        const enterStart = (idx - 0.92) / 3;
+        const enterEnd = idx / 3;
+
+        if (p < enterStart) {
+          card.style.opacity = '0';
+          card.style.transform = 'translate3d(0, 50px, 0) scale(0.95)';
+          card.style.zIndex = String(10 + idx);
+          card.style.pointerEvents = 'none';
+        } else if (p >= enterStart && p <= enterEnd) {
+          const t = (p - enterStart) / (enterEnd - enterStart);
+          const easeT = t * t * (3 - 2 * t);
+          const yOffset = (1 - easeT) * 50;
+          const scale = 0.95 + easeT * 0.05;
+          const rot = (1 - easeT) * (idx % 2 === 0 ? -1.5 : 1.5);
+          card.style.opacity = easeT.toFixed(3);
+          card.style.transform = `translate3d(0, ${yOffset.toFixed(1)}px, 0) scale(${scale.toFixed(3)}) rotate(${rot.toFixed(2)}deg)`;
+          card.style.zIndex = String(20 + idx);
+          card.style.pointerEvents = easeT > 0.6 ? 'auto' : 'none';
+        } else {
+          const stackDepth = Math.min(3, (p - enterEnd) * 3);
+          const yOffset = -stackDepth * 8;
+          const scale = Math.max(0.92, 1 - stackDepth * 0.025);
+          card.style.opacity = '1';
+          card.style.transform = `translate3d(0, ${yOffset.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
+          card.style.zIndex = String(15 + idx);
+          card.style.pointerEvents = activeIdx === idx ? 'auto' : 'none';
+        }
+      }
     });
-
-    // CARD 0 (Step 1)
-    if (deckCards[0]) {
-      if (p <= 0.04) {
-        deckCards[0].style.opacity = '1';
-        deckCards[0].style.transform = 'translate3d(0, 0px, 0) scale(1) rotate(0deg)';
-        deckCards[0].style.pointerEvents = 'auto';
-      } else if (p < 0.32) {
-        const t = (p - 0.04) / 0.28;
-        const easeT = smoothStep(t);
-        const opacity = (1 - easeT * 0.95).toFixed(3);
-        const y = (-easeT * 22).toFixed(1);
-        const scale = (1 - easeT * 0.05).toFixed(3);
-        const rot = (-easeT * 1.5).toFixed(2);
-        deckCards[0].style.opacity = opacity;
-        deckCards[0].style.transform = `translate3d(0, ${y}px, 0) scale(${scale}) rotate(${rot}deg)`;
-        deckCards[0].style.pointerEvents = Number(opacity) > 0.4 ? 'auto' : 'none';
-      } else {
-        deckCards[0].style.opacity = '0';
-        deckCards[0].style.pointerEvents = 'none';
-        deckCards[0].style.transform = 'translate3d(0, -22px, 0) scale(0.95) rotate(-1.5deg)';
-      }
-    }
-
-    // CARD 1 (Step 2)
-    if (deckCards[1]) {
-      if (p < 0.04) {
-        deckCards[1].style.opacity = '0';
-        deckCards[1].style.pointerEvents = 'none';
-        deckCards[1].style.transform = 'translate3d(0, 42px, 0) scale(0.96) rotate(2deg)';
-      } else if (p < 0.32) {
-        // Enters with progressive opacity attenuation and gentle upward glide
-        const t = (p - 0.04) / 0.28;
-        const easeT = smoothStep(t);
-        const opacity = easeT.toFixed(3);
-        const y = ((1 - easeT) * 42).toFixed(1);
-        const scale = (0.96 + easeT * 0.04).toFixed(3);
-        const rot = ((1 - easeT) * 2 - 0.5).toFixed(2);
-        deckCards[1].style.opacity = opacity;
-        deckCards[1].style.transform = `translate3d(0, ${y}px, 0) scale(${scale}) rotate(${rot}deg)`;
-        deckCards[1].style.pointerEvents = Number(opacity) > 0.5 ? 'auto' : 'none';
-      } else if (p <= 0.40) {
-        deckCards[1].style.opacity = '1';
-        deckCards[1].style.pointerEvents = 'auto';
-        deckCards[1].style.transform = 'translate3d(0, 0px, 0) scale(1) rotate(-0.5deg)';
-      } else if (p < 0.64) {
-        // Smoothly recedes and dims as Card 2 arrives
-        const t = (p - 0.40) / 0.24;
-        const easeT = smoothStep(t);
-        const opacity = (1 - easeT * 0.95).toFixed(3);
-        const y = (-easeT * 22).toFixed(1);
-        const scale = (1 - easeT * 0.05).toFixed(3);
-        const rot = (-0.5 - easeT * 1.5).toFixed(2);
-        deckCards[1].style.opacity = opacity;
-        deckCards[1].style.transform = `translate3d(0, ${y}px, 0) scale(${scale}) rotate(${rot}deg)`;
-        deckCards[1].style.pointerEvents = Number(opacity) > 0.4 ? 'auto' : 'none';
-      } else {
-        deckCards[1].style.opacity = '0';
-        deckCards[1].style.pointerEvents = 'none';
-        deckCards[1].style.transform = 'translate3d(0, -22px, 0) scale(0.95) rotate(-2deg)';
-      }
-    }
-
-    // CARD 2 (Step 3)
-    if (deckCards[2]) {
-      if (p < 0.38) {
-        deckCards[2].style.opacity = '0';
-        deckCards[2].style.pointerEvents = 'none';
-        deckCards[2].style.transform = 'translate3d(0, 42px, 0) scale(0.96) rotate(-2deg)';
-      } else if (p < 0.64) {
-        // Enters with progressive opacity attenuation
-        const t = (p - 0.38) / 0.26;
-        const easeT = smoothStep(t);
-        const opacity = easeT.toFixed(3);
-        const y = ((1 - easeT) * 42).toFixed(1);
-        const scale = (0.96 + easeT * 0.04).toFixed(3);
-        const rot = (-(1 - easeT) * 2 + 0.5).toFixed(2);
-        deckCards[2].style.opacity = opacity;
-        deckCards[2].style.transform = `translate3d(0, ${y}px, 0) scale(${scale}) rotate(${rot}deg)`;
-        deckCards[2].style.pointerEvents = Number(opacity) > 0.5 ? 'auto' : 'none';
-      } else if (p <= 0.72) {
-        deckCards[2].style.opacity = '1';
-        deckCards[2].style.pointerEvents = 'auto';
-        deckCards[2].style.transform = 'translate3d(0, 0px, 0) scale(1) rotate(0.5deg)';
-      } else if (p < 0.94) {
-        // Smoothly recedes and dims as Card 3 arrives
-        const t = (p - 0.72) / 0.22;
-        const easeT = smoothStep(t);
-        const opacity = (1 - easeT * 0.95).toFixed(3);
-        const y = (-easeT * 22).toFixed(1);
-        const scale = (1 - easeT * 0.05).toFixed(3);
-        const rot = (0.5 + easeT * 1.5).toFixed(2);
-        deckCards[2].style.opacity = opacity;
-        deckCards[2].style.transform = `translate3d(0, ${y}px, 0) scale(${scale}) rotate(${rot}deg)`;
-        deckCards[2].style.pointerEvents = Number(opacity) > 0.4 ? 'auto' : 'none';
-      } else {
-        deckCards[2].style.opacity = '0';
-        deckCards[2].style.pointerEvents = 'none';
-        deckCards[2].style.transform = 'translate3d(0, -22px, 0) scale(0.95) rotate(2deg)';
-      }
-    }
-
-    // CARD 3 (Step 4)
-    if (deckCards[3]) {
-      if (p < 0.70) {
-        deckCards[3].style.opacity = '0';
-        deckCards[3].style.pointerEvents = 'none';
-        deckCards[3].style.transform = 'translate3d(0, 42px, 0) scale(0.96) rotate(1.5deg)';
-      } else if (p < 0.94) {
-        // Final card enters with progressive opacity and locks smoothly into place
-        const t = (p - 0.70) / 0.24;
-        const easeT = smoothStep(t);
-        const opacity = easeT.toFixed(3);
-        const y = ((1 - easeT) * 42).toFixed(1);
-        const scale = (0.96 + easeT * 0.04).toFixed(3);
-        const rot = ((1 - easeT) * 1.5 - 0.8).toFixed(2);
-        deckCards[3].style.opacity = opacity;
-        deckCards[3].style.transform = `translate3d(0, ${y}px, 0) scale(${scale}) rotate(${rot}deg)`;
-        deckCards[3].style.pointerEvents = Number(opacity) > 0.5 ? 'auto' : 'none';
-      } else {
-        deckCards[3].style.opacity = '1';
-        deckCards[3].style.pointerEvents = 'auto';
-        deckCards[3].style.transform = 'translate3d(0, 0px, 0) scale(1) rotate(-0.8deg)';
-      }
-    }
   };
 
-  updateDeckByProgress(0);
+  gsap.ticker.add(() => {
+    smoothedDeckProgress += (targetDeckProgress - smoothedDeckProgress) * 0.18;
+    updateDeckByProgress(smoothedDeckProgress);
+  });
 
-  let deckStInstance: ScrollTrigger | null = null;
+  let deckTrigger: ScrollTrigger | null = null;
   if (deckStage) {
-    deckStInstance = ScrollTrigger.create({
+    deckTrigger = ScrollTrigger.create({
       trigger: deckStage,
       start: 'top top',
-      end: '+=230%',
+      end: '+=200%',
       pin: true,
-      scrub: 0.5,
+      pinSpacing: true,
+      anticipatePin: 1,
+      refreshPriority: 1,
+      preventOverlaps: true,
       onUpdate: (self) => {
-        updateDeckByProgress(self.progress);
+        targetDeckProgress = self.progress;
       },
     });
   }
 
-  // Smooth scroll jump for the 4 step cards
-  const targetStepProgress = [0.02, 0.36, 0.68, 0.96];
+  const jumpToDeckStep = (idx: number) => {
+    const targetStep = Math.max(0, Math.min(3, idx));
+    const targetProgress = targetStep / 3;
+    targetDeckProgress = targetProgress;
+    if (deckTrigger) {
+      const targetScroll = deckTrigger.start + targetProgress * (deckTrigger.end - deckTrigger.start);
+      const lenis = (window as unknown as { __narayanaLenis?: { scrollTo: (target: number, opts?: Record<string, unknown>) => void } }).__narayanaLenis;
+      if (lenis) {
+        lenis.scrollTo(targetScroll, { duration: 0.8 });
+      } else {
+        window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+      }
+    }
+  };
+
   deckJumpBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       const idx = Number(btn.getAttribute('data-deck-jump') || 0);
-      if (deckStInstance) {
-        const start = deckStInstance.start;
-        const end = deckStInstance.end;
-        const targetScroll = start + targetStepProgress[idx] * (end - start);
-        window.scrollTo({
-          top: targetScroll,
-          behavior: 'smooth',
-        });
-      }
+      jumpToDeckStep(idx);
     });
   });
 
-  // PARTE B: BENTO GRID ENTRANCE ANIMATION
+  mobileDeckPrevBtn?.addEventListener('click', () => {
+    jumpToDeckStep((currentActiveStep + 3) % 4);
+  });
+
+  mobileDeckNextBtn?.addEventListener('click', () => {
+    jumpToDeckStep((currentActiveStep + 1) % 4);
+  });
+
+  // 3. BENTO GRID ENTRANCE ANIMATION (#superficies-bento)
   const bentoCards = document.querySelectorAll<HTMLElement>('.bento-surface-card');
   const bentoGrid = document.getElementById('surfaces-bento-grid');
   if (bentoGrid && bentoCards.length) {
@@ -771,4 +784,7 @@ const deckThemes = [
       }
     );
   }
+
+  // Refresh ScrollTrigger to synchronize geometry
+  ScrollTrigger.refresh();
 </script>

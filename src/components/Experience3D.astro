@@ -49,26 +49,29 @@ const dimensions3D = [
 
 <section
   id="formula-3d"
-  class="relative w-full bg-canopy-900"
+  class="relative w-full bg-canopy-950 overflow-hidden"
   aria-labelledby="formula-3d-heading"
 >
-  <!-- Pinned 3D Scroll Choreography Stage -->
+  <!-- Natural scroll buffer runway between Hero unpin and Formula 3D pin -->
+  <div class="h-16 sm:h-24 w-full pointer-events-none" aria-hidden="true"></div>
+
+  <!-- Pinned Viewport Stage for 3D Scrub -->
   <div
-    id="formula-3d-pin-stage"
-    class="relative flex min-h-screen w-full flex-col justify-between overflow-hidden bg-canopy-950 py-16 sm:py-20"
+    id="formula-pin-stage"
+    class="relative min-h-screen w-full flex flex-col justify-center overflow-hidden py-8 sm:py-12"
   >
     <!-- Giant Background Kinetic Outlined Text ("1D · 2D · 3D") -->
     <div
       id="formula-bg-bigword"
-      class="pointer-events-none absolute top-1/2 left-1/2 z-0 -translate-x-1/2 -translate-y-1/2 font-wordmark text-[6.5rem] leading-none font-black tracking-tighter whitespace-nowrap uppercase opacity-20 select-none sm:text-[13rem] lg:text-[18rem]"
+      class="pointer-events-none absolute top-1/2 left-1/2 z-0 -translate-x-1/2 -translate-y-1/2 font-wordmark text-[6.5rem] leading-none font-black tracking-tighter whitespace-nowrap uppercase opacity-15 select-none sm:text-[13rem] lg:text-[18rem]"
       aria-hidden="true"
     >
       <span class="starry-outline-ghost">1D · DESENGRASE</span>
     </div>
 
-    <!-- Animated 4-Point Sparkles around the stage -->
+    <!-- Decorative Sparkles -->
     <svg
-      class="formula-sparkle pointer-events-none absolute top-24 right-10 z-10 hidden h-14 w-14 text-solar-400 md:block"
+      class="formula-sparkle pointer-events-none absolute top-20 right-10 z-10 hidden h-14 w-14 text-solar-400 md:block"
       viewBox="0 0 64 64"
       fill="currentColor"
       aria-hidden="true"
@@ -76,7 +79,7 @@ const dimensions3D = [
       <path d="M32 0C34 22 42 30 64 32C42 34 34 42 32 64C30 42 22 34 0 32C22 30 30 22 32 0Z" />
     </svg>
     <svg
-      class="formula-sparkle pointer-events-none absolute bottom-28 left-8 z-10 hidden h-12 w-12 text-[#5CE63C] md:block"
+      class="formula-sparkle pointer-events-none absolute bottom-24 left-8 z-10 hidden h-12 w-12 text-[#5CE63C] md:block"
       viewBox="0 0 64 64"
       fill="currentColor"
       aria-hidden="true"
@@ -84,212 +87,242 @@ const dimensions3D = [
       <path d="M32 0C34 22 42 30 64 32C42 34 34 42 32 64C30 42 22 34 0 32C22 30 30 22 32 0Z" />
     </svg>
 
-    <div class="relative z-20 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-between px-4 sm:px-6">
-      <!-- Top Header + 1D / 2D / 3D Interactive Stage Pills -->
-      <div class="flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-end">
-        <div>
-          <div class="inline-flex flex-wrap items-center gap-2">
-            <span
-              class="starry-sticker -rotate-1 rounded-full bg-[#5CE63C] px-3.5 py-1 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase sm:px-4"
-            >
-              TECNOLOGÍA EN SECO · {BRAND_CONFIG.internalCode}
-            </span>
-            <span
-              class="starry-sticker rotate-1 rounded-full bg-solar-400 px-3.5 py-1 font-wordmark text-xs font-black text-canopy-950 uppercase"
-            >
-              ¡SCROLL CONTINUO DE LAS 3 DIMENSIONES!
-            </span>
-          </div>
-
-          <h2
-            id="formula-3d-heading"
-            class="mt-3 font-display text-xl leading-[0.98] font-black tracking-tight text-cream-50 uppercase sm:text-4xl lg:text-5xl"
+    <div class="relative z-20 mx-auto w-full max-w-7xl px-4 sm:px-6">
+    <!-- Top Header + 1D / 2D / 3D Interactive Pills -->
+    <div class="flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-end">
+      <div>
+        <div class="inline-flex flex-wrap items-center gap-2">
+          <span
+            class="starry-sticker -rotate-1 rounded-full bg-[#5CE63C] px-3.5 py-1 font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase sm:px-4"
           >
-            TRIPLE IMPACTO BIO: <span class="starry-display-stroke-lime">FÓRMULA 3D</span>
-          </h2>
+            TECNOLOGÍA EN SECO · {BRAND_CONFIG.internalCode}
+          </span>
+          <span
+            class="starry-sticker rotate-1 rounded-full bg-solar-400 px-3.5 py-1 font-wordmark text-xs font-black text-canopy-950 uppercase"
+          >
+            ¡3 DIMENSIONES DE LIMPIEZA BIO!
+          </span>
         </div>
 
-        <!-- 1D / 2D / 3D Pill Progress Indicator -->
-        <div class="flex flex-wrap items-center gap-2">
-          {
-            dimensions3D.map((dim, idx) => (
-              <button
-                type="button"
-                class={`dim-pill-btn starry-sticker flex items-center gap-1.5 rounded-full px-3.5 py-1.5 font-wordmark text-[11px] font-black tracking-wider uppercase transition-all sm:gap-2 sm:px-4 sm:py-2 sm:text-xs ${
-                  idx === 0
-                    ? 'bg-[#5CE63C] text-canopy-950 scale-105'
-                    : 'bg-canopy-900 text-cream-100 hover:bg-canopy-800'
-                }`}
-                data-dim-target={idx}
-                aria-label={`Ver dimensión ${dim.step}: ${dim.headline}`}
-              >
-                <span>{dim.step}</span>
-                <span class="hidden sm:inline">· {dim.headline}</span>
-              </button>
-            ))
-          }
-        </div>
+        <h2
+          id="formula-3d-heading"
+          class="mt-3 font-display text-2xl leading-[0.98] font-black tracking-tight text-cream-50 uppercase sm:text-4xl lg:text-5xl"
+        >
+          TRIPLE IMPACTO BIO: <span class="starry-display-stroke-lime">FÓRMULA 3D</span>
+        </h2>
       </div>
 
-      <!-- Center Arena: Orbital Video Portal + Continuous 3D Cards Stack -->
-      <div class="my-6 grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
-        <!-- Left 5 Cols: Orbital Video Portal (hoja_la_crema.mp4) with Rotating SVG Energy Ring -->
-        <div class="relative flex flex-col items-center justify-center lg:col-span-5">
-          <div class="relative flex h-[260px] w-[260px] items-center justify-center sm:h-[340px] sm:w-[340px] lg:h-[380px] lg:w-[380px]">
-            <!-- Rotating Dashed Bio Ring -->
-            <svg
-              id="formula-orbital-ring"
-              class="pointer-events-none absolute inset-0 h-full w-full"
-              viewBox="0 0 400 400"
-              fill="none"
+      <!-- 1D / 2D / 3D Dimension Pills -->
+      <div class="flex flex-wrap items-center gap-2">
+        {
+          dimensions3D.map((dim, idx) => (
+            <button
+              type="button"
+              class={`dim-pill-btn starry-sticker flex items-center gap-1.5 rounded-full px-3.5 py-1.5 font-wordmark text-[11px] font-black tracking-wider uppercase transition-all sm:gap-2 sm:px-4 sm:py-2 sm:text-xs ${
+                idx === 0
+                  ? 'bg-[#5CE63C] text-canopy-950 scale-105'
+                  : 'bg-canopy-900 text-cream-100 hover:bg-canopy-800'
+              }`}
+              data-dim-target={idx}
+              aria-label={`Ver dimensión ${dim.step}: ${dim.headline}`}
             >
-              <circle
-                cx="200"
-                cy="200"
-                r="190"
-                stroke="#5CE63C"
-                stroke-width="3"
-                stroke-dasharray="14 10"
-                opacity="0.75"
-              />
-              <circle
-                cx="200"
-                cy="200"
-                r="174"
-                stroke="#38BDF8"
-                stroke-width="2"
-                stroke-dasharray="6 12"
-                opacity="0.5"
-              />
-            </svg>
+              <span>{dim.step}</span>
+              <span class="hidden sm:inline">· {dim.headline}</span>
+            </button>
+          ))
+        }
+      </div>
+    </div>
 
-            <!-- Circular Video Portal -->
-            <div
-              class="watermark-crop-frame starry-card-hard relative h-[210px] w-[210px] overflow-hidden rounded-full bg-canopy-900 sm:h-[280px] sm:w-[280px]"
-            >
-              <video
-                src="/assets/videos/hoja_la_crema.mp4"
-                poster="/assets/images/sendero_maloka_1.png"
-                autoplay
-                loop
-                muted
-                playsinline
-                class="watermark-crop-media absolute inset-0 h-full w-full"
-              ></video>
-              <div class="absolute inset-0 bg-gradient-to-t from-canopy-950/85 via-transparent to-transparent"></div>
+    <!-- Quick Navigation Bar for Mobile / Touch -->
+    <div class="mt-4 flex w-full items-center justify-between gap-3 lg:hidden">
+      <button
+        id="mobile-dim-prev-btn"
+        type="button"
+        class="starry-sticker flex items-center gap-1.5 rounded-full bg-canopy-900 px-3.5 py-1.5 font-wordmark text-[11px] font-black text-cream-100 uppercase transition-all hover:bg-canopy-800"
+        aria-label="Dimensión anterior"
+      >
+        <span>← Anterior</span>
+      </button>
+      <span
+        id="mobile-dim-indicator"
+        class="font-wordmark text-xs font-black tracking-wider text-[#5CE63C] uppercase"
+      >
+        1 de 3 · DESENGRASE
+      </span>
+      <button
+        id="mobile-dim-next-btn"
+        type="button"
+        class="starry-sticker flex items-center gap-1.5 rounded-full bg-[#5CE63C] px-3.5 py-1.5 font-wordmark text-[11px] font-black text-canopy-950 uppercase transition-all hover:bg-solar-400"
+        aria-label="Siguiente dimensión"
+      >
+        <span>Siguiente →</span>
+      </button>
+    </div>
 
-              <!-- Live Dimension Counter Badge Inside Portal -->
-              <div class="absolute inset-x-0 bottom-4 flex flex-col items-center text-center sm:bottom-6">
-                <span
-                  id="portal-dim-step"
-                  class="starry-display-stroke text-3xl leading-none font-black sm:text-5xl"
-                >
-                  1D
-                </span>
-                <span
-                  id="portal-dim-label"
-                  class="mt-1 rounded-full border-2 border-canopy-950 bg-[#5CE63C] px-3 py-0.5 font-wordmark text-[10px] font-black text-canopy-950 uppercase sm:text-[11px]"
-                >
-                  DESENGRASA EN FRÍO
-                </span>
-              </div>
+    <!-- Center Arena: Orbital Video Portal (Left) + Interactive Dimension Cards (Right) -->
+    <div class="my-8 grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
+      <!-- Left 5 Cols: Orbital Portal with Rotating Dashed Bio Ring -->
+      <div class="relative flex flex-col items-center justify-center lg:col-span-5 w-full">
+        <div class="relative flex h-[230px] w-[230px] items-center justify-center sm:h-[300px] sm:w-[300px] lg:h-[370px] lg:w-[370px]">
+          <!-- Rotating Dashed Bio Ring -->
+          <svg
+            id="formula-orbital-ring"
+            class="pointer-events-none absolute inset-0 h-full w-full"
+            viewBox="0 0 400 400"
+            fill="none"
+          >
+            <circle
+              cx="200"
+              cy="200"
+              r="190"
+              stroke="#5CE63C"
+              stroke-width="3"
+              stroke-dasharray="14 10"
+              opacity="0.75"
+            />
+            <circle
+              cx="200"
+              cy="200"
+              r="174"
+              stroke="#38BDF8"
+              stroke-width="2"
+              stroke-dasharray="6 12"
+              opacity="0.5"
+            />
+          </svg>
+
+          <!-- Circular Video Portal Frame -->
+          <div
+            class="watermark-crop-frame starry-card-hard relative h-[180px] w-[180px] overflow-hidden rounded-full bg-canopy-900 sm:h-[240px] sm:w-[240px] lg:h-[280px] lg:w-[280px]"
+          >
+            <video
+              src="/assets/videos/hoja_la_crema.mp4"
+              poster="/assets/images/sendero_maloka_1.png"
+              autoplay
+              loop
+              muted
+              playsinline
+              class="watermark-crop-media absolute inset-0 h-full w-full"
+            ></video>
+            <div class="absolute inset-0 bg-gradient-to-t from-canopy-950/85 via-transparent to-transparent"></div>
+
+            <!-- Live Dimension Counter Badge Inside Portal -->
+            <div class="absolute inset-x-0 bottom-4 flex flex-col items-center text-center sm:bottom-6">
+              <span
+                id="portal-dim-step"
+                class="starry-display-stroke text-3xl leading-none font-black sm:text-4xl lg:text-5xl"
+              >
+                1D
+              </span>
+              <span
+                id="portal-dim-label"
+                class="mt-1 rounded-full border-2 border-canopy-950 bg-[#5CE63C] px-3 py-0.5 font-wordmark text-[10px] font-black text-canopy-950 uppercase sm:text-[11px]"
+              >
+                DESENGRASA EN FRÍO
+              </span>
             </div>
           </div>
         </div>
-
-        <!-- Right 7 Cols: Continuous Scrubbed 3D Dimension Cards Stack -->
-        <div class="relative min-h-[380px] sm:min-h-[360px] lg:col-span-7">
-          {
-            dimensions3D.map((dim, idx) => (
-              <article
-                class="formula-dim-card starry-card-hard absolute inset-0 flex flex-col justify-between rounded-[2.25rem] bg-canopy-900/95 p-5 transition-all sm:p-8 lg:p-9 will-change-transform"
-                data-dim-card={idx}
-                style={idx === 0 ? 'opacity: 1; pointer-events: auto; transform: translate3d(0, 0px, 0);' : 'opacity: 0; pointer-events: none; transform: translate3d(0, 36px, 0) scale(0.96);'}
-              >
-                <div class="flex flex-wrap items-center justify-between gap-2">
-                  <span
-                    class={`starry-sticker -rotate-1 rounded-full ${dim.accentBg} px-3.5 py-1 font-wordmark text-[11px] font-black tracking-wider text-canopy-950 uppercase sm:px-4 sm:text-xs`}
-                  >
-                    {dim.badge}
-                  </span>
-                  <span class="rounded-full border-2 border-white/20 bg-canopy-950 px-3 py-0.5 font-wordmark text-[11px] font-extrabold text-white uppercase sm:px-3.5 sm:py-1 sm:text-xs">
-                    {dim.metricPill}
-                  </span>
-                </div>
-
-                <!-- Monumental Starry Display Title for 1D / 2D / 3D -->
-                <div class="mt-4 flex flex-wrap items-baseline gap-2 sm:gap-3">
-                  <span class="starry-display-stroke text-3xl leading-none font-black sm:text-5xl lg:text-7xl">
-                    {dim.step}
-                  </span>
-                  <h3 class={`${dim.strokeClass} text-2xl leading-none font-black tracking-tight uppercase sm:text-4xl lg:text-6xl`}>
-                    {dim.headline}
-                  </h3>
-                </div>
-
-                <p class={`mt-2 font-display text-sm font-extrabold ${dim.accentText} sm:mt-3 sm:text-lg lg:text-xl`}>
-                  {dim.subtitle}
-                </p>
-
-                <p class="mt-2 text-xs leading-relaxed text-cream-100/90 sm:text-sm lg:text-base">
-                  {dim.description}
-                </p>
-
-                <div class="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-white/10 pt-3 sm:mt-5 sm:pt-4">
-                  <span class="text-xs font-bold text-cream-200/80">
-                    Superficies clave: <strong class="text-white">{dim.surfaces}</strong>
-                  </span>
-                  <span class="font-wordmark text-[11px] font-black tracking-wider text-[#5CE63C] uppercase sm:text-xs">
-                    ✦ 100% LIBRE DE FOSFATOS
-                  </span>
-                </div>
-              </article>
-            ))
-          }
-        </div>
       </div>
 
-      <!-- Bottom Bold Water-Savings Simulator Bar + 5 Official Certs -->
-      <div
-        class="starry-card-hard grid grid-cols-1 items-center gap-6 rounded-[2rem] bg-[#5CE63C] p-5 text-canopy-950 sm:p-6 lg:grid-cols-12"
-      >
-        <div class="lg:col-span-7">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <label
-              for="water-calc-range"
-              class="font-wordmark text-[11px] font-black tracking-wider text-canopy-950 uppercase sm:text-sm"
+      <!-- Right 7 Cols: Active Dimension Card with GSAP Continuous Scrub -->
+      <div id="formula-cards-container" class="relative w-full lg:col-span-7 min-h-[380px] sm:min-h-[320px]">
+        {
+          dimensions3D.map((dim, idx) => (
+            <article
+              class={`formula-dim-card starry-card-hard absolute inset-0 flex flex-col justify-between rounded-[2.25rem] bg-canopy-900/95 p-6 sm:p-8 lg:p-9 will-change-transform shadow-[0_8px_30px_rgba(0,0,0,0.4)] ${
+                idx === 0 ? 'opacity-100 z-20 pointer-events-auto' : 'opacity-0 z-10 pointer-events-none'
+              }`}
+              data-dim-card={idx}
             >
-              💧 SIMULADOR DE AHORRO HÍDRICO: <span id="water-calc-count" class="underline">8 usos</span> / semana
-            </label>
-            <span
-              class="starry-sticker rotate-1 rounded-full bg-solar-400 px-3.5 py-1 font-wordmark text-xs font-black text-canopy-950 uppercase sm:px-4 sm:text-sm"
-            >
-              AHORRAS ~<span id="water-calc-liters">380</span> LITROS / MES
-            </span>
-          </div>
-          <input
-            id="water-calc-range"
-            type="range"
-            min="2"
-            max="30"
-            value="8"
-            class="mt-3 h-3 w-full cursor-pointer appearance-none rounded-full border-2 border-canopy-950 bg-white accent-canopy-950"
-          />
-        </div>
-
-        <div class="grid grid-cols-3 gap-1.5 text-center sm:grid-cols-5 lg:col-span-5">
-          {
-            ['Desengrasa', 'Desmancha', 'Desinfecta', 'Biodegradable', 'Sin Agua'].map((seal) => (
-              <div class="rounded-2xl border-2 border-canopy-950 bg-white px-1.5 py-2 shadow-[0_3px_0_#04110b]">
-                <p class="font-wordmark text-[10px] font-black tracking-tight text-canopy-950 uppercase">
-                  {seal}
-                </p>
+              <!-- Top Row: Badge + Metric Pill -->
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span
+                  class={`starry-sticker -rotate-1 rounded-full ${dim.accentBg} px-3.5 py-1 font-wordmark text-[11px] font-black tracking-wider text-canopy-950 uppercase sm:px-4 sm:text-xs`}
+                >
+                  {dim.badge}
+                </span>
+                <span class="rounded-full border-2 border-white/20 bg-canopy-950 px-3 py-0.5 font-wordmark text-[11px] font-extrabold text-white uppercase sm:px-3.5 sm:py-1 sm:text-xs">
+                  {dim.metricPill}
+                </span>
               </div>
-            ))
-          }
-        </div>
+
+              <!-- Starry Display Title for 1D / 2D / 3D -->
+              <div class="mt-4 flex flex-wrap items-baseline gap-2 sm:gap-3">
+                <span class="starry-display-stroke text-4xl leading-none font-black sm:text-6xl lg:text-7xl">
+                  {dim.step}
+                </span>
+                <h3 class={`${dim.strokeClass} text-2xl leading-none font-black tracking-tight uppercase sm:text-4xl lg:text-6xl`}>
+                  {dim.headline}
+                </h3>
+              </div>
+
+              <!-- Subtitle & Description -->
+              <p class={`mt-2.5 font-display text-sm font-extrabold ${dim.accentText} sm:mt-3 sm:text-lg lg:text-xl`}>
+                {dim.subtitle}
+              </p>
+
+              <p class="mt-2.5 text-xs leading-relaxed text-cream-100/90 sm:text-sm lg:text-base">
+                {dim.description}
+              </p>
+
+              <!-- Footer with Key Surfaces -->
+              <div class="mt-5 flex flex-wrap items-center justify-between gap-2 border-t border-white/10 pt-4">
+                <span class="text-xs font-bold text-cream-200/80">
+                  Superficies clave: <strong class="text-white">{dim.surfaces}</strong>
+                </span>
+                <span class="font-wordmark text-[11px] font-black tracking-wider text-[#5CE63C] uppercase sm:text-xs">
+                  ✦ 100% LIBRE DE FOSFATOS
+                </span>
+              </div>
+            </article>
+          ))
+        }
       </div>
     </div>
+
+    <!-- Bottom Water-Savings Simulator Bar + 5 Official Certs -->
+    <div
+      class="starry-card-hard mt-6 grid grid-cols-1 items-center gap-6 rounded-[2rem] bg-[#5CE63C] p-5 text-canopy-950 sm:p-6 lg:grid-cols-12"
+    >
+      <div class="lg:col-span-7">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <label
+            for="water-calc-range"
+            class="font-wordmark text-[11px] font-black tracking-wider text-canopy-950 uppercase sm:text-sm"
+          >
+            💧 SIMULADOR DE AHORRO HÍDRICO: <span id="water-calc-count" class="underline">8 usos</span> / semana
+          </label>
+          <span
+            class="starry-sticker rotate-1 rounded-full bg-solar-400 px-3.5 py-1 font-wordmark text-xs font-black text-canopy-950 uppercase sm:px-4 sm:text-sm"
+          >
+            AHORRAS ~<span id="water-calc-liters">380</span> LITROS / MES
+          </span>
+        </div>
+        <input
+          id="water-calc-range"
+          type="range"
+          min="2"
+          max="30"
+          value="8"
+          class="mt-3 h-3 w-full cursor-pointer appearance-none rounded-full border-2 border-canopy-950 bg-white accent-canopy-950"
+        />
+      </div>
+
+      <div class="grid grid-cols-3 gap-1.5 text-center sm:grid-cols-5 lg:col-span-5">
+        {
+          ['Desengrasa', 'Desmancha', 'Desinfecta', 'Biodegradable', 'Sin Agua'].map((seal) => (
+            <div class="rounded-2xl border-2 border-canopy-950 bg-white px-1.5 py-2 shadow-[0_3px_0_#04110b]">
+              <p class="font-wordmark text-[10px] font-black tracking-tight text-canopy-950 uppercase">
+                {seal}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
   </div>
 </section>
 
@@ -299,184 +332,141 @@ const dimensions3D = [
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const stage = document.getElementById('formula-3d-pin-stage');
+  const stage = document.getElementById('formula-pin-stage');
   const cards = document.querySelectorAll<HTMLElement>('.formula-dim-card');
   const pillBtns = document.querySelectorAll<HTMLButtonElement>('.dim-pill-btn');
   const orbitalRing = document.getElementById('formula-orbital-ring');
   const bgBigWord = document.getElementById('formula-bg-bigword');
   const portalStep = document.getElementById('portal-dim-step');
   const portalLabel = document.getElementById('portal-dim-label');
-  const sparkles = document.querySelectorAll<HTMLElement>('.formula-sparkle');
+  const mobileIndicator = document.getElementById('mobile-dim-indicator');
+  const mobilePrevBtn = document.getElementById('mobile-dim-prev-btn');
+  const mobileNextBtn = document.getElementById('mobile-dim-next-btn');
 
   const dimMeta = [
-    { step: '1D', label: 'DESENGRASA EN FRÍO', big: '1D · DESENGRASE', bg: '#5CE63C' },
-    { step: '2D', label: 'DESMANCHA SIN RAYAR', big: '2D · DESMANCHA', bg: '#38BDF8' },
-    { step: '3D', label: 'DESINFECTA BIO', big: '3D · DESINFECTA', bg: '#FACC15' },
+    { step: '1D', label: 'DESENGRASA EN FRÍO', big: '1D · DESENGRASE', headline: 'DESENGRASE', bg: '#5CE63C' },
+    { step: '2D', label: 'DESMANCHA SIN RAYAR', big: '2D · DESMANCHA', headline: 'DESMANCHA', bg: '#38BDF8' },
+    { step: '3D', label: 'DESINFECTA BIO', big: '3D · DESINFECTA', headline: 'DESINFECTA', bg: '#FACC15' },
   ];
 
-  let currentDimIndex = -1;
+  const centers = [0.18, 0.50, 0.82];
+  let targetProgress = 0;
+  let smoothedProgress = 0;
+  let idleAngle = 0;
+  let activeIndex = -1;
 
-  const updateHudMeta = (idx: number) => {
-    if (idx === currentDimIndex) return;
-    currentDimIndex = idx;
+  const renderScrub = (p: number) => {
+    // Determine active dimension index
+    const activeIdx = p < 0.34 ? 0 : p < 0.67 ? 1 : 2;
 
-    const meta = dimMeta[idx] || dimMeta[0];
-    if (portalStep) portalStep.textContent = meta.step;
-    if (portalLabel) {
-      portalLabel.textContent = meta.label;
-      portalLabel.style.backgroundColor = meta.bg;
+    if (activeIdx !== activeIndex) {
+      activeIndex = activeIdx;
+      const meta = dimMeta[activeIndex];
+
+      if (portalStep) portalStep.textContent = meta.step;
+      if (portalLabel) {
+        portalLabel.textContent = meta.label;
+        portalLabel.style.backgroundColor = meta.bg;
+      }
+      if (bgBigWord) {
+        bgBigWord.innerHTML = `<span class="starry-outline-ghost">${meta.big}</span>`;
+      }
+      if (mobileIndicator) {
+        mobileIndicator.textContent = `${activeIndex + 1} de 3 · ${meta.headline}`;
+        mobileIndicator.style.color = meta.bg;
+      }
+
+      pillBtns.forEach((btn, i) => {
+        const isSelected = i === activeIndex;
+        btn.classList.toggle('bg-[#5CE63C]', isSelected && activeIndex === 0);
+        btn.classList.toggle('bg-celestial-400', isSelected && activeIndex === 1);
+        btn.classList.toggle('bg-solar-400', isSelected && activeIndex === 2);
+        btn.classList.toggle('text-canopy-950', isSelected);
+        btn.classList.toggle('scale-105', isSelected);
+        btn.classList.toggle('bg-canopy-900', !isSelected);
+        btn.classList.toggle('text-cream-100', !isSelected);
+      });
     }
-    if (bgBigWord) {
-      bgBigWord.innerHTML = `<span class="starry-outline-ghost">${meta.big}</span>`;
-    }
 
-    pillBtns.forEach((btn, i) => {
-      const isSelected = i === idx;
-      btn.classList.toggle('bg-[#5CE63C]', isSelected && idx === 0);
-      btn.classList.toggle('bg-celestial-400', isSelected && idx === 1);
-      btn.classList.toggle('bg-solar-400', isSelected && idx === 2);
-      btn.classList.toggle('text-canopy-950', isSelected);
-      btn.classList.toggle('scale-105', isSelected);
-      btn.classList.toggle('bg-canopy-900', !isSelected);
-      btn.classList.toggle('text-cream-100', !isSelected);
-    });
-  };
-
-  // Continuous Scrubbed Interpolation: Zero async tweens, zero tween overwriting!
-  const renderContinuousScrub = (p: number) => {
-    // p goes from 0.0 to 1.0
-    // Segment 1 (Card 0 active): p in [0.0, 0.33]
-    // Transition 0 -> 1: p in [0.28, 0.52]
-    // Segment 2 (Card 1 active): p in [0.48, 0.70]
-    // Transition 1 -> 2: p in [0.65, 0.88]
-    // Segment 3 (Card 2 active): p in [0.85, 1.0]
-
-    // Active Dim index for UI HUD
-    const activeIdx = p < 0.38 ? 0 : p < 0.72 ? 1 : 2;
-    updateHudMeta(activeIdx);
-
-    // Continuous rotation of orbital ring and sparkles directly tied to scroll
+    // Continuous orbital ring rotation
     if (orbitalRing) {
-      orbitalRing.style.transform = `rotate(${(p * 360).toFixed(1)}deg)`;
+      orbitalRing.style.transform = `rotate(${(idleAngle + p * 420).toFixed(1)}deg)`;
     }
-    sparkles.forEach((sp, i) => {
-      sp.style.transform = `rotate(${(p * 260 * (i % 2 === 0 ? 1 : -1)).toFixed(1)}deg) scale(${(1 + Math.sin(p * Math.PI * 3) * 0.18).toFixed(2)})`;
+
+    // Smooth Hermite cards transition
+    cards.forEach((card, i) => {
+      const c = centers[i];
+      const dist = Math.abs(p - c);
+      const windowSize = 0.36;
+      let weight = Math.max(0, 1 - dist / windowSize);
+      weight = weight * weight * (3 - 2 * weight); // Hermite smoothing
+
+      if (weight > 0.01) {
+        card.style.display = 'flex';
+        card.style.opacity = weight.toFixed(3);
+        const yOffset = (p - c) * -35;
+        const scale = 0.94 + weight * 0.06;
+        card.style.transform = `translate3d(0, ${yOffset.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
+        card.style.zIndex = weight > 0.5 ? '20' : '10';
+        card.style.pointerEvents = weight > 0.6 ? 'auto' : 'none';
+      } else {
+        card.style.opacity = '0';
+        card.style.display = 'none';
+        card.style.pointerEvents = 'none';
+      }
     });
-
-    // CARD 0 (1D)
-    if (cards[0]) {
-      // Fully visible from 0.0 to 0.28, fades/glides out between 0.28 and 0.50
-      if (p <= 0.28) {
-        cards[0].style.opacity = '1';
-        cards[0].style.transform = 'translate3d(0, 0px, 0) scale(1)';
-        cards[0].style.pointerEvents = 'auto';
-      } else if (p < 0.50) {
-        const t = (p - 0.28) / 0.22; // 0 to 1
-        const easeT = t * t * (3 - 2 * t); // smooth hermite
-        const opacity = (1 - easeT).toFixed(3);
-        const y = (-easeT * 32).toFixed(1);
-        const scale = (1 - easeT * 0.04).toFixed(3);
-        cards[0].style.opacity = opacity;
-        cards[0].style.transform = `translate3d(0, ${y}px, 0) scale(${scale})`;
-        cards[0].style.pointerEvents = Number(opacity) > 0.5 ? 'auto' : 'none';
-      } else {
-        cards[0].style.opacity = '0';
-        cards[0].style.transform = 'translate3d(0, -32px, 0) scale(0.96)';
-        cards[0].style.pointerEvents = 'none';
-      }
-    }
-
-    // CARD 1 (2D)
-    if (cards[1]) {
-      // Glides in between 0.28 and 0.50, holds 0.50 to 0.65, glides out between 0.65 and 0.88
-      if (p < 0.28) {
-        cards[1].style.opacity = '0';
-        cards[1].style.transform = 'translate3d(0, 36px, 0) scale(0.96)';
-        cards[1].style.pointerEvents = 'none';
-      } else if (p < 0.50) {
-        const t = (p - 0.28) / 0.22;
-        const easeT = t * t * (3 - 2 * t);
-        const opacity = easeT.toFixed(3);
-        const y = ((1 - easeT) * 36).toFixed(1);
-        const scale = (0.96 + easeT * 0.04).toFixed(3);
-        cards[1].style.opacity = opacity;
-        cards[1].style.transform = `translate3d(0, ${y}px, 0) scale(${scale})`;
-        cards[1].style.pointerEvents = Number(opacity) > 0.5 ? 'auto' : 'none';
-      } else if (p <= 0.65) {
-        cards[1].style.opacity = '1';
-        cards[1].style.transform = 'translate3d(0, 0px, 0) scale(1)';
-        cards[1].style.pointerEvents = 'auto';
-      } else if (p < 0.88) {
-        const t = (p - 0.65) / 0.23;
-        const easeT = t * t * (3 - 2 * t);
-        const opacity = (1 - easeT).toFixed(3);
-        const y = (-easeT * 32).toFixed(1);
-        const scale = (1 - easeT * 0.04).toFixed(3);
-        cards[1].style.opacity = opacity;
-        cards[1].style.transform = `translate3d(0, ${y}px, 0) scale(${scale})`;
-        cards[1].style.pointerEvents = Number(opacity) > 0.5 ? 'auto' : 'none';
-      } else {
-        cards[1].style.opacity = '0';
-        cards[1].style.transform = 'translate3d(0, -32px, 0) scale(0.96)';
-        cards[1].style.pointerEvents = 'none';
-      }
-    }
-
-    // CARD 2 (3D)
-    if (cards[2]) {
-      // Glides in between 0.65 and 0.88, holds 0.88 to 1.0
-      if (p < 0.65) {
-        cards[2].style.opacity = '0';
-        cards[2].style.transform = 'translate3d(0, 36px, 0) scale(0.96)';
-        cards[2].style.pointerEvents = 'none';
-      } else if (p < 0.88) {
-        const t = (p - 0.65) / 0.23;
-        const easeT = t * t * (3 - 2 * t);
-        const opacity = easeT.toFixed(3);
-        const y = ((1 - easeT) * 36).toFixed(1);
-        const scale = (0.96 + easeT * 0.04).toFixed(3);
-        cards[2].style.opacity = opacity;
-        cards[2].style.transform = `translate3d(0, ${y}px, 0) scale(${scale})`;
-        cards[2].style.pointerEvents = Number(opacity) > 0.5 ? 'auto' : 'none';
-      } else {
-        cards[2].style.opacity = '1';
-        cards[2].style.transform = 'translate3d(0, 0px, 0) scale(1)';
-        cards[2].style.pointerEvents = 'auto';
-      }
-    }
   };
 
-  renderContinuousScrub(0);
+  gsap.ticker.add(() => {
+    idleAngle += 0.25;
+    smoothedProgress += (targetProgress - smoothedProgress) * 0.18;
+    renderScrub(smoothedProgress);
+  });
 
-  let stInstance: ScrollTrigger | null = null;
+  let formulaTrigger: ScrollTrigger | null = null;
   if (stage) {
-    stInstance = ScrollTrigger.create({
+    formulaTrigger = ScrollTrigger.create({
       trigger: stage,
       start: 'top top',
-      end: '+=240%',
+      end: '+=200%',
       pin: true,
-      scrub: 0.5,
+      pinSpacing: true,
+      anticipatePin: 1,
+      refreshPriority: 3,
+      preventOverlaps: true,
       onUpdate: (self) => {
-        renderContinuousScrub(self.progress);
+        targetProgress = self.progress;
       },
     });
   }
 
-  // Smooth click scroll jump for the 3 pill buttons
-  const targetPillProgress = [0.08, 0.56, 0.94];
+  const jumpToDimension = (idx: number) => {
+    const targetP = centers[idx];
+    targetProgress = targetP;
+    if (formulaTrigger) {
+      const targetScroll = formulaTrigger.start + targetP * (formulaTrigger.end - formulaTrigger.start);
+      const lenis = (window as unknown as { __narayanaLenis?: { scrollTo: (target: number, opts?: Record<string, unknown>) => void } }).__narayanaLenis;
+      if (lenis) {
+        lenis.scrollTo(targetScroll, { duration: 0.8 });
+      } else {
+        window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+      }
+    }
+  };
+
   pillBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      const targetIdx = Number(btn.getAttribute('data-dim-target') || 0);
-      if (stInstance) {
-        const start = stInstance.start;
-        const end = stInstance.end;
-        const targetScroll = start + targetPillProgress[targetIdx] * (end - start);
-        window.scrollTo({
-          top: targetScroll,
-          behavior: 'smooth',
-        });
-      }
+      const target = Number(btn.getAttribute('data-dim-target') || 0);
+      jumpToDimension(target);
     });
+  });
+
+  mobilePrevBtn?.addEventListener('click', () => {
+    jumpToDimension((activeIndex + 2) % 3);
+  });
+
+  mobileNextBtn?.addEventListener('click', () => {
+    jumpToDimension((activeIndex + 1) % 3);
   });
 
   // Water calculator logic
