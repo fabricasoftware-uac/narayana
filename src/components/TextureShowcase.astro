@@ -5,10 +5,7 @@ const cardThemes = [
   { bg: 'bg-[#5CE63C]', text: 'text-canopy-950', pill: 'bg-solar-400', hex: '#5CE63C' },
   { bg: 'bg-celestial-400', text: 'text-canopy-950', pill: 'bg-white', hex: '#38BDF8' },
   { bg: 'bg-solar-400', text: 'text-canopy-950', pill: 'bg-[#5CE63C]', hex: '#FACC15' },
-  { bg: 'bg-white', text: 'text-canopy-950', pill: 'bg-[#5CE63C]', hex: '#FFFFFF' },
   { bg: 'bg-[#5CE63C]', text: 'text-canopy-950', pill: 'bg-white', hex: '#5CE63C' },
-  { bg: 'bg-celestial-400', text: 'text-canopy-950', pill: 'bg-solar-400', hex: '#38BDF8' },
-  { bg: 'bg-solar-400', text: 'text-canopy-950', pill: 'bg-white', hex: '#FACC15' },
 ];
 
 const categoryLabels: Record<string, string> = {
@@ -27,7 +24,7 @@ const categoryLabels: Record<string, string> = {
   <!-- Natural scroll buffer runway between Formula 3D and Texture Pin -->
   <div class="h-16 sm:h-24 w-full pointer-events-none" aria-hidden="true"></div>
 
-  <!-- Pinned Viewport Stage for 7 Bio Actives Scrub -->
+  <!-- Pinned Viewport Stage for 4 Bio Actives Scrub -->
   <div
     id="texture-pin-stage"
     class="relative min-h-screen w-full flex flex-col justify-center overflow-hidden bg-[radial-gradient(circle_at_32%_52%,#d9f99d_0%,#f7f9f4_55%,#eef3e8_100%)] py-8 sm:py-12"
@@ -62,11 +59,11 @@ const categoryLabels: Record<string, string> = {
             id="texture-heading"
             class="mt-3 font-display text-2xl leading-[0.96] font-black tracking-tight text-canopy-950 uppercase sm:text-4xl lg:text-5xl"
           >
-            EXPLORA LA TEXTURA: <span class="starry-display-stroke-lime">7 ACTIVOS BIO</span>
+            EXPLORA LA TEXTURA: <span class="starry-display-stroke-lime">4 ACTIVOS BIO</span>
           </h2>
         </div>
 
-        <!-- Live Step Counter (01 / 07 -> 07 / 07) -->
+        <!-- Live Step Counter (01 / 04 -> 04 / 04) -->
         <div class="starry-sticker flex items-center gap-3 rounded-full bg-canopy-950 px-5 py-2 text-cream-50">
           <span class="font-wordmark text-xs font-bold tracking-wider text-cream-200 uppercase">
             Activo Bio:
@@ -75,7 +72,7 @@ const categoryLabels: Record<string, string> = {
             id="comp-scroll-counter"
             class="font-wordmark text-xl font-black text-[#5CE63C]"
           >
-            01 / 07
+            01 / 04
           </span>
         </div>
       </div>
@@ -94,7 +91,7 @@ const categoryLabels: Record<string, string> = {
           id="mobile-texture-indicator"
           class="font-wordmark text-xs font-black tracking-wider text-canopy-950 uppercase"
         >
-          Activo 01 de 07 · Carbonato
+          Activo 01 de 04 · Carbonato
         </span>
         <button
           id="mobile-texture-next-btn"
@@ -139,8 +136,8 @@ const categoryLabels: Record<string, string> = {
               <!-- Millimeter-Precision Micro-Magnifier Lens Reticle (Centers directly over the active pin) -->
               <div
                 id="texture-macro-lens"
-                class="pointer-events-none absolute z-20 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#5CE63C] bg-white/10 shadow-[0_0_24px_rgba(92,230,60,0.65)] backdrop-blur-[2px] sm:h-24 sm:w-24"
-                style="left: 24%; top: 30%;"
+                class="pointer-events-none absolute z-20 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#5CE63C] bg-white/10 shadow-[0_0_24px_rgba(92,230,60,0.65)] backdrop-blur-[2px] sm:h-24 sm:w-24 will-change-[left,top]"
+                style="left: 30%; top: 30%;"
               >
                 <div class="h-3 w-3 rounded-full border-2 border-canopy-950 bg-solar-400 animate-ping"></div>
                 <div class="absolute inset-0 rounded-full border border-white/40"></div>
@@ -278,7 +275,7 @@ const categoryLabels: Record<string, string> = {
         role="listbox"
         aria-label="Componentes de la fórmula Narayana"
       >
-        <div class="flex overflow-x-auto gap-2 pb-1 lg:grid lg:grid-cols-7 lg:gap-2 lg:overflow-visible no-scrollbar">
+        <div class="flex overflow-x-auto gap-2 pb-1 lg:grid lg:grid-cols-4 lg:gap-2 lg:overflow-visible no-scrollbar">
           {
             BRAND_CONFIG.composition.map((comp, idx) => (
               <button
@@ -348,9 +345,37 @@ const categoryLabels: Record<string, string> = {
     estabilizador: 'ESTABILIZADOR NATURAL · ANTIREDEPOSITANTE',
   };
 
-  const cardBgColors = ['#5CE63C', '#38BDF8', '#FACC15', '#FFFFFF', '#5CE63C', '#38BDF8', '#FACC15'];
+  const cardBgColors = ['#5CE63C', '#38BDF8', '#FACC15', '#5CE63C'];
+
+  const waypoints = Array.from(listItems).map((item) => ({
+    x: Number(item.getAttribute('data-coord-x') || 50),
+    y: Number(item.getAttribute('data-coord-y') || 50),
+  }));
+
+  const total = listItems.length;
+  const maxSegment = Math.max(1, total - 1);
 
   let currentCompIndex = -1;
+  let currentLensX = waypoints[0]?.x ?? 30;
+  let currentLensY = waypoints[0]?.y ?? 30;
+  let targetLensX = currentLensX;
+  let targetLensY = currentLensY;
+
+  // 60FPS fluid physics loop for continuous silky glide of the Lupa Bio
+  gsap.ticker.add(() => {
+    currentLensX += (targetLensX - currentLensX) * 0.14;
+    currentLensY += (targetLensY - currentLensY) * 0.14;
+
+    if (macroLens) {
+      macroLens.style.left = `${currentLensX.toFixed(2)}%`;
+      macroLens.style.top = `${currentLensY.toFixed(2)}%`;
+    }
+
+    if (macroAura) {
+      const activeColor = cardBgColors[currentCompIndex >= 0 ? currentCompIndex : 0] || '#5CE63C';
+      macroAura.style.background = `radial-gradient(circle at ${currentLensX.toFixed(1)}% ${currentLensY.toFixed(1)}%, ${activeColor}66 0%, transparent 68%)`;
+    }
+  });
 
   const selectComponent = (index: number, shouldScrollPill = true) => {
     if (index === currentCompIndex) return;
@@ -363,8 +388,8 @@ const categoryLabels: Record<string, string> = {
     const role = targetItem.getAttribute('data-role') || '';
     const desc = targetItem.getAttribute('data-desc') || '';
     const category = targetItem.getAttribute('data-category') || '';
-    const coordX = Number(targetItem.getAttribute('data-coord-x') || 50);
-    const coordY = Number(targetItem.getAttribute('data-coord-y') || 50);
+    const coordX = waypoints[index]?.x ?? Number(targetItem.getAttribute('data-coord-x') || 50);
+    const coordY = waypoints[index]?.y ?? Number(targetItem.getAttribute('data-coord-y') || 50);
 
     if (activeNum) activeNum.textContent = `0${index + 1}`;
     if (activeName) activeName.textContent = name;
@@ -383,20 +408,9 @@ const categoryLabels: Record<string, string> = {
       macroLensName.textContent = `0${index + 1} · ${name}`;
     }
 
-    // Millimeter-precision gliding of the Micro-Magnifier Lens Reticle directly onto the hotspot center
-    if (macroLens) {
-      gsap.to(macroLens, {
-        left: `${coordX}%`,
-        top: `${coordY}%`,
-        scale: 1,
-        duration: 0.42,
-        ease: 'power3.out',
-        overwrite: 'auto',
-      });
-    }
-
-    if (macroAura) {
-      macroAura.style.background = `radial-gradient(circle at ${coordX}% ${coordY}%, ${cardBgColors[index] || '#5CE63C'}66 0%, transparent 68%)`;
+    if (shouldScrollPill) {
+      targetLensX = coordX;
+      targetLensY = coordY;
     }
 
     // Energetic GSAP Animation on the Spotlight Card for Mobile & Desktop
@@ -455,8 +469,6 @@ const categoryLabels: Record<string, string> = {
 
   selectComponent(0, false);
 
-  const total = listItems.length;
-
   let textureTrigger: ScrollTrigger | null = null;
   if (stage) {
     textureTrigger = ScrollTrigger.create({
@@ -469,18 +481,33 @@ const categoryLabels: Record<string, string> = {
       refreshPriority: 2,
       preventOverlaps: true,
       onUpdate: (self) => {
-        const stepProgress = Math.max(0, Math.min(0.999, self.progress));
-        const targetIndex = Math.min(total - 1, Math.floor(stepProgress * total));
-        selectComponent(targetIndex, false);
+        const p = Math.max(0, Math.min(1, self.progress));
+        const rawPos = p * maxSegment;
+        const segIdx = Math.min(maxSegment - 1, Math.floor(rawPos));
+        const frac = rawPos - segIdx;
+        // Hermite smooth cubic interpolation for fluid continuous path
+        const easeFrac = frac * frac * (3 - 2 * frac);
+
+        const p0 = waypoints[segIdx];
+        const p1 = waypoints[Math.min(maxSegment, segIdx + 1)];
+
+        targetLensX = p0.x + (p1.x - p0.x) * easeFrac;
+        targetLensY = p0.y + (p1.y - p0.y) * easeFrac;
+
+        const closestIdx = Math.min(maxSegment, Math.round(rawPos));
+        selectComponent(closestIdx, false);
       },
     });
   }
 
   const jumpToComponent = (idx: number) => {
-    const clamped = Math.max(0, Math.min(total - 1, idx));
+    const clamped = Math.max(0, Math.min(maxSegment, idx));
+    targetLensX = waypoints[clamped].x;
+    targetLensY = waypoints[clamped].y;
     selectComponent(clamped, true);
+
     if (textureTrigger) {
-      const targetP = (clamped + 0.5) / total;
+      const targetP = clamped / maxSegment;
       const targetScroll = textureTrigger.start + targetP * (textureTrigger.end - textureTrigger.start);
       const lenis = (window as unknown as { __narayanaLenis?: { scrollTo: (target: number, opts?: Record<string, unknown>) => void } }).__narayanaLenis;
       if (lenis) {
